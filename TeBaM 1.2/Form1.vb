@@ -482,23 +482,23 @@ Public Class Form1
 #End Region
 
 #Region "Treeview Drag and Drop"
-    Private Sub NewTreeView1_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles NewTreeView1.MouseDown
+    Private Sub NewTreeView1_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs)
         NewTreeView1.LabelEdit = False
         Me.NewTreeView1.SelectedNode = Me.NewTreeView1.GetNodeAt(e.X, e.Y)
         mySelectedNode = Me.NewTreeView1.GetNodeAt(e.X, e.Y) ' wird zum Knoten editieren benötigt
     End Sub
 
-    Private Sub NewTreeView1_ItemDrag(ByVal sender As Object, ByVal e As System.Windows.Forms.ItemDragEventArgs) Handles NewTreeView1.ItemDrag
+    Private Sub NewTreeView1_ItemDrag(ByVal sender As Object, ByVal e As System.Windows.Forms.ItemDragEventArgs)
         If Me.NewTreeView1.SelectedNode.Tag <> "manufacturer" Then
             DoDragDrop(e.Item, DragDropEffects.Move)
         End If
     End Sub
 
-    Private Sub NewTreeView1_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles NewTreeView1.DragEnter
+    Private Sub NewTreeView1_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs)
         e.Effect = DragDropEffects.Move
     End Sub
 
-    Private Sub NewTreeView1_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles NewTreeView1.DragDrop
+    Private Sub NewTreeView1_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs)
         If e.Data.GetDataPresent("System.Windows.Forms.TreeNode", False) AndAlso Not (Me.NodeMap = "") Then
             Dim MovingNode As TreeNode = CType(e.Data.GetData("System.Windows.Forms.TreeNode"), TreeNode)
             Dim NodeIndexes As String() = Me.NodeMap.Split("|"c)
@@ -517,7 +517,7 @@ Public Class Form1
         NewArticleBinding()
     End Sub
 
-    Private Sub NewTreeView1_DragOver(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles NewTreeView1.DragOver
+    Private Sub NewTreeView1_DragOver(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs)
         Dim NodeOver As TreeNode = Me.NewTreeView1.GetNodeAt(Me.NewTreeView1.PointToClient(Cursor.Position))
         Dim NodeMoving As TreeNode = CType(e.Data.GetData("System.Windows.Forms.TreeNode"), TreeNode)
         Dim TopTreeNode As TreeNode = NewTreeView1.TopNode
@@ -869,7 +869,7 @@ Public Class Form1
 
 
 #Region "Artikelfenster Daten updaten"
-    Private Sub NewTreeView1_AfterSelect(sender As Object, e As System.Windows.Forms.TreeViewEventArgs) Handles NewTreeView1.AfterSelect
+    Private Sub NewTreeView1_AfterSelect(sender As Object, e As System.Windows.Forms.TreeViewEventArgs)
         Dim currentNode As TreeNode = Nothing
         ArticleHMI(NewTreeView1.SelectedNode.Tag)
         currentNode = e.Node

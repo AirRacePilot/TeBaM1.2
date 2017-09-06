@@ -77,7 +77,6 @@ Partial Class Form1
         Me.DelOffer = New System.Windows.Forms.ToolStripButton()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
-        Me.NewTreeView1 = New TeBaM_1._2.NewTreeView()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         Me.Column1 = New System.Windows.Forms.DataGridViewComboBoxColumn()
@@ -89,6 +88,7 @@ Partial Class Form1
         Me.FKAngebotSpezOptionenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.ArtikelGroupBox = New System.Windows.Forms.GroupBox()
+        Me.RubrikMaskedTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.ButtonAddURL = New System.Windows.Forms.Button()
         Me.MaskedTextBoxArtikelnummer = New System.Windows.Forms.MaskedTextBox()
         Me.URLTextBox = New System.Windows.Forms.TextBox()
@@ -120,7 +120,6 @@ Partial Class Form1
         Me.TextmarkenDefinierenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.RubrikMaskedTextBox = New System.Windows.Forms.MaskedTextBox()
         KdNummerLabel = New System.Windows.Forms.Label()
         Firma1Label = New System.Windows.Forms.Label()
         Firma2Label = New System.Windows.Forms.Label()
@@ -153,7 +152,6 @@ Partial Class Form1
         Me.ToolStrip2.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -643,10 +641,6 @@ Partial Class Form1
         Me.SplitContainer1.Location = New System.Drawing.Point(3, 3)
         Me.SplitContainer1.Name = "SplitContainer1"
         '
-        'SplitContainer1.Panel1
-        '
-        Me.SplitContainer1.Panel1.Controls.Add(Me.NewTreeView1)
-        '
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.DataGridView2)
@@ -654,19 +648,6 @@ Partial Class Form1
         Me.SplitContainer1.Size = New System.Drawing.Size(1155, 490)
         Me.SplitContainer1.SplitterDistance = 383
         Me.SplitContainer1.TabIndex = 0
-        '
-        'NewTreeView1
-        '
-        Me.NewTreeView1.AllowDrop = True
-        Me.NewTreeView1.BackColor = System.Drawing.Color.Ivory
-        Me.NewTreeView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.NewTreeView1.ImageIndex = 0
-        Me.NewTreeView1.ImageList = Me.ImageList1
-        Me.NewTreeView1.Location = New System.Drawing.Point(0, 0)
-        Me.NewTreeView1.Name = "NewTreeView1"
-        Me.NewTreeView1.SelectedImageIndex = 0
-        Me.NewTreeView1.Size = New System.Drawing.Size(383, 490)
-        Me.NewTreeView1.TabIndex = 0
         '
         'ImageList1
         '
@@ -774,6 +755,14 @@ Partial Class Form1
         Me.ArtikelGroupBox.TabIndex = 17
         Me.ArtikelGroupBox.TabStop = False
         Me.ArtikelGroupBox.Text = "Artikel"
+        '
+        'RubrikMaskedTextBox
+        '
+        Me.RubrikMaskedTextBox.Location = New System.Drawing.Point(117, 89)
+        Me.RubrikMaskedTextBox.Mask = "00.00.00"
+        Me.RubrikMaskedTextBox.Name = "RubrikMaskedTextBox"
+        Me.RubrikMaskedTextBox.Size = New System.Drawing.Size(118, 22)
+        Me.RubrikMaskedTextBox.TabIndex = 24
         '
         'ButtonAddURL
         '
@@ -1014,14 +1003,6 @@ Partial Class Form1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'RubrikMaskedTextBox
-        '
-        Me.RubrikMaskedTextBox.Location = New System.Drawing.Point(117, 89)
-        Me.RubrikMaskedTextBox.Mask = "00.00.00"
-        Me.RubrikMaskedTextBox.Name = "RubrikMaskedTextBox"
-        Me.RubrikMaskedTextBox.Size = New System.Drawing.Size(118, 22)
-        Me.RubrikMaskedTextBox.TabIndex = 24
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -1049,7 +1030,6 @@ Partial Class Form1
         Me.ToolStrip2.ResumeLayout(False)
         Me.ToolStrip2.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
-        Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
@@ -1118,7 +1098,6 @@ Partial Class Form1
     Friend WithEvents VertreterComboBox As ComboBox
     Friend WithEvents VertreterBindingSource As BindingSource
     Friend WithEvents DataSet2 As DataSet2
-    Friend WithEvents NewTreeView1 As NewTreeView
     Friend WithEvents KundeGroupBox As GroupBox
     Friend WithEvents HerstellerBindingSource As BindingSource
     Friend WithEvents HerstellerComboBox As ComboBox
