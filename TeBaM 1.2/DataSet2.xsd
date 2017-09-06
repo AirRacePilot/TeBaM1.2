@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSet2" targetNamespace="http://tempuri.org/DataSet2.xsd" xmlns:mstns="http://tempuri.org/DataSet2.xsd" xmlns="http://tempuri.org/DataSet2.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSet2" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSet2" msprop:Generator_UserDSName="DataSet2">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Vertreter" msprop:Generator_TableClassName="VertreterDataTable" msprop:Generator_TableVarName="tableVertreter" msprop:Generator_TablePropName="Vertreter" msprop:Generator_RowDeletingName="VertreterRowDeleting" msprop:Generator_RowChangingName="VertreterRowChanging" msprop:Generator_RowEvHandlerName="VertreterRowChangeEventHandler" msprop:Generator_RowDeletedName="VertreterRowDeleted" msprop:Generator_UserTableName="Vertreter" msprop:Generator_RowChangedName="VertreterRowChanged" msprop:Generator_RowEvArgName="VertreterRowChangeEvent" msprop:Generator_RowClassName="VertreterRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Vertreternummer" msprop:Generator_ColumnVarNameInTable="columnVertreternummer" msprop:Generator_ColumnPropNameInRow="Vertreternummer" msprop:Generator_ColumnPropNameInTable="VertreternummerColumn" msprop:Generator_UserColumnName="Vertreternummer" type="xs:short" minOccurs="0" />
+              <xs:element name="Anrede" msprop:Generator_ColumnVarNameInTable="columnAnrede" msprop:Generator_ColumnPropNameInRow="Anrede" msprop:Generator_ColumnPropNameInTable="AnredeColumn" msprop:Generator_UserColumnName="Anrede" type="xs:string" minOccurs="0" />
+              <xs:element name="Vorname" msprop:Generator_ColumnVarNameInTable="columnVorname" msprop:Generator_ColumnPropNameInRow="Vorname" msprop:Generator_ColumnPropNameInTable="VornameColumn" msprop:Generator_UserColumnName="Vorname" type="xs:string" minOccurs="0" />
+              <xs:element name="Nachname" msprop:Generator_ColumnVarNameInTable="columnNachname" msprop:Generator_ColumnPropNameInRow="Nachname" msprop:Generator_ColumnPropNameInTable="NachnameColumn" msprop:Generator_UserColumnName="Nachname" type="xs:string" minOccurs="0" />
+              <xs:element name="Telefonnummer" msprop:Generator_ColumnVarNameInTable="columnTelefonnummer" msprop:Generator_ColumnPropNameInRow="Telefonnummer" msprop:Generator_ColumnPropNameInTable="TelefonnummerColumn" msprop:Generator_UserColumnName="Telefonnummer" type="xs:string" minOccurs="0" />
+              <xs:element name="angezeigterName" msprop:Generator_ColumnVarNameInTable="columnangezeigterName" msprop:Generator_ColumnPropNameInRow="angezeigterName" msprop:Generator_ColumnPropNameInTable="angezeigterNameColumn" msprop:Generator_UserColumnName="angezeigterName" type="xs:string" />
+              <xs:element name="e_mail" msprop:Generator_ColumnVarNameInTable="columne_mail" msprop:Generator_ColumnPropNameInRow="e_mail" msprop:Generator_ColumnPropNameInTable="e_mailColumn" msprop:Generator_UserColumnName="e_mail" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Vertreter" />
+      <xs:field xpath="mstns:angezeigterName" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
