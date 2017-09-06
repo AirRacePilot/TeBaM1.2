@@ -32,6 +32,16 @@ Partial Class Form1
         Dim PLZLabel As System.Windows.Forms.Label
         Dim OrtLabel As System.Windows.Forms.Label
         Dim AngezeigterNameLabel As System.Windows.Forms.Label
+        Dim HerstellerLabel As System.Windows.Forms.Label
+        Dim ProduktTypLabel As System.Windows.Forms.Label
+        Dim URLLabel As System.Windows.Forms.Label
+        Dim ArtikelnrLabel As System.Windows.Forms.Label
+        Dim RubrikLabel As System.Windows.Forms.Label
+        Dim ArtikelkurztextLabel As System.Windows.Forms.Label
+        Dim BeschreibungLabel As System.Windows.Forms.Label
+        Dim EKPreisLabel As System.Windows.Forms.Label
+        Dim VKPreisLabel As System.Windows.Forms.Label
+        Dim FaktorLabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
@@ -41,16 +51,17 @@ Partial Class Form1
         Me.AngebotIDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.KundennummerDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AngebotURLDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AngebotstitelDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AngebotBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.FKKundeAngebotBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.KundeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DataSet1 = New TeBaM_1._2.DataSet1()
         Me.Kunden = New System.Windows.Forms.Panel()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.KundeGroupBox = New System.Windows.Forms.GroupBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.DokumentenvorlageComboBox = New System.Windows.Forms.ComboBox()
         Me.VertreterComboBox = New System.Windows.Forms.ComboBox()
         Me.VertreterBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DataSet2 = New TeBaM_1._2.DataSet2()
         Me.OrtTextBox = New System.Windows.Forms.TextBox()
-        Me.KundeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.KdNummerComboBox = New System.Windows.Forms.ComboBox()
         Me.PLZTextBox = New System.Windows.Forms.TextBox()
         Me.Firma1TextBox = New System.Windows.Forms.TextBox()
@@ -67,9 +78,30 @@ Partial Class Form1
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.NewTreeView1 = New TeBaM_1._2.NewTreeView()
+        Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
+        Me.Column1 = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.ArtikelBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.OptionIDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AngebotsnummerDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ArtikelIDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SortRowDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FKAngebotSpezOptionenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.DokumentenvorlageComboBox = New System.Windows.Forms.ComboBox()
+        Me.ArtikelGroupBox = New System.Windows.Forms.GroupBox()
+        Me.ButtonAddURL = New System.Windows.Forms.Button()
+        Me.MaskedTextBoxArtikelnummer = New System.Windows.Forms.MaskedTextBox()
+        Me.URLTextBox = New System.Windows.Forms.TextBox()
+        Me.ArtikelkurztextTextBox = New System.Windows.Forms.TextBox()
+        Me.BeschreibungTextBox = New System.Windows.Forms.TextBox()
+        Me.EKPreisTextBox = New System.Windows.Forms.TextBox()
+        Me.VKPreisTextBox = New System.Windows.Forms.TextBox()
+        Me.FaktorTextBox = New System.Windows.Forms.TextBox()
+        Me.ProduktgruppeGroupBox = New System.Windows.Forms.GroupBox()
+        Me.HerstellerComboBox = New System.Windows.Forms.ComboBox()
+        Me.HerstellerBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ProduktTypComboBox = New System.Windows.Forms.ComboBox()
+        Me.ProduktBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.ToolStrip3 = New System.Windows.Forms.ToolStrip()
         Me.AddManufacturerNode = New System.Windows.Forms.ToolStripButton()
         Me.AddProductNode = New System.Windows.Forms.ToolStripButton()
@@ -86,6 +118,9 @@ Partial Class Form1
         Me.ListeBearbeitenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.KonfigurationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TextmarkenDefinierenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.RubrikMaskedTextBox = New System.Windows.Forms.MaskedTextBox()
         KdNummerLabel = New System.Windows.Forms.Label()
         Firma1Label = New System.Windows.Forms.Label()
         Firma2Label = New System.Windows.Forms.Label()
@@ -95,16 +130,26 @@ Partial Class Form1
         PLZLabel = New System.Windows.Forms.Label()
         OrtLabel = New System.Windows.Forms.Label()
         AngezeigterNameLabel = New System.Windows.Forms.Label()
+        HerstellerLabel = New System.Windows.Forms.Label()
+        ProduktTypLabel = New System.Windows.Forms.Label()
+        URLLabel = New System.Windows.Forms.Label()
+        ArtikelnrLabel = New System.Windows.Forms.Label()
+        RubrikLabel = New System.Windows.Forms.Label()
+        ArtikelkurztextLabel = New System.Windows.Forms.Label()
+        BeschreibungLabel = New System.Windows.Forms.Label()
+        EKPreisLabel = New System.Windows.Forms.Label()
+        VKPreisLabel = New System.Windows.Forms.Label()
+        FaktorLabel = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.AngebotBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.FKKundeAngebotBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.KundeBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Kunden.SuspendLayout()
-        Me.GroupBox2.SuspendLayout()
+        Me.KundeGroupBox.SuspendLayout()
         CType(Me.VertreterBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataSet2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.KundeBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip2.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -112,7 +157,13 @@ Partial Class Form1
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ArtikelBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.FKAngebotSpezOptionenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Panel1.SuspendLayout()
+        Me.ArtikelGroupBox.SuspendLayout()
+        Me.ProduktgruppeGroupBox.SuspendLayout()
+        CType(Me.HerstellerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ProduktBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip3.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -138,7 +189,7 @@ Partial Class Form1
         'Firma2Label
         '
         Firma2Label.AutoSize = True
-        Firma2Label.Location = New System.Drawing.Point(472, 60)
+        Firma2Label.Location = New System.Drawing.Point(552, 60)
         Firma2Label.Name = "Firma2Label"
         Firma2Label.Size = New System.Drawing.Size(55, 17)
         Firma2Label.TabIndex = 7
@@ -156,7 +207,7 @@ Partial Class Form1
         'Name2Label
         '
         Name2Label.AutoSize = True
-        Name2Label.Location = New System.Drawing.Point(472, 88)
+        Name2Label.Location = New System.Drawing.Point(552, 88)
         Name2Label.Name = "Name2Label"
         Name2Label.Size = New System.Drawing.Size(57, 17)
         Name2Label.TabIndex = 11
@@ -198,12 +249,102 @@ Partial Class Form1
         AngezeigterNameLabel.TabIndex = 21
         AngezeigterNameLabel.Text = "Vertreter:"
         '
+        'HerstellerLabel
+        '
+        HerstellerLabel.AutoSize = True
+        HerstellerLabel.Location = New System.Drawing.Point(16, 26)
+        HerstellerLabel.Name = "HerstellerLabel"
+        HerstellerLabel.Size = New System.Drawing.Size(73, 17)
+        HerstellerLabel.TabIndex = 4
+        HerstellerLabel.Text = "Hersteller:"
+        '
+        'ProduktTypLabel
+        '
+        ProduktTypLabel.AutoSize = True
+        ProduktTypLabel.Location = New System.Drawing.Point(400, 26)
+        ProduktTypLabel.Name = "ProduktTypLabel"
+        ProduktTypLabel.Size = New System.Drawing.Size(89, 17)
+        ProduktTypLabel.TabIndex = 10
+        ProduktTypLabel.Text = "Produkt Typ:"
+        '
+        'URLLabel
+        '
+        URLLabel.AutoSize = True
+        URLLabel.Location = New System.Drawing.Point(11, 240)
+        URLLabel.Name = "URLLabel"
+        URLLabel.Size = New System.Drawing.Size(40, 17)
+        URLLabel.TabIndex = 6
+        URLLabel.Text = "URL:"
+        '
+        'ArtikelnrLabel
+        '
+        ArtikelnrLabel.AutoSize = True
+        ArtikelnrLabel.Location = New System.Drawing.Point(11, 64)
+        ArtikelnrLabel.Name = "ArtikelnrLabel"
+        ArtikelnrLabel.Size = New System.Drawing.Size(64, 17)
+        ArtikelnrLabel.TabIndex = 8
+        ArtikelnrLabel.Text = "Artikelnr:"
+        '
+        'RubrikLabel
+        '
+        RubrikLabel.AutoSize = True
+        RubrikLabel.Location = New System.Drawing.Point(11, 92)
+        RubrikLabel.Name = "RubrikLabel"
+        RubrikLabel.Size = New System.Drawing.Size(53, 17)
+        RubrikLabel.TabIndex = 10
+        RubrikLabel.Text = "Rubrik:"
+        '
+        'ArtikelkurztextLabel
+        '
+        ArtikelkurztextLabel.AutoSize = True
+        ArtikelkurztextLabel.Location = New System.Drawing.Point(11, 33)
+        ArtikelkurztextLabel.Name = "ArtikelkurztextLabel"
+        ArtikelkurztextLabel.Size = New System.Drawing.Size(100, 17)
+        ArtikelkurztextLabel.TabIndex = 12
+        ArtikelkurztextLabel.Text = "Artikelkurztext:"
+        '
+        'BeschreibungLabel
+        '
+        BeschreibungLabel.AutoSize = True
+        BeschreibungLabel.Location = New System.Drawing.Point(11, 120)
+        BeschreibungLabel.Name = "BeschreibungLabel"
+        BeschreibungLabel.Size = New System.Drawing.Size(99, 17)
+        BeschreibungLabel.TabIndex = 14
+        BeschreibungLabel.Text = "Beschreibung:"
+        '
+        'EKPreisLabel
+        '
+        EKPreisLabel.AutoSize = True
+        EKPreisLabel.Location = New System.Drawing.Point(279, 61)
+        EKPreisLabel.Name = "EKPreisLabel"
+        EKPreisLabel.Size = New System.Drawing.Size(62, 17)
+        EKPreisLabel.TabIndex = 16
+        EKPreisLabel.Text = "EKPreis:"
+        '
+        'VKPreisLabel
+        '
+        VKPreisLabel.AutoSize = True
+        VKPreisLabel.Location = New System.Drawing.Point(279, 92)
+        VKPreisLabel.Name = "VKPreisLabel"
+        VKPreisLabel.Size = New System.Drawing.Size(62, 17)
+        VKPreisLabel.TabIndex = 18
+        VKPreisLabel.Text = "VKPreis:"
+        '
+        'FaktorLabel
+        '
+        FaktorLabel.AutoSize = True
+        FaktorLabel.Location = New System.Drawing.Point(552, 64)
+        FaktorLabel.Name = "FaktorLabel"
+        FaktorLabel.Size = New System.Drawing.Size(52, 17)
+        FaktorLabel.TabIndex = 20
+        FaktorLabel.Text = "Faktor:"
+        '
         'ToolStrip1
         '
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 28)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1294, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(1169, 25)
         Me.ToolStrip1.TabIndex = 0
         Me.ToolStrip1.Text = "ToolStrip1"
         '
@@ -212,7 +353,7 @@ Partial Class Form1
         Me.StatusStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 578)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Size = New System.Drawing.Size(1294, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(1169, 22)
         Me.StatusStrip1.TabIndex = 1
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -224,7 +365,7 @@ Partial Class Form1
         Me.TabControl1.Location = New System.Drawing.Point(0, 53)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1294, 525)
+        Me.TabControl1.Size = New System.Drawing.Size(1169, 525)
         Me.TabControl1.TabIndex = 2
         '
         'TabPage1
@@ -234,7 +375,7 @@ Partial Class Form1
         Me.TabPage1.Location = New System.Drawing.Point(4, 25)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1286, 496)
+        Me.TabPage1.Size = New System.Drawing.Size(1161, 496)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Kunden"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -244,14 +385,14 @@ Partial Class Form1
         Me.DataGridView1.AutoGenerateColumns = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.AngebotIDDataGridViewTextBoxColumn, Me.KundennummerDataGridViewTextBoxColumn, Me.AngebotURLDataGridViewTextBoxColumn, Me.AngebotstitelDataGridViewTextBoxColumn})
-        Me.DataGridView1.DataSource = Me.AngebotBindingSource
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.AngebotIDDataGridViewTextBoxColumn, Me.KundennummerDataGridViewTextBoxColumn, Me.AngebotURLDataGridViewTextBoxColumn})
+        Me.DataGridView1.DataSource = Me.FKKundeAngebotBindingSource
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.Location = New System.Drawing.Point(3, 268)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.RowTemplate.Height = 24
-        Me.DataGridView1.Size = New System.Drawing.Size(1280, 225)
+        Me.DataGridView1.Size = New System.Drawing.Size(1155, 225)
         Me.DataGridView1.TabIndex = 1
         '
         'AngebotIDDataGridViewTextBoxColumn
@@ -272,16 +413,15 @@ Partial Class Form1
         Me.AngebotURLDataGridViewTextBoxColumn.HeaderText = "AngebotURL"
         Me.AngebotURLDataGridViewTextBoxColumn.Name = "AngebotURLDataGridViewTextBoxColumn"
         '
-        'AngebotstitelDataGridViewTextBoxColumn
+        'FKKundeAngebotBindingSource
         '
-        Me.AngebotstitelDataGridViewTextBoxColumn.DataPropertyName = "Angebotstitel"
-        Me.AngebotstitelDataGridViewTextBoxColumn.HeaderText = "Angebotstitel"
-        Me.AngebotstitelDataGridViewTextBoxColumn.Name = "AngebotstitelDataGridViewTextBoxColumn"
+        Me.FKKundeAngebotBindingSource.DataMember = "FK_Kunde_Angebot"
+        Me.FKKundeAngebotBindingSource.DataSource = Me.KundeBindingSource
         '
-        'AngebotBindingSource
+        'KundeBindingSource
         '
-        Me.AngebotBindingSource.DataMember = "Angebot"
-        Me.AngebotBindingSource.DataSource = Me.DataSet1
+        Me.KundeBindingSource.DataMember = "Kunde"
+        Me.KundeBindingSource.DataSource = Me.DataSet1
         '
         'DataSet1
         '
@@ -290,40 +430,60 @@ Partial Class Form1
         '
         'Kunden
         '
-        Me.Kunden.Controls.Add(Me.GroupBox2)
+        Me.Kunden.Controls.Add(Me.KundeGroupBox)
         Me.Kunden.Controls.Add(Me.ToolStrip2)
         Me.Kunden.Dock = System.Windows.Forms.DockStyle.Top
         Me.Kunden.Location = New System.Drawing.Point(3, 3)
         Me.Kunden.Name = "Kunden"
-        Me.Kunden.Size = New System.Drawing.Size(1280, 265)
+        Me.Kunden.Size = New System.Drawing.Size(1155, 265)
         Me.Kunden.TabIndex = 0
         '
-        'GroupBox2
+        'KundeGroupBox
         '
-        Me.GroupBox2.Controls.Add(Me.VertreterComboBox)
-        Me.GroupBox2.Controls.Add(KdNummerLabel)
-        Me.GroupBox2.Controls.Add(AngezeigterNameLabel)
-        Me.GroupBox2.Controls.Add(Me.OrtTextBox)
-        Me.GroupBox2.Controls.Add(Me.KdNummerComboBox)
-        Me.GroupBox2.Controls.Add(OrtLabel)
-        Me.GroupBox2.Controls.Add(Me.PLZTextBox)
-        Me.GroupBox2.Controls.Add(Firma1Label)
-        Me.GroupBox2.Controls.Add(PLZLabel)
-        Me.GroupBox2.Controls.Add(Me.Firma1TextBox)
-        Me.GroupBox2.Controls.Add(Me.StrasseTextBox)
-        Me.GroupBox2.Controls.Add(Firma2Label)
-        Me.GroupBox2.Controls.Add(StrasseLabel)
-        Me.GroupBox2.Controls.Add(Me.Firma2TextBox)
-        Me.GroupBox2.Controls.Add(Me.Name2TextBox)
-        Me.GroupBox2.Controls.Add(Name1Label)
-        Me.GroupBox2.Controls.Add(Name2Label)
-        Me.GroupBox2.Controls.Add(Me.Name1TextBox)
-        Me.GroupBox2.Location = New System.Drawing.Point(5, 30)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(899, 210)
-        Me.GroupBox2.TabIndex = 24
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "Artikel"
+        Me.KundeGroupBox.Controls.Add(Me.Label1)
+        Me.KundeGroupBox.Controls.Add(Me.DokumentenvorlageComboBox)
+        Me.KundeGroupBox.Controls.Add(Me.VertreterComboBox)
+        Me.KundeGroupBox.Controls.Add(KdNummerLabel)
+        Me.KundeGroupBox.Controls.Add(AngezeigterNameLabel)
+        Me.KundeGroupBox.Controls.Add(Me.OrtTextBox)
+        Me.KundeGroupBox.Controls.Add(Me.KdNummerComboBox)
+        Me.KundeGroupBox.Controls.Add(OrtLabel)
+        Me.KundeGroupBox.Controls.Add(Me.PLZTextBox)
+        Me.KundeGroupBox.Controls.Add(Firma1Label)
+        Me.KundeGroupBox.Controls.Add(PLZLabel)
+        Me.KundeGroupBox.Controls.Add(Me.Firma1TextBox)
+        Me.KundeGroupBox.Controls.Add(Me.StrasseTextBox)
+        Me.KundeGroupBox.Controls.Add(Firma2Label)
+        Me.KundeGroupBox.Controls.Add(StrasseLabel)
+        Me.KundeGroupBox.Controls.Add(Me.Firma2TextBox)
+        Me.KundeGroupBox.Controls.Add(Me.Name2TextBox)
+        Me.KundeGroupBox.Controls.Add(Name1Label)
+        Me.KundeGroupBox.Controls.Add(Name2Label)
+        Me.KundeGroupBox.Controls.Add(Me.Name1TextBox)
+        Me.KundeGroupBox.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.KundeGroupBox.Location = New System.Drawing.Point(0, 39)
+        Me.KundeGroupBox.Name = "KundeGroupBox"
+        Me.KundeGroupBox.Size = New System.Drawing.Size(1155, 226)
+        Me.KundeGroupBox.TabIndex = 24
+        Me.KundeGroupBox.TabStop = False
+        Me.KundeGroupBox.Text = "Kunde"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(474, 172)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(139, 17)
+        Me.Label1.TabIndex = 25
+        Me.Label1.Text = "Dokumentenvorlage:"
+        '
+        'DokumentenvorlageComboBox
+        '
+        Me.DokumentenvorlageComboBox.FormattingEnabled = True
+        Me.DokumentenvorlageComboBox.Location = New System.Drawing.Point(626, 169)
+        Me.DokumentenvorlageComboBox.Name = "DokumentenvorlageComboBox"
+        Me.DokumentenvorlageComboBox.Size = New System.Drawing.Size(385, 24)
+        Me.DokumentenvorlageComboBox.TabIndex = 24
         '
         'VertreterComboBox
         '
@@ -332,7 +492,7 @@ Partial Class Form1
         Me.VertreterComboBox.FormattingEnabled = True
         Me.VertreterComboBox.Location = New System.Drawing.Point(118, 169)
         Me.VertreterComboBox.Name = "VertreterComboBox"
-        Me.VertreterComboBox.Size = New System.Drawing.Size(409, 24)
+        Me.VertreterComboBox.Size = New System.Drawing.Size(319, 24)
         Me.VertreterComboBox.TabIndex = 23
         '
         'VertreterBindingSource
@@ -353,15 +513,8 @@ Partial Class Form1
         Me.OrtTextBox.Size = New System.Drawing.Size(271, 22)
         Me.OrtTextBox.TabIndex = 18
         '
-        'KundeBindingSource
-        '
-        Me.KundeBindingSource.DataMember = "Kunde"
-        Me.KundeBindingSource.DataSource = Me.DataSet1
-        '
         'KdNummerComboBox
         '
-        Me.KdNummerComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.KundeBindingSource, "KdNummer", True))
-        Me.KdNummerComboBox.DataBindings.Add(New System.Windows.Forms.Binding("SelectedValue", Me.KundeBindingSource, "KundenID", True))
         Me.KdNummerComboBox.DataSource = Me.KundeBindingSource
         Me.KdNummerComboBox.DisplayMember = "KdNummer"
         Me.KdNummerComboBox.FormattingEnabled = True
@@ -369,6 +522,7 @@ Partial Class Form1
         Me.KdNummerComboBox.Name = "KdNummerComboBox"
         Me.KdNummerComboBox.Size = New System.Drawing.Size(167, 24)
         Me.KdNummerComboBox.TabIndex = 21
+        Me.KdNummerComboBox.ValueMember = "KundenID"
         '
         'PLZTextBox
         '
@@ -397,17 +551,17 @@ Partial Class Form1
         'Firma2TextBox
         '
         Me.Firma2TextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.KundeBindingSource, "Firma2", True))
-        Me.Firma2TextBox.Location = New System.Drawing.Point(561, 57)
+        Me.Firma2TextBox.Location = New System.Drawing.Point(626, 57)
         Me.Firma2TextBox.Name = "Firma2TextBox"
-        Me.Firma2TextBox.Size = New System.Drawing.Size(319, 22)
+        Me.Firma2TextBox.Size = New System.Drawing.Size(385, 22)
         Me.Firma2TextBox.TabIndex = 8
         '
         'Name2TextBox
         '
         Me.Name2TextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.KundeBindingSource, "Name2", True))
-        Me.Name2TextBox.Location = New System.Drawing.Point(561, 88)
+        Me.Name2TextBox.Location = New System.Drawing.Point(626, 85)
         Me.Name2TextBox.Name = "Name2TextBox"
-        Me.Name2TextBox.Size = New System.Drawing.Size(319, 22)
+        Me.Name2TextBox.Size = New System.Drawing.Size(385, 22)
         Me.Name2TextBox.TabIndex = 12
         '
         'Name1TextBox
@@ -420,11 +574,11 @@ Partial Class Form1
         '
         'ToolStrip2
         '
-        Me.ToolStrip2.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.ToolStrip2.ImageScalingSize = New System.Drawing.Size(32, 32)
         Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddCustomer, Me.DelCustomer, Me.ToolStripSeparator1, Me.AddOffer, Me.DelOffer})
         Me.ToolStrip2.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip2.Name = "ToolStrip2"
-        Me.ToolStrip2.Size = New System.Drawing.Size(1280, 27)
+        Me.ToolStrip2.Size = New System.Drawing.Size(1155, 39)
         Me.ToolStrip2.TabIndex = 0
         Me.ToolStrip2.Text = "ToolStrip2"
         '
@@ -434,7 +588,7 @@ Partial Class Form1
         Me.AddCustomer.Image = CType(resources.GetObject("AddCustomer.Image"), System.Drawing.Image)
         Me.AddCustomer.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.AddCustomer.Name = "AddCustomer"
-        Me.AddCustomer.Size = New System.Drawing.Size(24, 24)
+        Me.AddCustomer.Size = New System.Drawing.Size(36, 36)
         Me.AddCustomer.Text = "ToolStripButton1"
         Me.AddCustomer.ToolTipText = "Neuer Kunden"
         '
@@ -444,13 +598,13 @@ Partial Class Form1
         Me.DelCustomer.Image = CType(resources.GetObject("DelCustomer.Image"), System.Drawing.Image)
         Me.DelCustomer.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.DelCustomer.Name = "DelCustomer"
-        Me.DelCustomer.Size = New System.Drawing.Size(24, 24)
+        Me.DelCustomer.Size = New System.Drawing.Size(36, 36)
         Me.DelCustomer.Text = "Kunde löschen"
         '
         'ToolStripSeparator1
         '
         Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 27)
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 39)
         '
         'AddOffer
         '
@@ -458,7 +612,7 @@ Partial Class Form1
         Me.AddOffer.Image = CType(resources.GetObject("AddOffer.Image"), System.Drawing.Image)
         Me.AddOffer.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.AddOffer.Name = "AddOffer"
-        Me.AddOffer.Size = New System.Drawing.Size(24, 24)
+        Me.AddOffer.Size = New System.Drawing.Size(36, 36)
         Me.AddOffer.Text = "ToolStripButton1"
         Me.AddOffer.ToolTipText = "Neues Angebot"
         '
@@ -468,7 +622,7 @@ Partial Class Form1
         Me.DelOffer.Image = CType(resources.GetObject("DelOffer.Image"), System.Drawing.Image)
         Me.DelOffer.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.DelOffer.Name = "DelOffer"
-        Me.DelOffer.Size = New System.Drawing.Size(24, 24)
+        Me.DelOffer.Size = New System.Drawing.Size(36, 36)
         Me.DelOffer.Text = "ToolStripButton2"
         Me.DelOffer.ToolTipText = "Angebot löschen"
         '
@@ -478,7 +632,7 @@ Partial Class Form1
         Me.TabPage2.Location = New System.Drawing.Point(4, 25)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(1286, 496)
+        Me.TabPage2.Size = New System.Drawing.Size(1161, 496)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Angebot"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -497,94 +651,289 @@ Partial Class Form1
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.DataGridView2)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Panel1)
-        Me.SplitContainer1.Size = New System.Drawing.Size(1280, 490)
-        Me.SplitContainer1.SplitterDistance = 425
+        Me.SplitContainer1.Size = New System.Drawing.Size(1155, 490)
+        Me.SplitContainer1.SplitterDistance = 383
         Me.SplitContainer1.TabIndex = 0
         '
         'NewTreeView1
         '
+        Me.NewTreeView1.AllowDrop = True
         Me.NewTreeView1.BackColor = System.Drawing.Color.Ivory
         Me.NewTreeView1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.NewTreeView1.ImageIndex = 0
+        Me.NewTreeView1.ImageList = Me.ImageList1
         Me.NewTreeView1.Location = New System.Drawing.Point(0, 0)
         Me.NewTreeView1.Name = "NewTreeView1"
-        Me.NewTreeView1.Size = New System.Drawing.Size(425, 490)
+        Me.NewTreeView1.SelectedImageIndex = 0
+        Me.NewTreeView1.Size = New System.Drawing.Size(383, 490)
         Me.NewTreeView1.TabIndex = 0
+        '
+        'ImageList1
+        '
+        Me.ImageList1.ImageStream = CType(resources.GetObject("ImageList1.ImageStream"), System.Windows.Forms.ImageListStreamer)
+        Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
+        Me.ImageList1.Images.SetKeyName(0, "folder-document.ico")
+        Me.ImageList1.Images.SetKeyName(1, "node.png")
+        Me.ImageList1.Images.SetKeyName(2, "file-doc.ico")
+        Me.ImageList1.Images.SetKeyName(3, "node_chain_broken.png")
+        Me.ImageList1.Images.SetKeyName(4, "folder-open-2.ico")
         '
         'DataGridView2
         '
+        Me.DataGridView2.AutoGenerateColumns = False
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.OptionIDDataGridViewTextBoxColumn, Me.AngebotsnummerDataGridViewTextBoxColumn, Me.ArtikelIDDataGridViewTextBoxColumn, Me.SortRowDataGridViewTextBoxColumn})
+        Me.DataGridView2.DataSource = Me.FKAngebotSpezOptionenBindingSource
         Me.DataGridView2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView2.Location = New System.Drawing.Point(0, 203)
+        Me.DataGridView2.Location = New System.Drawing.Point(0, 377)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowTemplate.Height = 24
-        Me.DataGridView2.Size = New System.Drawing.Size(851, 287)
+        Me.DataGridView2.Size = New System.Drawing.Size(768, 113)
         Me.DataGridView2.TabIndex = 1
+        '
+        'Column1
+        '
+        Me.Column1.DataPropertyName = "ArtikelID"
+        Me.Column1.DataSource = Me.ArtikelBindingSource
+        Me.Column1.DisplayMember = "Artikelkurztext"
+        Me.Column1.HeaderText = "Artikelkurztext"
+        Me.Column1.Name = "Column1"
+        Me.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Column1.ValueMember = "ArtikelID"
+        '
+        'ArtikelBindingSource
+        '
+        Me.ArtikelBindingSource.DataMember = "Artikel"
+        Me.ArtikelBindingSource.DataSource = Me.DataSet1
+        '
+        'OptionIDDataGridViewTextBoxColumn
+        '
+        Me.OptionIDDataGridViewTextBoxColumn.DataPropertyName = "OptionID"
+        Me.OptionIDDataGridViewTextBoxColumn.HeaderText = "OptionID"
+        Me.OptionIDDataGridViewTextBoxColumn.Name = "OptionIDDataGridViewTextBoxColumn"
+        '
+        'AngebotsnummerDataGridViewTextBoxColumn
+        '
+        Me.AngebotsnummerDataGridViewTextBoxColumn.DataPropertyName = "Angebotsnummer"
+        Me.AngebotsnummerDataGridViewTextBoxColumn.HeaderText = "Angebotsnummer"
+        Me.AngebotsnummerDataGridViewTextBoxColumn.Name = "AngebotsnummerDataGridViewTextBoxColumn"
+        '
+        'ArtikelIDDataGridViewTextBoxColumn
+        '
+        Me.ArtikelIDDataGridViewTextBoxColumn.DataPropertyName = "ArtikelID"
+        Me.ArtikelIDDataGridViewTextBoxColumn.HeaderText = "ArtikelID"
+        Me.ArtikelIDDataGridViewTextBoxColumn.Name = "ArtikelIDDataGridViewTextBoxColumn"
+        '
+        'SortRowDataGridViewTextBoxColumn
+        '
+        Me.SortRowDataGridViewTextBoxColumn.DataPropertyName = "SortRow"
+        Me.SortRowDataGridViewTextBoxColumn.HeaderText = "SortRow"
+        Me.SortRowDataGridViewTextBoxColumn.Name = "SortRowDataGridViewTextBoxColumn"
+        '
+        'FKAngebotSpezOptionenBindingSource
+        '
+        Me.FKAngebotSpezOptionenBindingSource.DataMember = "FK_Angebot_SpezOptionen"
+        Me.FKAngebotSpezOptionenBindingSource.DataSource = Me.FKKundeAngebotBindingSource
         '
         'Panel1
         '
-        Me.Panel1.Controls.Add(Me.DokumentenvorlageComboBox)
+        Me.Panel1.AutoScroll = True
+        Me.Panel1.Controls.Add(Me.ArtikelGroupBox)
+        Me.Panel1.Controls.Add(Me.ProduktgruppeGroupBox)
         Me.Panel1.Controls.Add(Me.ToolStrip3)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(851, 203)
+        Me.Panel1.Size = New System.Drawing.Size(768, 377)
         Me.Panel1.TabIndex = 0
         '
-        'DokumentenvorlageComboBox
+        'ArtikelGroupBox
         '
-        Me.DokumentenvorlageComboBox.FormattingEnabled = True
-        Me.DokumentenvorlageComboBox.Location = New System.Drawing.Point(597, 135)
-        Me.DokumentenvorlageComboBox.Name = "DokumentenvorlageComboBox"
-        Me.DokumentenvorlageComboBox.Size = New System.Drawing.Size(121, 24)
-        Me.DokumentenvorlageComboBox.TabIndex = 1
+        Me.ArtikelGroupBox.Controls.Add(Me.RubrikMaskedTextBox)
+        Me.ArtikelGroupBox.Controls.Add(Me.ButtonAddURL)
+        Me.ArtikelGroupBox.Controls.Add(Me.MaskedTextBoxArtikelnummer)
+        Me.ArtikelGroupBox.Controls.Add(URLLabel)
+        Me.ArtikelGroupBox.Controls.Add(Me.URLTextBox)
+        Me.ArtikelGroupBox.Controls.Add(ArtikelnrLabel)
+        Me.ArtikelGroupBox.Controls.Add(RubrikLabel)
+        Me.ArtikelGroupBox.Controls.Add(ArtikelkurztextLabel)
+        Me.ArtikelGroupBox.Controls.Add(Me.ArtikelkurztextTextBox)
+        Me.ArtikelGroupBox.Controls.Add(BeschreibungLabel)
+        Me.ArtikelGroupBox.Controls.Add(Me.BeschreibungTextBox)
+        Me.ArtikelGroupBox.Controls.Add(EKPreisLabel)
+        Me.ArtikelGroupBox.Controls.Add(Me.EKPreisTextBox)
+        Me.ArtikelGroupBox.Controls.Add(VKPreisLabel)
+        Me.ArtikelGroupBox.Controls.Add(Me.VKPreisTextBox)
+        Me.ArtikelGroupBox.Controls.Add(FaktorLabel)
+        Me.ArtikelGroupBox.Controls.Add(Me.FaktorTextBox)
+        Me.ArtikelGroupBox.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.ArtikelGroupBox.Location = New System.Drawing.Point(0, 107)
+        Me.ArtikelGroupBox.Name = "ArtikelGroupBox"
+        Me.ArtikelGroupBox.Size = New System.Drawing.Size(768, 270)
+        Me.ArtikelGroupBox.TabIndex = 17
+        Me.ArtikelGroupBox.TabStop = False
+        Me.ArtikelGroupBox.Text = "Artikel"
+        '
+        'ButtonAddURL
+        '
+        Me.ButtonAddURL.Location = New System.Drawing.Point(703, 237)
+        Me.ButtonAddURL.Name = "ButtonAddURL"
+        Me.ButtonAddURL.Size = New System.Drawing.Size(43, 23)
+        Me.ButtonAddURL.TabIndex = 23
+        Me.ButtonAddURL.Text = "..."
+        Me.ButtonAddURL.UseVisualStyleBackColor = True
+        '
+        'MaskedTextBoxArtikelnummer
+        '
+        Me.MaskedTextBoxArtikelnummer.Location = New System.Drawing.Point(116, 61)
+        Me.MaskedTextBoxArtikelnummer.Mask = "00-0000-0000"
+        Me.MaskedTextBoxArtikelnummer.Name = "MaskedTextBoxArtikelnummer"
+        Me.MaskedTextBoxArtikelnummer.Size = New System.Drawing.Size(119, 22)
+        Me.MaskedTextBoxArtikelnummer.TabIndex = 22
+        '
+        'URLTextBox
+        '
+        Me.URLTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ArtikelBindingSource, "URL", True))
+        Me.URLTextBox.Location = New System.Drawing.Point(117, 237)
+        Me.URLTextBox.Name = "URLTextBox"
+        Me.URLTextBox.Size = New System.Drawing.Size(580, 22)
+        Me.URLTextBox.TabIndex = 7
+        '
+        'ArtikelkurztextTextBox
+        '
+        Me.ArtikelkurztextTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ArtikelBindingSource, "Artikelkurztext", True))
+        Me.ArtikelkurztextTextBox.Location = New System.Drawing.Point(117, 30)
+        Me.ArtikelkurztextTextBox.Name = "ArtikelkurztextTextBox"
+        Me.ArtikelkurztextTextBox.Size = New System.Drawing.Size(630, 22)
+        Me.ArtikelkurztextTextBox.TabIndex = 13
+        '
+        'BeschreibungTextBox
+        '
+        Me.BeschreibungTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ArtikelBindingSource, "Beschreibung", True))
+        Me.BeschreibungTextBox.Location = New System.Drawing.Point(116, 117)
+        Me.BeschreibungTextBox.Multiline = True
+        Me.BeschreibungTextBox.Name = "BeschreibungTextBox"
+        Me.BeschreibungTextBox.Size = New System.Drawing.Size(630, 114)
+        Me.BeschreibungTextBox.TabIndex = 15
+        '
+        'EKPreisTextBox
+        '
+        Me.EKPreisTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ArtikelBindingSource, "EKPreis", True))
+        Me.EKPreisTextBox.Location = New System.Drawing.Point(385, 61)
+        Me.EKPreisTextBox.Name = "EKPreisTextBox"
+        Me.EKPreisTextBox.Size = New System.Drawing.Size(152, 22)
+        Me.EKPreisTextBox.TabIndex = 17
+        '
+        'VKPreisTextBox
+        '
+        Me.VKPreisTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ArtikelBindingSource, "VKPreis", True))
+        Me.VKPreisTextBox.Location = New System.Drawing.Point(385, 89)
+        Me.VKPreisTextBox.Name = "VKPreisTextBox"
+        Me.VKPreisTextBox.Size = New System.Drawing.Size(152, 22)
+        Me.VKPreisTextBox.TabIndex = 19
+        '
+        'FaktorTextBox
+        '
+        Me.FaktorTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ArtikelBindingSource, "Faktor", True))
+        Me.FaktorTextBox.Location = New System.Drawing.Point(643, 61)
+        Me.FaktorTextBox.Name = "FaktorTextBox"
+        Me.FaktorTextBox.Size = New System.Drawing.Size(104, 22)
+        Me.FaktorTextBox.TabIndex = 21
+        '
+        'ProduktgruppeGroupBox
+        '
+        Me.ProduktgruppeGroupBox.Controls.Add(HerstellerLabel)
+        Me.ProduktgruppeGroupBox.Controls.Add(Me.HerstellerComboBox)
+        Me.ProduktgruppeGroupBox.Controls.Add(ProduktTypLabel)
+        Me.ProduktgruppeGroupBox.Controls.Add(Me.ProduktTypComboBox)
+        Me.ProduktgruppeGroupBox.Dock = System.Windows.Forms.DockStyle.Top
+        Me.ProduktgruppeGroupBox.Location = New System.Drawing.Point(0, 39)
+        Me.ProduktgruppeGroupBox.Name = "ProduktgruppeGroupBox"
+        Me.ProduktgruppeGroupBox.Size = New System.Drawing.Size(768, 68)
+        Me.ProduktgruppeGroupBox.TabIndex = 16
+        Me.ProduktgruppeGroupBox.TabStop = False
+        Me.ProduktgruppeGroupBox.Text = "Produktgruppe"
+        '
+        'HerstellerComboBox
+        '
+        Me.HerstellerComboBox.DataSource = Me.HerstellerBindingSource
+        Me.HerstellerComboBox.DisplayMember = "Hersteller"
+        Me.HerstellerComboBox.FormattingEnabled = True
+        Me.HerstellerComboBox.Location = New System.Drawing.Point(117, 23)
+        Me.HerstellerComboBox.Name = "HerstellerComboBox"
+        Me.HerstellerComboBox.Size = New System.Drawing.Size(252, 24)
+        Me.HerstellerComboBox.TabIndex = 5
+        Me.HerstellerComboBox.ValueMember = "HerstellerID"
+        '
+        'HerstellerBindingSource
+        '
+        Me.HerstellerBindingSource.DataMember = "Hersteller"
+        Me.HerstellerBindingSource.DataSource = Me.DataSet1
+        '
+        'ProduktTypComboBox
+        '
+        Me.ProduktTypComboBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ProduktBindingSource, "ProduktTyp", True))
+        Me.ProduktTypComboBox.DataSource = Me.ProduktBindingSource
+        Me.ProduktTypComboBox.DisplayMember = "ProduktTyp"
+        Me.ProduktTypComboBox.FormattingEnabled = True
+        Me.ProduktTypComboBox.Location = New System.Drawing.Point(495, 23)
+        Me.ProduktTypComboBox.Name = "ProduktTypComboBox"
+        Me.ProduktTypComboBox.Size = New System.Drawing.Size(252, 24)
+        Me.ProduktTypComboBox.TabIndex = 11
+        '
+        'ProduktBindingSource
+        '
+        Me.ProduktBindingSource.DataMember = "Produkt"
+        Me.ProduktBindingSource.DataSource = Me.DataSet1
         '
         'ToolStrip3
         '
-        Me.ToolStrip3.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.ToolStrip3.ImageScalingSize = New System.Drawing.Size(32, 32)
         Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddManufacturerNode, Me.AddProductNode, Me.AddArticleNode, Me.DelNode})
         Me.ToolStrip3.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip3.Name = "ToolStrip3"
-        Me.ToolStrip3.Size = New System.Drawing.Size(851, 27)
+        Me.ToolStrip3.Size = New System.Drawing.Size(768, 39)
         Me.ToolStrip3.TabIndex = 0
         Me.ToolStrip3.Text = "ToolStrip3"
         '
         'AddManufacturerNode
         '
         Me.AddManufacturerNode.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.AddManufacturerNode.Image = CType(resources.GetObject("AddManufacturerNode.Image"), System.Drawing.Image)
+        Me.AddManufacturerNode.Image = Global.TeBaM_1._2.My.Resources.Resources.folder
         Me.AddManufacturerNode.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.AddManufacturerNode.Name = "AddManufacturerNode"
-        Me.AddManufacturerNode.Size = New System.Drawing.Size(24, 24)
+        Me.AddManufacturerNode.Size = New System.Drawing.Size(36, 36)
         Me.AddManufacturerNode.Text = "ToolStripButton1"
         Me.AddManufacturerNode.ToolTipText = "Hersteller hinzufügen"
         '
         'AddProductNode
         '
         Me.AddProductNode.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.AddProductNode.Image = CType(resources.GetObject("AddProductNode.Image"), System.Drawing.Image)
+        Me.AddProductNode.Image = Global.TeBaM_1._2.My.Resources.Resources.folder_document
         Me.AddProductNode.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.AddProductNode.Name = "AddProductNode"
-        Me.AddProductNode.Size = New System.Drawing.Size(24, 24)
+        Me.AddProductNode.Size = New System.Drawing.Size(36, 36)
         Me.AddProductNode.Text = "ToolStripButton2"
         Me.AddProductNode.ToolTipText = "Produkt hinzufügen"
         '
         'AddArticleNode
         '
         Me.AddArticleNode.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.AddArticleNode.Image = CType(resources.GetObject("AddArticleNode.Image"), System.Drawing.Image)
+        Me.AddArticleNode.Image = Global.TeBaM_1._2.My.Resources.Resources.file_doc
         Me.AddArticleNode.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.AddArticleNode.Name = "AddArticleNode"
-        Me.AddArticleNode.Size = New System.Drawing.Size(24, 24)
+        Me.AddArticleNode.Size = New System.Drawing.Size(36, 36)
         Me.AddArticleNode.Text = "ToolStripButton3"
         Me.AddArticleNode.ToolTipText = "Artikel hinzufügen"
         '
         'DelNode
         '
         Me.DelNode.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.DelNode.Image = CType(resources.GetObject("DelNode.Image"), System.Drawing.Image)
+        Me.DelNode.Image = Global.TeBaM_1._2.My.Resources.Resources.delete
         Me.DelNode.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.DelNode.Name = "DelNode"
-        Me.DelNode.Size = New System.Drawing.Size(24, 24)
+        Me.DelNode.Size = New System.Drawing.Size(36, 36)
         Me.DelNode.Text = "ToolStripButton4"
         Me.DelNode.ToolTipText = "Knoten löschen"
         '
@@ -594,7 +943,7 @@ Partial Class Form1
         Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DateiToolStripMenuItem, Me.VertreterToolStripMenuItem, Me.KonfigurationToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Size = New System.Drawing.Size(1294, 28)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1169, 28)
         Me.MenuStrip1.TabIndex = 3
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -661,11 +1010,23 @@ Partial Class Form1
         Me.TextmarkenDefinierenToolStripMenuItem.Size = New System.Drawing.Size(232, 26)
         Me.TextmarkenDefinierenToolStripMenuItem.Text = "Textmarken definieren"
         '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
+        'RubrikMaskedTextBox
+        '
+        Me.RubrikMaskedTextBox.Location = New System.Drawing.Point(117, 89)
+        Me.RubrikMaskedTextBox.Mask = "00.00.00"
+        Me.RubrikMaskedTextBox.Name = "RubrikMaskedTextBox"
+        Me.RubrikMaskedTextBox.Size = New System.Drawing.Size(118, 22)
+        Me.RubrikMaskedTextBox.TabIndex = 24
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1294, 600)
+        Me.ClientSize = New System.Drawing.Size(1169, 600)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.ToolStrip1)
@@ -676,15 +1037,15 @@ Partial Class Form1
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.AngebotBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.FKKundeAngebotBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.KundeBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataSet1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Kunden.ResumeLayout(False)
         Me.Kunden.PerformLayout()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
+        Me.KundeGroupBox.ResumeLayout(False)
+        Me.KundeGroupBox.PerformLayout()
         CType(Me.VertreterBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataSet2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.KundeBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip2.ResumeLayout(False)
         Me.ToolStrip2.PerformLayout()
         Me.TabPage2.ResumeLayout(False)
@@ -693,8 +1054,16 @@ Partial Class Form1
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ArtikelBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.FKAngebotSpezOptionenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
+        Me.ArtikelGroupBox.ResumeLayout(False)
+        Me.ArtikelGroupBox.PerformLayout()
+        Me.ProduktgruppeGroupBox.ResumeLayout(False)
+        Me.ProduktgruppeGroupBox.PerformLayout()
+        CType(Me.HerstellerBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ProduktBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip3.ResumeLayout(False)
         Me.ToolStrip3.PerformLayout()
         Me.MenuStrip1.ResumeLayout(False)
@@ -749,12 +1118,38 @@ Partial Class Form1
     Friend WithEvents VertreterComboBox As ComboBox
     Friend WithEvents VertreterBindingSource As BindingSource
     Friend WithEvents DataSet2 As DataSet2
+    Friend WithEvents NewTreeView1 As NewTreeView
+    Friend WithEvents KundeGroupBox As GroupBox
+    Friend WithEvents HerstellerBindingSource As BindingSource
+    Friend WithEvents HerstellerComboBox As ComboBox
+    Friend WithEvents ProduktBindingSource As BindingSource
+    Friend WithEvents ProduktTypComboBox As ComboBox
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents AngebotstitelDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents AngebotIDDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents KundennummerDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents AngebotURLDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents AngebotstitelDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents AngebotBindingSource As BindingSource
-    Friend WithEvents NewTreeView1 As NewTreeView
-    Friend WithEvents GroupBox2 As GroupBox
+    Friend WithEvents FKKundeAngebotBindingSource As BindingSource
+    Friend WithEvents ProduktgruppeGroupBox As GroupBox
+    Friend WithEvents ArtikelGroupBox As GroupBox
+    Friend WithEvents Label1 As Label
     Friend WithEvents DokumentenvorlageComboBox As ComboBox
+    Friend WithEvents URLTextBox As TextBox
+    Friend WithEvents ArtikelBindingSource As BindingSource
+    Friend WithEvents ArtikelkurztextTextBox As TextBox
+    Friend WithEvents BeschreibungTextBox As TextBox
+    Friend WithEvents EKPreisTextBox As TextBox
+    Friend WithEvents VKPreisTextBox As TextBox
+    Friend WithEvents FaktorTextBox As TextBox
+    Friend WithEvents MaskedTextBoxArtikelnummer As MaskedTextBox
+    Friend WithEvents ImageList1 As ImageList
+    Friend WithEvents FKAngebotSpezOptionenBindingSource As BindingSource
+    Friend WithEvents Column1 As DataGridViewComboBoxColumn
+    Friend WithEvents OptionIDDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents AngebotsnummerDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ArtikelIDDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents SortRowDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ButtonAddURL As Button
+    Friend WithEvents ToolTip1 As ToolTip
+    Friend WithEvents RubrikMaskedTextBox As MaskedTextBox
 End Class
