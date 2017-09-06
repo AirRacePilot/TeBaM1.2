@@ -43,9 +43,9 @@ Partial Public Class DataSet1
     
     Private relationFK_Kunde_Angebot As Global.System.Data.DataRelation
     
-    Private relationFK_Artikel_SpezOptionen As Global.System.Data.DataRelation
-    
     Private relationFK_Angebot_SpezOptionen As Global.System.Data.DataRelation
+    
+    Private relationFK_Artikel_SpezOptionen As Global.System.Data.DataRelation
     
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
@@ -327,8 +327,8 @@ Partial Public Class DataSet1
         Me.relationFK_Produkt_Artikel = Me.Relations("FK_Produkt_Artikel")
         Me.relationFK_Hersteller_Produkt = Me.Relations("FK_Hersteller_Produkt")
         Me.relationFK_Kunde_Angebot = Me.Relations("FK_Kunde_Angebot")
-        Me.relationFK_Artikel_SpezOptionen = Me.Relations("FK_Artikel_SpezOptionen")
         Me.relationFK_Angebot_SpezOptionen = Me.Relations("FK_Angebot_SpezOptionen")
+        Me.relationFK_Artikel_SpezOptionen = Me.Relations("FK_Artikel_SpezOptionen")
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -367,12 +367,12 @@ Partial Public Class DataSet1
         fkc.AcceptRejectRule = Global.System.Data.AcceptRejectRule.None
         fkc.DeleteRule = Global.System.Data.Rule.Cascade
         fkc.UpdateRule = Global.System.Data.Rule.Cascade
-        fkc = New Global.System.Data.ForeignKeyConstraint("FK_Artikel_SpezOptionen", New Global.System.Data.DataColumn() {Me.tableArtikel.ArtikelIDColumn}, New Global.System.Data.DataColumn() {Me.tableSpezOptionen.ArtikelIDColumn})
+        fkc = New Global.System.Data.ForeignKeyConstraint("FK_Angebot_SpezOptionen", New Global.System.Data.DataColumn() {Me.tableAngebot.AngebotIDColumn}, New Global.System.Data.DataColumn() {Me.tableSpezOptionen.AngebotsnummerColumn})
         Me.tableSpezOptionen.Constraints.Add(fkc)
         fkc.AcceptRejectRule = Global.System.Data.AcceptRejectRule.None
         fkc.DeleteRule = Global.System.Data.Rule.Cascade
         fkc.UpdateRule = Global.System.Data.Rule.Cascade
-        fkc = New Global.System.Data.ForeignKeyConstraint("FK_Angebot_SpezOptionen", New Global.System.Data.DataColumn() {Me.tableAngebot.AngebotIDColumn}, New Global.System.Data.DataColumn() {Me.tableSpezOptionen.AngebotsnummerColumn})
+        fkc = New Global.System.Data.ForeignKeyConstraint("FK_Artikel_SpezOptionen", New Global.System.Data.DataColumn() {Me.tableArtikel.ArtikelIDColumn}, New Global.System.Data.DataColumn() {Me.tableSpezOptionen.ArtikelIDColumn})
         Me.tableSpezOptionen.Constraints.Add(fkc)
         fkc.AcceptRejectRule = Global.System.Data.AcceptRejectRule.None
         fkc.DeleteRule = Global.System.Data.Rule.Cascade
@@ -383,10 +383,10 @@ Partial Public Class DataSet1
         Me.Relations.Add(Me.relationFK_Hersteller_Produkt)
         Me.relationFK_Kunde_Angebot = New Global.System.Data.DataRelation("FK_Kunde_Angebot", New Global.System.Data.DataColumn() {Me.tableKunde.KdNummerColumn}, New Global.System.Data.DataColumn() {Me.tableAngebot.KundennummerColumn}, false)
         Me.Relations.Add(Me.relationFK_Kunde_Angebot)
-        Me.relationFK_Artikel_SpezOptionen = New Global.System.Data.DataRelation("FK_Artikel_SpezOptionen", New Global.System.Data.DataColumn() {Me.tableArtikel.ArtikelIDColumn}, New Global.System.Data.DataColumn() {Me.tableSpezOptionen.ArtikelIDColumn}, false)
-        Me.Relations.Add(Me.relationFK_Artikel_SpezOptionen)
         Me.relationFK_Angebot_SpezOptionen = New Global.System.Data.DataRelation("FK_Angebot_SpezOptionen", New Global.System.Data.DataColumn() {Me.tableAngebot.AngebotIDColumn}, New Global.System.Data.DataColumn() {Me.tableSpezOptionen.AngebotsnummerColumn}, false)
         Me.Relations.Add(Me.relationFK_Angebot_SpezOptionen)
+        Me.relationFK_Artikel_SpezOptionen = New Global.System.Data.DataRelation("FK_Artikel_SpezOptionen", New Global.System.Data.DataColumn() {Me.tableArtikel.ArtikelIDColumn}, New Global.System.Data.DataColumn() {Me.tableSpezOptionen.ArtikelIDColumn}, false)
+        Me.Relations.Add(Me.relationFK_Artikel_SpezOptionen)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -701,7 +701,7 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddArtikelRow(ByVal ArtikelID As String, ByVal parentProduktRowByFK_Produkt_Artikel As ProduktRow, ByVal lfdNrPosAG As Short, ByVal URL As String, ByVal Artikelnr As Integer, ByVal Rubrik As String, ByVal Artikelkurztext As String, ByVal Beschreibung As String, ByVal EKPreis As Double, ByVal VKPreis As Double, ByVal Faktor As Double, ByVal AGSelected As Boolean) As ArtikelRow
+        Public Overloads Function AddArtikelRow(ByVal ArtikelID As String, ByVal parentProduktRowByFK_Produkt_Artikel As ProduktRow, ByVal lfdNrPosAG As Integer, ByVal URL As String, ByVal Artikelnr As Integer, ByVal Rubrik As Integer, ByVal Artikelkurztext As String, ByVal Beschreibung As String, ByVal EKPreis As Double, ByVal VKPreis As Double, ByVal Faktor As Double, ByVal AGSelected As Boolean) As ArtikelRow
             Dim rowArtikelRow As ArtikelRow = CType(Me.NewRow,ArtikelRow)
             Dim columnValuesArray() As Object = New Object() {ArtikelID, Nothing, lfdNrPosAG, URL, Artikelnr, Rubrik, Artikelkurztext, Beschreibung, EKPreis, VKPreis, Faktor, AGSelected}
             If (Not (parentProduktRowByFK_Produkt_Artikel) Is Nothing) Then
@@ -756,13 +756,13 @@ Partial Public Class DataSet1
             MyBase.Columns.Add(Me.columnArtikelID)
             Me.columnProduktID = New Global.System.Data.DataColumn("ProduktID", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnProduktID)
-            Me.columnlfdNrPosAG = New Global.System.Data.DataColumn("lfdNrPosAG", GetType(Short), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnlfdNrPosAG = New Global.System.Data.DataColumn("lfdNrPosAG", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnlfdNrPosAG)
             Me.columnURL = New Global.System.Data.DataColumn("URL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnURL)
             Me.columnArtikelnr = New Global.System.Data.DataColumn("Artikelnr", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnArtikelnr)
-            Me.columnRubrik = New Global.System.Data.DataColumn("Rubrik", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            Me.columnRubrik = New Global.System.Data.DataColumn("Rubrik", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnRubrik)
             Me.columnArtikelkurztext = New Global.System.Data.DataColumn("Artikelkurztext", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnArtikelkurztext)
@@ -2519,11 +2519,11 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property ProduktID() As String
             Get
-                Try 
+                If Me.IsProduktIDNull Then
+                    Return String.Empty
+                Else
                     Return CType(Me(Me.tableArtikel.ProduktIDColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte ProduktID in Tabelle Artikel ist DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableArtikel.ProduktIDColumn) = value
@@ -2532,10 +2532,10 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property lfdNrPosAG() As Short
+        Public Property lfdNrPosAG() As Integer
             Get
                 Try 
-                    Return CType(Me(Me.tableArtikel.lfdNrPosAGColumn),Short)
+                    Return CType(Me(Me.tableArtikel.lfdNrPosAGColumn),Integer)
                 Catch e As Global.System.InvalidCastException
                     Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte lfdNrPosAG in Tabelle Artikel ist DBNull.", e)
                 End Try
@@ -2577,13 +2577,13 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property Rubrik() As String
+        Public Property Rubrik() As Integer
             Get
-                If Me.IsRubrikNull Then
-                    Return String.Empty
-                Else
-                    Return CType(Me(Me.tableArtikel.RubrikColumn),String)
-                End If
+                Try 
+                    Return CType(Me(Me.tableArtikel.RubrikColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Rubrik in Tabelle Artikel ist DBNull.", e)
+                End Try
             End Get
             Set
                 Me(Me.tableArtikel.RubrikColumn) = value
@@ -2955,11 +2955,11 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property Kategorie() As String
             Get
-                Try 
+                If Me.IsKategorieNull Then
+                    Return String.Empty
+                Else
                     Return CType(Me(Me.tableProdukt.KategorieColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Kategorie in Tabelle Produkt ist DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableProdukt.KategorieColumn) = value
@@ -2985,11 +2985,11 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property HerstellerID() As String
             Get
-                Try 
+                If Me.IsHerstellerIDNull Then
+                    Return String.Empty
+                Else
                     Return CType(Me(Me.tableProdukt.HerstellerIDColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte HerstellerID in Tabelle Produkt ist DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableProdukt.HerstellerIDColumn) = value
@@ -3100,11 +3100,11 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property KundenID() As String
             Get
-                Try 
+                If Me.IsKundenIDNull Then
+                    Return String.Empty
+                Else
                     Return CType(Me(Me.tableKunde.KundenIDColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte KundenID in Tabelle Kunde ist DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableKunde.KundenIDColumn) = value
@@ -3126,11 +3126,11 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property Firma1() As String
             Get
-                Try 
+                If Me.IsFirma1Null Then
+                    Return String.Empty
+                Else
                     Return CType(Me(Me.tableKunde.Firma1Column),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Firma1 in Tabelle Kunde ist DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableKunde.Firma1Column) = value
@@ -3141,11 +3141,11 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property Firma2() As String
             Get
-                Try 
+                If Me.IsFirma2Null Then
+                    Return String.Empty
+                Else
                     Return CType(Me(Me.tableKunde.Firma2Column),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Firma2 in Tabelle Kunde ist DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableKunde.Firma2Column) = value
@@ -3156,11 +3156,11 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property Name1() As String
             Get
-                Try 
+                If Me.IsName1Null Then
+                    Return String.Empty
+                Else
                     Return CType(Me(Me.tableKunde.Name1Column),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Name1 in Tabelle Kunde ist DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableKunde.Name1Column) = value
@@ -3171,11 +3171,11 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property Name2() As String
             Get
-                Try 
+                If Me.IsName2Null Then
+                    Return String.Empty
+                Else
                     Return CType(Me(Me.tableKunde.Name2Column),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Name2 in Tabelle Kunde ist DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableKunde.Name2Column) = value
@@ -3186,11 +3186,11 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property Strasse() As String
             Get
-                Try 
+                If Me.IsStrasseNull Then
+                    Return String.Empty
+                Else
                     Return CType(Me(Me.tableKunde.StrasseColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Strasse in Tabelle Kunde ist DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableKunde.StrasseColumn) = value
@@ -3201,11 +3201,11 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property PLZ() As String
             Get
-                Try 
+                If Me.IsPLZNull Then
+                    Return String.Empty
+                Else
                     Return CType(Me(Me.tableKunde.PLZColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte PLZ in Tabelle Kunde ist DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableKunde.PLZColumn) = value
@@ -3216,11 +3216,11 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property Ort() As String
             Get
-                Try 
+                If Me.IsOrtNull Then
+                    Return String.Empty
+                Else
                     Return CType(Me(Me.tableKunde.OrtColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Ort in Tabelle Kunde ist DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableKunde.OrtColumn) = value
@@ -3231,11 +3231,11 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property Angebotstitel() As String
             Get
-                Try 
+                If Me.IsAngebotstitelNull Then
+                    Return String.Empty
+                Else
                     Return CType(Me(Me.tableKunde.AngebotstitelColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Angebotstitel in Tabelle Kunde ist DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableKunde.AngebotstitelColumn) = value
@@ -3406,11 +3406,11 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property AngebotURL() As String
             Get
-                Try 
+                If Me.IsAngebotURLNull Then
+                    Return String.Empty
+                Else
                     Return CType(Me(Me.tableAngebot.AngebotURLColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte AngebotURL in Tabelle Angebot ist DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableAngebot.AngebotURLColumn) = value
@@ -3493,11 +3493,11 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property Angebotsnummer() As String
             Get
-                Try 
+                If Me.IsAngebotsnummerNull Then
+                    Return String.Empty
+                Else
                     Return CType(Me(Me.tableSpezOptionen.AngebotsnummerColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte Angebotsnummer in Tabelle SpezOptionen ist DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableSpezOptionen.AngebotsnummerColumn) = value
@@ -3508,11 +3508,11 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property ArtikelID() As String
             Get
-                Try 
+                If Me.IsArtikelIDNull Then
+                    Return String.Empty
+                Else
                     Return CType(Me(Me.tableSpezOptionen.ArtikelIDColumn),String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("Der Wert für Spalte ArtikelID in Tabelle SpezOptionen ist DBNull.", e)
-                End Try
+                End If
             End Get
             Set
                 Me(Me.tableSpezOptionen.ArtikelIDColumn) = value
@@ -3536,23 +3536,23 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property ArtikelRow() As ArtikelRow
-            Get
-                Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_Artikel_SpezOptionen")),ArtikelRow)
-            End Get
-            Set
-                Me.SetParentRow(value, Me.Table.ParentRelations("FK_Artikel_SpezOptionen"))
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property AngebotRow() As AngebotRow
             Get
                 Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_Angebot_SpezOptionen")),AngebotRow)
             End Get
             Set
                 Me.SetParentRow(value, Me.Table.ParentRelations("FK_Angebot_SpezOptionen"))
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property ArtikelRow() As ArtikelRow
+            Get
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_Artikel_SpezOptionen")),ArtikelRow)
+            End Get
+            Set
+                Me.SetParentRow(value, Me.Table.ParentRelations("FK_Artikel_SpezOptionen"))
             End Set
         End Property
         

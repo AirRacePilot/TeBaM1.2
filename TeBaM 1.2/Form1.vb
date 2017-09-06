@@ -290,8 +290,8 @@ Public Class Form1
 
 
     Private Sub AddArticleNode_Click(sender As Object, e As EventArgs) Handles AddArticleNode.Click
-        Try
-            If NewTreeView1.SelectedNode.Tag = "product" Then
+        'Try
+        If NewTreeView1.SelectedNode.Tag = "product" Then
                 'MsgBox("add_Artikel")
                 Dim prompt As String = String.Empty
                 Dim title As String = String.Empty
@@ -319,8 +319,9 @@ Public Class Form1
                     NewARow = DataSet1.Artikel.NewArtikelRow()
                     NewARow.ArtikelID = newNode.Name
 
-                    NewARow.ProduktID = ProduktTypComboBox.SelectedValue 'Verknüpfung zum Produkt erstellen
-                    DataSet1.Artikel.Rows.Add(NewARow)
+                'NewARow.ProduktID = ProduktTypComboBox.SelectedValue 'Verknüpfung zum Produkt erstellen
+                NewARow.ProduktID = NewTreeView1.SelectedNode.Name 'Verknüpfung zum Produkt erstellen
+                DataSet1.Artikel.Rows.Add(NewARow)
                     'TBox_NodeText.Text = newNode.Text
                     'TBox_NodeName.Text = newNode.Name
                     'TBox_NodeTag.Text = newNode.Tag
@@ -332,9 +333,9 @@ Public Class Form1
             Else
                 MsgBox("Hier kann kein Artikel eingefügt werden", vbExclamation)
             End If
-        Catch ex As Exception
-            MsgBox("Es existiert kein gültiger Wurzelknoten", vbExclamation)
-        End Try
+        ' Catch ex As Exception
+        'MsgBox("Es existiert kein gültiger Wurzelknoten", vbExclamation)
+        'End Try
     End Sub
 
     Private Sub DelNode_Click(sender As Object, e As EventArgs) Handles DelNode.Click
@@ -810,7 +811,7 @@ Public Class Form1
 #End Region
 
 #Region "NewTreeView1 Icons entsprechend Ihres Zustandes aktualisieren"
-    Private Sub TBox_URL_Artikel_KeyUp(sender As Object, e As KeyEventArgs) Handles TBox_URL_Artikel.KeyUp
+    Private Sub TBox_URL_Artikel_KeyUp(sender As Object, e As KeyEventArgs) Handles URLTextBox.KeyUp
         If Edit_TBox_URL_Artikel = True Then
             ArtikelBindingSource.EndEdit()
             UpdateTreeIcon()
