@@ -51,6 +51,14 @@ Public Class Form1
         If Not File.Exists(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & "\TextBausteinManager.ini") Then
             File.WriteAllText(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & "\TextBausteinManager.ini", "")
         End If
+        With DataGridView1
+            .RowsDefaultCellStyle.BackColor = Color.Bisque
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.Beige
+        End With
+        With DataGridView2
+            .RowsDefaultCellStyle.BackColor = Color.Bisque
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.Beige
+        End With
         With DataGridView2.ColumnHeadersDefaultCellStyle
             '.BackColor = Color.Navy
             '.ForeColor = Color.White
@@ -60,15 +68,12 @@ Public Class Form1
             .Font = New Font(DataGridView2.Font, FontStyle.Regular)
         End With
         CenterAlignTitel()
+        DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
     End Sub
 
     Sub InitHMI()
         VT_edit = True
         'Form2.DataSet2.Vertreter.ReadXml(VT_DataFile.FullName)
-        With DataGridView2
-            .RowsDefaultCellStyle.BackColor = Color.Bisque
-            .AlternatingRowsDefaultCellStyle.BackColor = Color.Beige
-        End With
         'Vorlagen Dokumente in Combobox laden
         Dim OrtEigeneDateien As String = Environment.GetFolderPath(Environment.SpecialFolder.Personal)
         Dim Dir As New DirectoryInfo(OrtEigeneDateien & "\Benutzerdefinierte Office-Vorlagen\")
@@ -105,7 +110,7 @@ Public Class Form1
                              & vbCrLf & "Wollen Sie wirklich beenden ohne zu speichern?" _
                              & vbCrLf & "Alle Daten gehen verloren!", "ohne speichern fortsetzen?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                     Case DialogResult.Yes
-                        'beenden ohne zu sichern
+                        Application.Exit()
                     Case DialogResult.No
                         Save_product_structure_under()
                 End Select
@@ -113,6 +118,7 @@ Public Class Form1
                 Save_product_structure()
             End If
         End If
+        Application.Exit()
     End Sub
 #End Region
 
@@ -246,22 +252,19 @@ Public Class Form1
 
 #Region "Neues Angebot einfügen oder löschen"
     Private Sub AddOffer_Click(sender As Object, e As EventArgs) Handles AddOffer.Click
+
         Try
-            Dim prompt As String = String.Empty
-            Dim title As String = String.Empty
-            Dim defaultResponse As String = String.Empty
-            Dim answer As Object
-            prompt = "Angebotsnummer: "
-            title = "Neue Angebotsnummer eingeben"
-            defaultResponse = "wmXXX-XX"
-            answer = InputBox(prompt, title, defaultResponse)
-            If answer IsNot "" Then
+            Dim AddOfferDialog As New AddOfferDialog
+            If AddOfferDialog.ShowDialog = DialogResult.OK Then
                 Dim NewAGRow As DataSet1.AngebotRow = Nothing
                 NewAGRow = DataSet1.Angebot.NewAngebotRow
-                NewAGRow.AngebotsID = answer
+                NewAGRow.AngebotsID = AddOfferDialog.TextBoxOfferNumber.Text
+                NewAGRow.Angebotstitel = AddOfferDialog.TextBoxOfferTitle.Text
                 NewAGRow.Kundennummer = KdNummerComboBox.Text
                 NewAGRow.AngebotURL = "noch nicht definiert"
                 DataSet1.Angebot.Rows.Add(NewAGRow)
+            Else
+                MsgBox("s wird kein neues Angebot angelegt!", vbExclamation)
             End If
         Catch ex As Exception
             MsgBox("Diese Angebotsnummer ist bereits vorhanden!", vbExclamation)
@@ -298,7 +301,6 @@ Public Class Form1
     Sub TreeView_actualize()
         If DataGridView1.CurrentRow IsNot Nothing Then
             NewTreeView1.Enabled = True
-            ToolStripLabel1.Text = "Angebot: " & DataGridView1.CurrentRow.Cells(0).Value
             Dim SpezRow As DataSet1.SpezOptionenRow = Nothing
             TraverseChildNodes(NewTreeView1.Nodes)
             For i = 0 To DataSet1.SpezOptionen.Rows.Count - 1
@@ -401,46 +403,46 @@ Public Class Form1
     Private Sub AddArticleNode_Click(sender As Object, e As EventArgs) Handles AddArticleNode.Click
         'Try
         If NewTreeView1.SelectedNode.Tag = "product" Then
-                'MsgBox("add_Artikel")
-                Dim prompt As String = String.Empty
-                Dim title As String = String.Empty
-                Dim defaultResponse As String = String.Empty
-                Dim answer As Object
-                prompt = "Artikel: "
-                title = "Knotennamen des Artikels eingeben"
-                defaultResponse = "Artikel Knoten"
-                answer = InputBox(prompt, title, defaultResponse)
-                If answer IsNot "" Then
-                    Dim newNode As TreeNode = New TreeNode(answer, 2, 2)
-                    System.Threading.Interlocked.Increment(Me.NodeCount)
-                    If NewTreeView1.Nodes.Count = 0 Then
-                        Me.NewTreeView1.Nodes.Add(newNode)
-                    Else
-                        Me.NewTreeView1.SelectedNode.Nodes.Add(newNode)
-                    End If
-                    newNode.Name = "article_" & Guid.NewGuid.ToString
-                    newNode.Tag = "article"
-                    newNode.ImageIndex = 1
-                    newNode.SelectedImageIndex = 1
-                    'Datatable schreiben
-                    Dim NewARow As DataSet1.ArtikelRow
+            'MsgBox("add_Artikel")
+            Dim prompt As String = String.Empty
+            Dim title As String = String.Empty
+            Dim defaultResponse As String = String.Empty
+            Dim answer As Object
+            prompt = "Artikel: "
+            title = "Knotennamen des Artikels eingeben"
+            defaultResponse = "Artikel Knoten"
+            answer = InputBox(prompt, title, defaultResponse)
+            If answer IsNot "" Then
+                Dim newNode As TreeNode = New TreeNode(answer, 2, 2)
+                System.Threading.Interlocked.Increment(Me.NodeCount)
+                If NewTreeView1.Nodes.Count = 0 Then
+                    Me.NewTreeView1.Nodes.Add(newNode)
+                Else
+                    Me.NewTreeView1.SelectedNode.Nodes.Add(newNode)
+                End If
+                newNode.Name = "article_" & Guid.NewGuid.ToString
+                newNode.Tag = "article"
+                newNode.ImageIndex = 1
+                newNode.SelectedImageIndex = 1
+                'Datatable schreiben
+                Dim NewARow As DataSet1.ArtikelRow
 
-                    NewARow = DataSet1.Artikel.NewArtikelRow()
-                    NewARow.ArtikelID = newNode.Name
-
+                NewARow = DataSet1.Artikel.NewArtikelRow()
+                NewARow.ArtikelID = newNode.Name
                 'NewARow.ProduktID = ProduktTypComboBox.SelectedValue 'Verknüpfung zum Produkt erstellen
                 NewARow.ProduktID = NewTreeView1.SelectedNode.Name 'Verknüpfung zum Produkt erstellen
+                NewARow.lfdNrPosAG = 1
                 DataSet1.Artikel.Rows.Add(NewARow)
-                    'TBox_NodeText.Text = newNode.Text
-                    'TBox_NodeName.Text = newNode.Name
-                    'TBox_NodeTag.Text = newNode.Tag
-                    'TBox_NodeImageIndex.Text = 1
-                    'TBox_NodeSelImageIndex.Text = 1
-                    TBMStructure = True
-                    KundeGroupBox.Text = "Artikel (" & DataSet1.Artikel.Rows.Count & ")"
-                End If
-            Else
-                MsgBox("Hier kann kein Artikel eingefügt werden", vbExclamation)
+                'TBox_NodeText.Text = newNode.Text
+                'TBox_NodeName.Text = newNode.Name
+                'TBox_NodeTag.Text = newNode.Tag
+                'TBox_NodeImageIndex.Text = 1
+                'TBox_NodeSelImageIndex.Text = 1
+                TBMStructure = True
+                KundeGroupBox.Text = "Artikel (" & DataSet1.Artikel.Rows.Count & ")"
+            End If
+        Else
+            MsgBox("Hier kann kein Artikel eingefügt werden", vbExclamation)
             End If
         ' Catch ex As Exception
         'MsgBox("Es existiert kein gültiger Wurzelknoten", vbExclamation)
@@ -455,7 +457,9 @@ Public Class Form1
                         If NewTreeView1.SelectedNode.Tag = "article" Then
                             Dim ARowEdit As DataSet1.ArtikelRow
                             ARowEdit = DataSet1.Artikel.FindByArtikelID(NewTreeView1.SelectedNode.Name)
-                            ARowEdit.Delete()
+                            If ARowEdit IsNot Nothing Then
+                                ARowEdit.Delete()
+                            End If
                         End If
                         If NewTreeView1.SelectedNode.Tag = "product" Then
                             Dim PRowEdit As DataSet1.ProduktRow
@@ -931,6 +935,17 @@ Public Class Form1
                 End If
             End If
         End If
+        Dim ARowindex = ArtikelBindingSource.Find("ArtikelID", NewTreeView1.SelectedNode.Name)
+        If ARowindex <> -1 Then
+            ArtikelBindingSource.Position = ARowindex
+            Dim rowIndex As Integer = -1
+            For Each row As DataGridViewRow In DataGridView2.Rows
+                If row.Cells(0).Value.ToString().Equals(NewTreeView1.SelectedNode.Name) Then
+                    rowIndex = row.Index
+                    Exit For
+                End If
+            Next
+        End If
     End Sub
 
     Private Sub DataGridView2_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView2.CellClick
@@ -1147,7 +1162,7 @@ Public Class Form1
 
 #Region "Word Textmarken Verknüpfungen erstellen/ändern"
     Private Sub ToolStripButtonUp_Click(sender As Object, e As EventArgs) Handles ToolStripButtonUp.Click
-        'Me.DataGridView5.Sort(Me.DataGridView5.Columns(8), System.ComponentModel.ListSortDirection.Ascending)
+        Me.DataGridView2.Sort(Me.DataGridView2.Columns(8), System.ComponentModel.ListSortDirection.Ascending)
         Dim Idx As DataSet1.SpezOptionenRow = FKAngebotSpezOptionenBindingSource.Item(FKAngebotSpezOptionenBindingSource.Position).row
         DataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         If DataGridView2.CurrentRow.Index > 0 Then
@@ -1167,10 +1182,10 @@ Public Class Form1
     End Sub
 
     Private Sub ToolStripButtonDown_Click(sender As Object, e As EventArgs) Handles ToolStripButtonDown.Click
-        'Me.DataGridView5.Sort(Me.DataGridView5.Columns(8), System.ComponentModel.ListSortDirection.Ascending)
+        Me.DataGridView2.Sort(Me.DataGridView2.Columns(8), System.ComponentModel.ListSortDirection.Ascending)
         Dim Idx As DataSet1.SpezOptionenRow = FKAngebotSpezOptionenBindingSource.Item(FKAngebotSpezOptionenBindingSource.Position).row
         DataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-        If DataGridView2.CurrentRow.Index < DataGridView2.Rows.Count - 2 Then
+        If DataGridView2.CurrentRow.Index < DataGridView2.Rows.Count - 1 Then
             Dim DRx As DataSet1.SpezOptionenRow = FKAngebotSpezOptionenBindingSource.Item(FKAngebotSpezOptionenBindingSource.Position + 1).row
             Dim Index_DRx As Integer
             Dim Index_Idx As Integer
@@ -1185,11 +1200,21 @@ Public Class Form1
             Idx.SortRow = Index_DRx
         End If
     End Sub
-
-
 #End Region
 
 
+#Region "Vertreterdaten in ComboBox einlesen bzw. editieren"
+    Private Sub ListeBearbeitenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ListeBearbeitenToolStripMenuItem.Click
+        VT_edit = True
+        Form2.Show()
+    End Sub
 
-
+    Private Sub VertreterComboBox_Click(sender As Object, e As EventArgs) Handles VertreterComboBox.Click
+        If VT_edit = True Then
+            DataSet2.Vertreter.Clear()
+            DataSet2.Vertreter.ReadXml(VT_DataFile.FullName)
+            VT_edit = False
+        End If
+    End Sub
+#End Region
 End Class
