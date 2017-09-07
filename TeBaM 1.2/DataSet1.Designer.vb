@@ -43,9 +43,9 @@ Partial Public Class DataSet1
     
     Private relationFK_Kunde_Angebot As Global.System.Data.DataRelation
     
-    Private relationFK_Artikel_SpezOptionen As Global.System.Data.DataRelation
-    
     Private relationFK_Angebot_SpezOptionen As Global.System.Data.DataRelation
+    
+    Private relationFK_Artikel_SpezOptionen As Global.System.Data.DataRelation
     
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
@@ -327,8 +327,8 @@ Partial Public Class DataSet1
         Me.relationFK_Produkt_Artikel = Me.Relations("FK_Produkt_Artikel")
         Me.relationFK_Hersteller_Produkt = Me.Relations("FK_Hersteller_Produkt")
         Me.relationFK_Kunde_Angebot = Me.Relations("FK_Kunde_Angebot")
-        Me.relationFK_Artikel_SpezOptionen = Me.Relations("FK_Artikel_SpezOptionen")
         Me.relationFK_Angebot_SpezOptionen = Me.Relations("FK_Angebot_SpezOptionen")
+        Me.relationFK_Artikel_SpezOptionen = Me.Relations("FK_Artikel_SpezOptionen")
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -367,12 +367,12 @@ Partial Public Class DataSet1
         fkc.AcceptRejectRule = Global.System.Data.AcceptRejectRule.None
         fkc.DeleteRule = Global.System.Data.Rule.Cascade
         fkc.UpdateRule = Global.System.Data.Rule.Cascade
-        fkc = New Global.System.Data.ForeignKeyConstraint("FK_Artikel_SpezOptionen", New Global.System.Data.DataColumn() {Me.tableArtikel.ArtikelIDColumn}, New Global.System.Data.DataColumn() {Me.tableSpezOptionen.ArtikelIDColumn})
+        fkc = New Global.System.Data.ForeignKeyConstraint("FK_Angebot_SpezOptionen", New Global.System.Data.DataColumn() {Me.tableAngebot.AngebotsIDColumn}, New Global.System.Data.DataColumn() {Me.tableSpezOptionen.AngebotsnummerColumn})
         Me.tableSpezOptionen.Constraints.Add(fkc)
         fkc.AcceptRejectRule = Global.System.Data.AcceptRejectRule.None
         fkc.DeleteRule = Global.System.Data.Rule.Cascade
         fkc.UpdateRule = Global.System.Data.Rule.Cascade
-        fkc = New Global.System.Data.ForeignKeyConstraint("FK_Angebot_SpezOptionen", New Global.System.Data.DataColumn() {Me.tableAngebot.AngebotIDColumn}, New Global.System.Data.DataColumn() {Me.tableSpezOptionen.AngebotsnummerColumn})
+        fkc = New Global.System.Data.ForeignKeyConstraint("FK_Artikel_SpezOptionen", New Global.System.Data.DataColumn() {Me.tableArtikel.ArtikelIDColumn}, New Global.System.Data.DataColumn() {Me.tableSpezOptionen.ArtikelIDColumn})
         Me.tableSpezOptionen.Constraints.Add(fkc)
         fkc.AcceptRejectRule = Global.System.Data.AcceptRejectRule.None
         fkc.DeleteRule = Global.System.Data.Rule.Cascade
@@ -383,10 +383,10 @@ Partial Public Class DataSet1
         Me.Relations.Add(Me.relationFK_Hersteller_Produkt)
         Me.relationFK_Kunde_Angebot = New Global.System.Data.DataRelation("FK_Kunde_Angebot", New Global.System.Data.DataColumn() {Me.tableKunde.KdNummerColumn}, New Global.System.Data.DataColumn() {Me.tableAngebot.KundennummerColumn}, false)
         Me.Relations.Add(Me.relationFK_Kunde_Angebot)
+        Me.relationFK_Angebot_SpezOptionen = New Global.System.Data.DataRelation("FK_Angebot_SpezOptionen", New Global.System.Data.DataColumn() {Me.tableAngebot.AngebotsIDColumn}, New Global.System.Data.DataColumn() {Me.tableSpezOptionen.AngebotsnummerColumn}, false)
+        Me.Relations.Add(Me.relationFK_Angebot_SpezOptionen)
         Me.relationFK_Artikel_SpezOptionen = New Global.System.Data.DataRelation("FK_Artikel_SpezOptionen", New Global.System.Data.DataColumn() {Me.tableArtikel.ArtikelIDColumn}, New Global.System.Data.DataColumn() {Me.tableSpezOptionen.ArtikelIDColumn}, false)
         Me.Relations.Add(Me.relationFK_Artikel_SpezOptionen)
-        Me.relationFK_Angebot_SpezOptionen = New Global.System.Data.DataRelation("FK_Angebot_SpezOptionen", New Global.System.Data.DataColumn() {Me.tableAngebot.AngebotIDColumn}, New Global.System.Data.DataColumn() {Me.tableSpezOptionen.AngebotsnummerColumn}, false)
-        Me.Relations.Add(Me.relationFK_Angebot_SpezOptionen)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -923,8 +923,6 @@ Partial Public Class DataSet1
         
         Private columnHersteller As Global.System.Data.DataColumn
         
-        Private columnURL As Global.System.Data.DataColumn
-        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub New()
@@ -977,14 +975,6 @@ Partial Public Class DataSet1
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property URLColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnURL
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -1021,9 +1011,9 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddHerstellerRow(ByVal HerstellerID As String, ByVal Hersteller As String, ByVal URL As String) As HerstellerRow
+        Public Overloads Function AddHerstellerRow(ByVal HerstellerID As String, ByVal Hersteller As String) As HerstellerRow
             Dim rowHerstellerRow As HerstellerRow = CType(Me.NewRow,HerstellerRow)
-            Dim columnValuesArray() As Object = New Object() {HerstellerID, Hersteller, URL}
+            Dim columnValuesArray() As Object = New Object() {HerstellerID, Hersteller}
             rowHerstellerRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowHerstellerRow)
             Return rowHerstellerRow
@@ -1054,7 +1044,6 @@ Partial Public Class DataSet1
         Friend Sub InitVars()
             Me.columnHerstellerID = MyBase.Columns("HerstellerID")
             Me.columnHersteller = MyBase.Columns("Hersteller")
-            Me.columnURL = MyBase.Columns("URL")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -1064,8 +1053,6 @@ Partial Public Class DataSet1
             MyBase.Columns.Add(Me.columnHerstellerID)
             Me.columnHersteller = New Global.System.Data.DataColumn("Hersteller", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnHersteller)
-            Me.columnURL = New Global.System.Data.DataColumn("URL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnURL)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnHerstellerID}, true))
             Me.columnHerstellerID.AllowDBNull = false
             Me.columnHerstellerID.Unique = true
@@ -1900,7 +1887,7 @@ Partial Public Class DataSet1
     Partial Public Class AngebotDataTable
         Inherits Global.System.Data.TypedTableBase(Of AngebotRow)
         
-        Private columnAngebotID As Global.System.Data.DataColumn
+        Private columnAngebotsID As Global.System.Data.DataColumn
         
         Private columnKundennummer As Global.System.Data.DataColumn
         
@@ -1943,9 +1930,9 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public ReadOnly Property AngebotIDColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property AngebotsIDColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnAngebotID
+                Return Me.columnAngebotsID
             End Get
         End Property
         
@@ -2002,9 +1989,9 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Overloads Function AddAngebotRow(ByVal AngebotID As String, ByVal parentKundeRowByFK_Kunde_Angebot As KundeRow, ByVal AngebotURL As String) As AngebotRow
+        Public Overloads Function AddAngebotRow(ByVal AngebotsID As String, ByVal parentKundeRowByFK_Kunde_Angebot As KundeRow, ByVal AngebotURL As String) As AngebotRow
             Dim rowAngebotRow As AngebotRow = CType(Me.NewRow,AngebotRow)
-            Dim columnValuesArray() As Object = New Object() {AngebotID, Nothing, AngebotURL}
+            Dim columnValuesArray() As Object = New Object() {AngebotsID, Nothing, AngebotURL}
             If (Not (parentKundeRowByFK_Kunde_Angebot) Is Nothing) Then
                 columnValuesArray(1) = parentKundeRowByFK_Kunde_Angebot(1)
             End If
@@ -2015,8 +2002,8 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function FindByAngebotID(ByVal AngebotID As String) As AngebotRow
-            Return CType(Me.Rows.Find(New Object() {AngebotID}),AngebotRow)
+        Public Function FindByAngebotsID(ByVal AngebotsID As String) As AngebotRow
+            Return CType(Me.Rows.Find(New Object() {AngebotsID}),AngebotRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2036,7 +2023,7 @@ Partial Public Class DataSet1
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Friend Sub InitVars()
-            Me.columnAngebotID = MyBase.Columns("AngebotID")
+            Me.columnAngebotsID = MyBase.Columns("AngebotsID")
             Me.columnKundennummer = MyBase.Columns("Kundennummer")
             Me.columnAngebotURL = MyBase.Columns("AngebotURL")
         End Sub
@@ -2044,15 +2031,15 @@ Partial Public Class DataSet1
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Private Sub InitClass()
-            Me.columnAngebotID = New Global.System.Data.DataColumn("AngebotID", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnAngebotID)
+            Me.columnAngebotsID = New Global.System.Data.DataColumn("AngebotsID", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnAngebotsID)
             Me.columnKundennummer = New Global.System.Data.DataColumn("Kundennummer", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnKundennummer)
             Me.columnAngebotURL = New Global.System.Data.DataColumn("AngebotURL", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnAngebotURL)
-            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnAngebotID}, true))
-            Me.columnAngebotID.AllowDBNull = false
-            Me.columnAngebotID.Unique = true
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnAngebotsID}, true))
+            Me.columnAngebotsID.AllowDBNull = false
+            Me.columnAngebotsID.Unique = true
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2877,21 +2864,6 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property URL() As String
-            Get
-                If Me.IsURLNull Then
-                    Return String.Empty
-                Else
-                    Return CType(Me(Me.tableHersteller.URLColumn),String)
-                End If
-            End Get
-            Set
-                Me(Me.tableHersteller.URLColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Function IsHerstellerNull() As Boolean
             Return Me.IsNull(Me.tableHersteller.HerstellerColumn)
         End Function
@@ -2900,18 +2872,6 @@ Partial Public Class DataSet1
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Sub SetHerstellerNull()
             Me(Me.tableHersteller.HerstellerColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Function IsURLNull() As Boolean
-            Return Me.IsNull(Me.tableHersteller.URLColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Sub SetURLNull()
-            Me(Me.tableHersteller.URLColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3378,12 +3338,12 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property AngebotID() As String
+        Public Property AngebotsID() As String
             Get
-                Return CType(Me(Me.tableAngebot.AngebotIDColumn),String)
+                Return CType(Me(Me.tableAngebot.AngebotsIDColumn),String)
             End Get
             Set
-                Me(Me.tableAngebot.AngebotIDColumn) = value
+                Me(Me.tableAngebot.AngebotsIDColumn) = value
             End Set
         End Property
         
@@ -3536,23 +3496,23 @@ Partial Public Class DataSet1
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
-        Public Property ArtikelRow() As ArtikelRow
-            Get
-                Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_Artikel_SpezOptionen")),ArtikelRow)
-            End Get
-            Set
-                Me.SetParentRow(value, Me.Table.ParentRelations("FK_Artikel_SpezOptionen"))
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
         Public Property AngebotRow() As AngebotRow
             Get
                 Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_Angebot_SpezOptionen")),AngebotRow)
             End Get
             Set
                 Me.SetParentRow(value, Me.Table.ParentRelations("FK_Angebot_SpezOptionen"))
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")>  _
+        Public Property ArtikelRow() As ArtikelRow
+            Get
+                Return CType(Me.GetParentRow(Me.Table.ParentRelations("FK_Artikel_SpezOptionen")),ArtikelRow)
+            End Get
+            Set
+                Me.SetParentRow(value, Me.Table.ParentRelations("FK_Artikel_SpezOptionen"))
             End Set
         End Property
         

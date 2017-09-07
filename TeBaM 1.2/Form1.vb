@@ -116,6 +116,81 @@ Public Class Form1
     End Sub
 #End Region
 
+
+#Region "Einzelne Äste des Baumes komplett ein- oder auschecken und in Angebotstabelle kopieren"
+    Private Sub NewTreeView1_AfterCheck(sender As Object, e As TreeViewEventArgs) Handles NewTreeView1.AfterCheck
+        If e.Action <> TreeViewAction.Unknown Then
+            If e.Node.Tag <> "manufacturer" Then
+                CheckAllChildNodes(e.Node)
+            Else
+                MsgBox("Es können nicht gleichzeitig alle Bausteine ausgewählt werden!", vbExclamation)
+            End If
+        End If
+        'NewNumberOffer()
+    End Sub
+
+    Private Sub CheckAllChildNodes(treenode As TreeNode)
+        Dim TBrow_edit As DataRow = Nothing
+        If treenode.Tag = "article" Then
+            SeleNodeCheck(treenode)
+        Else
+            For Each node In treenode.Nodes
+                TBrow_edit = DataSet1.Artikel.FindByArtikelID(node.Name)
+                If node.checked = False Then
+                    node.checked = True
+                Else
+                    node.checked = False
+                End If
+                SeleNodeCheck(node)
+                If node.Nodes.Count > 0 Then
+                    Me.CheckAllChildNodes(node)
+                End If
+            Next
+        End If
+    End Sub
+
+    Private Sub SeleNodeCheck(SelNode As TreeNode)
+        Dim SpezRow As DataSet1.SpezOptionenRow = Nothing
+        Dim InOffer As Boolean = False
+        If DataGridView1.CurrentRow.Cells(0).Value <> "" Then
+            SpezRow = DataSet1.SpezOptionen.NewSpezOptionenRow
+            ' If SelNode IsNot Nothing Then
+            If SelNode.Tag IsNot Nothing Then
+                If SelNode.Checked = True Then
+                    'If SelNode.Tag = "article" Then
+                    'hier neue Artikel im Angebot einfügen
+                    ' MsgBox(SelNode.Tag)
+                    If SelNode.Tag = "article" Then
+                        Dim ArtikelRow As DataSet1.ArtikelRow = DataSet1.Artikel.FindByArtikelID(SelNode.Name)
+                        SpezRow.Angebotsnummer = DataGridView1.CurrentRow.Cells(0).Value
+                        SpezRow.ArtikelID = SelNode.Name
+                        SpezRow.OptionID = CStr(Guid.NewGuid.ToString)
+                        If ArtikelRow.lfdNrPosAG = 0 Then ArtikelRow.lfdNrPosAG = 1
+                        SpezRow.SortRow = ArtikelRow.lfdNrPosAG
+                        'SpezRow.SortRow = DataGridView5.Rows.Count + 1
+                        DataSet1.SpezOptionen.Rows.Add(SpezRow)
+                    End If
+                Else
+                    If SelNode.Checked = False Then
+                        'hier selektierten Artikel aus Angebot entfernen
+                        For Each SpezRow In DataSet1.SpezOptionen.Select("ArtikelID = '" & SelNode.Name & "'")
+                            If SpezRow.Angebotsnummer = DataGridView1.CurrentRow.Cells(0).Value Then
+                                Dim ArtikelRow As DataSet1.ArtikelRow = DataSet1.Artikel.FindByArtikelID(SpezRow.ArtikelID)
+                                ArtikelRow.lfdNrPosAG = CInt(SpezRow.SortRow)
+                                SpezRow.Delete()
+                            End If
+                        Next
+                    End If
+                End If
+            End If
+            'NewNumberOffer()
+        End If
+    End Sub
+#End Region
+
+
+
+
 #Region "Neuen Kunden einfügen oder löschen"
     Private Sub AddCustomer_Click(sender As Object, e As EventArgs) Handles AddCustomer.Click
         Try
@@ -187,7 +262,7 @@ Public Class Form1
             If answer IsNot "" Then
                 Dim NewAGRow As DataSet1.AngebotRow = Nothing
                 NewAGRow = DataSet1.Angebot.NewAngebotRow
-                NewAGRow.AngebotID = answer
+                NewAGRow.AngebotsID = answer
                 NewAGRow.Kundennummer = KdNummerComboBox.Text
                 NewAGRow.AngebotURL = "noch nicht definiert"
                 DataSet1.Angebot.Rows.Add(NewAGRow)
@@ -199,7 +274,7 @@ Public Class Form1
 
     Private Sub DelOffer_Click(sender As Object, e As EventArgs) Handles DelOffer.Click
         Dim AngRow As DataSet1.AngebotRow
-        AngRow = DataSet1.Angebot.FindByAngebotID(KdNummerComboBox.Text)
+        AngRow = DataSet1.Angebot.FindByAngebotsID(DataGridView1.CurrentRow.Cells(0).Value) 'Kundennummer
         Select Case MessageBox.Show("Wollen Sie das Angebot wirklich löschen?", "Angebot löschen", MessageBoxButtons.YesNo)
             Case DialogResult.Yes
                 AngRow.Delete()
@@ -476,29 +551,26 @@ Public Class Form1
         Loop While (tmpWidth + widthOfASpace) < startingPoint
         Me.Text = tmp & Titel.Trim & tmp
     End Sub
-
-
-
 #End Region
 
 #Region "Treeview Drag and Drop"
-    Private Sub NewTreeView1_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs)
+    Private Sub NewTreeView1_MouseDown(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles NewTreeView1.MouseDown
         NewTreeView1.LabelEdit = False
         Me.NewTreeView1.SelectedNode = Me.NewTreeView1.GetNodeAt(e.X, e.Y)
         mySelectedNode = Me.NewTreeView1.GetNodeAt(e.X, e.Y) ' wird zum Knoten editieren benötigt
     End Sub
 
-    Private Sub NewTreeView1_ItemDrag(ByVal sender As Object, ByVal e As System.Windows.Forms.ItemDragEventArgs)
+    Private Sub NewTreeView1_ItemDrag(ByVal sender As Object, ByVal e As System.Windows.Forms.ItemDragEventArgs) Handles NewTreeView1.ItemDrag
         If Me.NewTreeView1.SelectedNode.Tag <> "manufacturer" Then
             DoDragDrop(e.Item, DragDropEffects.Move)
         End If
     End Sub
 
-    Private Sub NewTreeView1_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs)
+    Private Sub NewTreeView1_DragEnter(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles NewTreeView1.DragEnter
         e.Effect = DragDropEffects.Move
     End Sub
 
-    Private Sub NewTreeView1_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs)
+    Private Sub NewTreeView1_DragDrop(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles NewTreeView1.DragDrop
         If e.Data.GetDataPresent("System.Windows.Forms.TreeNode", False) AndAlso Not (Me.NodeMap = "") Then
             Dim MovingNode As TreeNode = CType(e.Data.GetData("System.Windows.Forms.TreeNode"), TreeNode)
             Dim NodeIndexes As String() = Me.NodeMap.Split("|"c)
@@ -517,7 +589,7 @@ Public Class Form1
         NewArticleBinding()
     End Sub
 
-    Private Sub NewTreeView1_DragOver(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs)
+    Private Sub NewTreeView1_DragOver(ByVal sender As Object, ByVal e As System.Windows.Forms.DragEventArgs) Handles NewTreeView1.DragOver
         Dim NodeOver As TreeNode = Me.NewTreeView1.GetNodeAt(Me.NewTreeView1.PointToClient(Cursor.Position))
         Dim NodeMoving As TreeNode = CType(e.Data.GetData("System.Windows.Forms.TreeNode"), TreeNode)
         Dim TopTreeNode As TreeNode = NewTreeView1.TopNode
@@ -865,11 +937,8 @@ Public Class Form1
     End Sub
 #End Region
 
-
-
-
 #Region "Artikelfenster Daten updaten"
-    Private Sub NewTreeView1_AfterSelect(sender As Object, e As System.Windows.Forms.TreeViewEventArgs)
+    Private Sub NewTreeView1_AfterSelect(sender As Object, e As System.Windows.Forms.TreeViewEventArgs) Handles NewTreeView1.AfterSelect
         Dim currentNode As TreeNode = Nothing
         ArticleHMI(NewTreeView1.SelectedNode.Tag)
         currentNode = e.Node
@@ -920,9 +989,9 @@ Public Class Form1
     End Sub
 
     Sub SelectedNodeChanged()
-        'Beim Click auf NewTreeView1 Zeile im Datagrid 5 selektieren
+        'Beim Click auf NewTreeView1 Zeile im Datagrid  selektieren
         For i As Integer = 0 To DataGridView2.Rows.Count - 1
-            If DataGridView2.Rows(i).Cells(1).Value.ToString = NewTreeView1.SelectedNode.Name.ToString() Then
+            If DataGridView2.Rows(i).Cells(0).Value = NewTreeView1.SelectedNode.Name.ToString() Then
                 'markiert die Zeile
                 DataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect
                 DataGridView2.Rows(i).Selected = True
@@ -938,24 +1007,13 @@ Public Class Form1
                 End If
             End If
         End If
-        Dim ARowindex = ArtikelBindingSource.Find("ArtikelID", NewTreeView1.SelectedNode.Name)
-        If ARowindex <> -1 Then
-            ArtikelBindingSource.Position = ARowindex
-            Dim rowIndex As Integer = -1
-            For Each row As DataGridViewRow In DataGridView2.Rows
-                If row.Cells(0).Value.ToString().Equals(NewTreeView1.SelectedNode.Name) Then
-                    rowIndex = row.Index
-                    Exit For
-                End If
-            Next
-        End If
     End Sub
 
     Private Sub DataGridView2_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView2.CellClick
         If DataGridView2.Rows.Count > 0 Then
             Dim ArtikelID As String = ""
             Dim node As TreeNode = Nothing
-            ArtikelID = DataGridView2.CurrentRow.Cells(1).Value
+            ArtikelID = DataGridView2.CurrentRow.Cells(0).Value
             If TBMStructure = True And ArtikelID <> "" Then
                 NewTreeView1.SelectedNode = NewTreeView1.Nodes.Find(ArtikelID, True)(0)
                 NewTreeView1.Select()
@@ -965,17 +1023,17 @@ Public Class Form1
     End Sub
 
     Private Sub HerstellerComboBox_DropDownClosed(sender As Object, e As EventArgs) Handles HerstellerComboBox.DropDownClosed
-        NewTreeView1.SelectedNode = NewTreeView1.Nodes.Find(ProduktTypComboBox.SelectedValue, True)(0)
-        NewTreeView1.Select()
-        NewTreeView1.SelectedNode.Expand()
-        'Me.DataGridView2.Sort(Me.DataGridView2.Columns(7), System.ComponentModel.ListSortDirection.Ascending)
-    End Sub
-
-    Private Sub ProduktTypComboBox_DropDownClosed(sender As Object, e As EventArgs) Handles ProduktTypComboBox.DropDownClosed
         NewTreeView1.SelectedNode = NewTreeView1.Nodes.Find(HerstellerComboBox.SelectedValue, True)(0)
         NewTreeView1.Select()
         NewTreeView1.SelectedNode.Expand()
         ' Me.DataGridView2.Sort(Me.DataGridView2.Columns(7), System.ComponentModel.ListSortDirection.Ascending)
+    End Sub
+
+    Private Sub ProduktTypComboBox_DropDownClosed(sender As Object, e As EventArgs) Handles ProduktTypComboBox.DropDownClosed
+        NewTreeView1.SelectedNode = NewTreeView1.Nodes.Find(ProduktTypComboBox.SelectedValue, True)(0)
+        NewTreeView1.Select()
+        NewTreeView1.SelectedNode.Expand()
+        'Me.DataGridView2.Sort(Me.DataGridView2.Columns(7), System.ComponentModel.ListSortDirection.Ascending)
     End Sub
 
     Private Sub ButtonAddURL_Click(sender As Object, e As EventArgs) Handles ButtonAddURL.Click
