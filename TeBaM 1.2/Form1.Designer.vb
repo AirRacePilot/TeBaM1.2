@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Form1
     Inherits System.Windows.Forms.Form
 
     'Das Formular überschreibt den Löschvorgang, um die Komponentenliste zu bereinigen.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Form1
     'Hinweis: Die folgende Prozedur ist für den Windows Form-Designer erforderlich.
     'Das Bearbeiten ist mit dem Windows Form-Designer möglich.  
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim KdNummerLabel As System.Windows.Forms.Label
@@ -43,6 +43,9 @@ Partial Class Form1
         Dim VKPreisLabel As System.Windows.Forms.Label
         Dim FaktorLabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
@@ -76,16 +79,32 @@ Partial Class Form1
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.SplitContainer1 = New System.Windows.Forms.SplitContainer()
         Me.NewTreeView1 = New TeBaM_1._2.NewTreeView()
+        Me.ContextMenuStrip_NewTreeView1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.UmbenennenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AnzeigenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
+        Me.Column1 = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.ArtikelBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Column2 = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.Column4 = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.Column5 = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.ArtikelIDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.OptionIDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AngebotsnummerDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SortRowDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FKAngebotSpezOptionenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.ToolStrip4 = New System.Windows.Forms.ToolStrip()
+        Me.ToolStripButtonUp = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButtonDown = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.ArtikelGroupBox = New System.Windows.Forms.GroupBox()
         Me.RubrikMaskedTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.ButtonAddURL = New System.Windows.Forms.Button()
         Me.MaskedTextBoxArtikelnummer = New System.Windows.Forms.MaskedTextBox()
         Me.URLTextBox = New System.Windows.Forms.TextBox()
-        Me.ArtikelBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.ArtikelkurztextTextBox = New System.Windows.Forms.TextBox()
         Me.BeschreibungTextBox = New System.Windows.Forms.TextBox()
         Me.EKPreisTextBox = New System.Windows.Forms.TextBox()
@@ -116,15 +135,20 @@ Partial Class Form1
         Me.TextmarkenDefinierenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.ArtikelIDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.OptionIDDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.AngebotsnummerDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.SortRowDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column1 = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.Column4 = New System.Windows.Forms.DataGridViewComboBoxColumn()
-        Me.Column5 = New System.Windows.Forms.DataGridViewComboBoxColumn()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.ArtikelDataGridView = New System.Windows.Forms.DataGridView()
+        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn6 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn7 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn8 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn9 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn10 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn11 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewCheckBoxColumn1 = New System.Windows.Forms.DataGridViewCheckBoxColumn()
         KdNummerLabel = New System.Windows.Forms.Label()
         Firma1Label = New System.Windows.Forms.Label()
         Firma2Label = New System.Windows.Forms.Label()
@@ -158,11 +182,13 @@ Partial Class Form1
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
+        Me.ContextMenuStrip_NewTreeView1.SuspendLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ArtikelBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.FKAngebotSpezOptionenBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ToolStrip4.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.ArtikelGroupBox.SuspendLayout()
-        CType(Me.ArtikelBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ProduktgruppeGroupBox.SuspendLayout()
         CType(Me.HerstellerBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ProduktBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -170,6 +196,8 @@ Partial Class Form1
         CType(Me.VertreterBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataSet2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
+        Me.TabPage3.SuspendLayout()
+        CType(Me.ArtikelDataGridView, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'KdNummerLabel
@@ -345,6 +373,7 @@ Partial Class Form1
         '
         'ToolStrip1
         '
+        Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 28)
         Me.ToolStrip1.Name = "ToolStrip1"
@@ -366,6 +395,7 @@ Partial Class Form1
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
+        Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabControl1.Location = New System.Drawing.Point(0, 53)
         Me.TabControl1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
@@ -661,6 +691,7 @@ Partial Class Form1
         'SplitContainer1.Panel2
         '
         Me.SplitContainer1.Panel2.Controls.Add(Me.DataGridView2)
+        Me.SplitContainer1.Panel2.Controls.Add(Me.ToolStrip4)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Panel1)
         Me.SplitContainer1.Size = New System.Drawing.Size(1155, 493)
         Me.SplitContainer1.SplitterDistance = 381
@@ -671,6 +702,7 @@ Partial Class Form1
         Me.NewTreeView1.AllowDrop = True
         Me.NewTreeView1.BackColor = System.Drawing.Color.Ivory
         Me.NewTreeView1.CheckBoxes = True
+        Me.NewTreeView1.ContextMenuStrip = Me.ContextMenuStrip_NewTreeView1
         Me.NewTreeView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.NewTreeView1.ImageIndex = 0
         Me.NewTreeView1.ImageList = Me.ImageList1
@@ -680,6 +712,25 @@ Partial Class Form1
         Me.NewTreeView1.SelectedImageIndex = 0
         Me.NewTreeView1.Size = New System.Drawing.Size(381, 493)
         Me.NewTreeView1.TabIndex = 0
+        '
+        'ContextMenuStrip_NewTreeView1
+        '
+        Me.ContextMenuStrip_NewTreeView1.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.ContextMenuStrip_NewTreeView1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UmbenennenToolStripMenuItem, Me.AnzeigenToolStripMenuItem})
+        Me.ContextMenuStrip_NewTreeView1.Name = "ContextMenuStrip_NewTreeView1"
+        Me.ContextMenuStrip_NewTreeView1.Size = New System.Drawing.Size(171, 56)
+        '
+        'UmbenennenToolStripMenuItem
+        '
+        Me.UmbenennenToolStripMenuItem.Name = "UmbenennenToolStripMenuItem"
+        Me.UmbenennenToolStripMenuItem.Size = New System.Drawing.Size(170, 26)
+        Me.UmbenennenToolStripMenuItem.Text = "umbenennen"
+        '
+        'AnzeigenToolStripMenuItem
+        '
+        Me.AnzeigenToolStripMenuItem.Name = "AnzeigenToolStripMenuItem"
+        Me.AnzeigenToolStripMenuItem.Size = New System.Drawing.Size(170, 26)
+        Me.AnzeigenToolStripMenuItem.Text = "anzeigen"
         '
         'ImageList1
         '
@@ -695,21 +746,163 @@ Partial Class Form1
         '
         Me.DataGridView2.AutoGenerateColumns = False
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.ArtikelIDDataGridViewTextBoxColumn, Me.OptionIDDataGridViewTextBoxColumn, Me.AngebotsnummerDataGridViewTextBoxColumn, Me.SortRowDataGridViewTextBoxColumn, Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5})
+        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Column4, Me.Column5, Me.ArtikelIDDataGridViewTextBoxColumn, Me.OptionIDDataGridViewTextBoxColumn, Me.AngebotsnummerDataGridViewTextBoxColumn, Me.SortRowDataGridViewTextBoxColumn})
         Me.DataGridView2.DataSource = Me.FKAngebotSpezOptionenBindingSource
         Me.DataGridView2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView2.Location = New System.Drawing.Point(0, 377)
+        Me.DataGridView2.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
+        Me.DataGridView2.Location = New System.Drawing.Point(0, 404)
         Me.DataGridView2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.DataGridView2.MultiSelect = False
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowTemplate.Height = 24
-        Me.DataGridView2.Size = New System.Drawing.Size(770, 116)
+        Me.DataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.DataGridView2.Size = New System.Drawing.Size(770, 89)
         Me.DataGridView2.TabIndex = 1
+        '
+        'Column1
+        '
+        Me.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
+        Me.Column1.DataPropertyName = "ArtikelID"
+        Me.Column1.DataSource = Me.ArtikelBindingSource
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle10.Format = "C2"
+        DataGridViewCellStyle10.NullValue = Nothing
+        Me.Column1.DefaultCellStyle = DataGridViewCellStyle10
+        Me.Column1.DisplayMember = "Artikelkurztext"
+        Me.Column1.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
+        Me.Column1.HeaderText = "Artikelkurztext"
+        Me.Column1.MaxDropDownItems = 1
+        Me.Column1.Name = "Column1"
+        Me.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Column1.ValueMember = "ArtikelID"
+        Me.Column1.Width = 125
+        '
+        'ArtikelBindingSource
+        '
+        Me.ArtikelBindingSource.DataMember = "Artikel"
+        Me.ArtikelBindingSource.DataSource = Me.DataSet1
+        '
+        'Column2
+        '
+        Me.Column2.DataPropertyName = "ArtikelID"
+        Me.Column2.DataSource = Me.ArtikelBindingSource
+        Me.Column2.DisplayMember = "Artikelnr"
+        Me.Column2.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
+        Me.Column2.HeaderText = "Artikelnummer"
+        Me.Column2.Name = "Column2"
+        Me.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Column2.ValueMember = "ArtikelID"
+        '
+        'Column3
+        '
+        Me.Column3.DataPropertyName = "ArtikelID"
+        Me.Column3.DataSource = Me.ArtikelBindingSource
+        Me.Column3.DisplayMember = "Rubrik"
+        Me.Column3.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
+        Me.Column3.HeaderText = "Rubrik"
+        Me.Column3.Name = "Column3"
+        Me.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Column3.ValueMember = "ArtikelID"
+        '
+        'Column4
+        '
+        Me.Column4.DataPropertyName = "ArtikelID"
+        Me.Column4.DataSource = Me.ArtikelBindingSource
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle11.Format = "C2"
+        DataGridViewCellStyle11.NullValue = Nothing
+        Me.Column4.DefaultCellStyle = DataGridViewCellStyle11
+        Me.Column4.DisplayMember = "EKPreis"
+        Me.Column4.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
+        Me.Column4.HeaderText = "EK-Preis"
+        Me.Column4.Name = "Column4"
+        Me.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Column4.ValueMember = "ArtikelID"
+        '
+        'Column5
+        '
+        Me.Column5.DataPropertyName = "ArtikelID"
+        Me.Column5.DataSource = Me.ArtikelBindingSource
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle12.Format = "C2"
+        DataGridViewCellStyle12.NullValue = Nothing
+        Me.Column5.DefaultCellStyle = DataGridViewCellStyle12
+        Me.Column5.DisplayMember = "VKPreis"
+        Me.Column5.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
+        Me.Column5.HeaderText = "VK-Preis"
+        Me.Column5.Name = "Column5"
+        Me.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
+        Me.Column5.ValueMember = "ArtikelID"
+        '
+        'ArtikelIDDataGridViewTextBoxColumn
+        '
+        Me.ArtikelIDDataGridViewTextBoxColumn.DataPropertyName = "ArtikelID"
+        Me.ArtikelIDDataGridViewTextBoxColumn.HeaderText = "ArtikelID"
+        Me.ArtikelIDDataGridViewTextBoxColumn.Name = "ArtikelIDDataGridViewTextBoxColumn"
+        '
+        'OptionIDDataGridViewTextBoxColumn
+        '
+        Me.OptionIDDataGridViewTextBoxColumn.DataPropertyName = "OptionID"
+        Me.OptionIDDataGridViewTextBoxColumn.HeaderText = "OptionID"
+        Me.OptionIDDataGridViewTextBoxColumn.Name = "OptionIDDataGridViewTextBoxColumn"
+        '
+        'AngebotsnummerDataGridViewTextBoxColumn
+        '
+        Me.AngebotsnummerDataGridViewTextBoxColumn.DataPropertyName = "Angebotsnummer"
+        Me.AngebotsnummerDataGridViewTextBoxColumn.HeaderText = "Angebotsnummer"
+        Me.AngebotsnummerDataGridViewTextBoxColumn.Name = "AngebotsnummerDataGridViewTextBoxColumn"
+        '
+        'SortRowDataGridViewTextBoxColumn
+        '
+        Me.SortRowDataGridViewTextBoxColumn.DataPropertyName = "SortRow"
+        Me.SortRowDataGridViewTextBoxColumn.HeaderText = "SortRow"
+        Me.SortRowDataGridViewTextBoxColumn.Name = "SortRowDataGridViewTextBoxColumn"
         '
         'FKAngebotSpezOptionenBindingSource
         '
         Me.FKAngebotSpezOptionenBindingSource.DataMember = "FK_Angebot_SpezOptionen"
         Me.FKAngebotSpezOptionenBindingSource.DataSource = Me.FKKundeAngebotBindingSource
+        Me.FKAngebotSpezOptionenBindingSource.Sort = "Angebotsnummer, SortRow"
+        '
+        'ToolStrip4
+        '
+        Me.ToolStrip4.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
+        Me.ToolStrip4.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.ToolStrip4.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButtonUp, Me.ToolStripButtonDown, Me.ToolStripLabel1})
+        Me.ToolStrip4.Location = New System.Drawing.Point(0, 377)
+        Me.ToolStrip4.Name = "ToolStrip4"
+        Me.ToolStrip4.Size = New System.Drawing.Size(770, 27)
+        Me.ToolStrip4.TabIndex = 2
+        Me.ToolStrip4.Text = "ToolStrip4"
+        '
+        'ToolStripButtonUp
+        '
+        Me.ToolStripButtonUp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButtonUp.Image = CType(resources.GetObject("ToolStripButtonUp.Image"), System.Drawing.Image)
+        Me.ToolStripButtonUp.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonUp.Name = "ToolStripButtonUp"
+        Me.ToolStripButtonUp.Size = New System.Drawing.Size(24, 24)
+        Me.ToolStripButtonUp.Text = "ToolStripButton1"
+        '
+        'ToolStripButtonDown
+        '
+        Me.ToolStripButtonDown.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButtonDown.Image = CType(resources.GetObject("ToolStripButtonDown.Image"), System.Drawing.Image)
+        Me.ToolStripButtonDown.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButtonDown.Name = "ToolStripButtonDown"
+        Me.ToolStripButtonDown.Size = New System.Drawing.Size(24, 24)
+        Me.ToolStripButtonDown.Text = "ToolStripButton2"
+        '
+        'ToolStripLabel1
+        '
+        Me.ToolStripLabel1.Name = "ToolStripLabel1"
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(114, 24)
+        Me.ToolStripLabel1.Text = "ToolStripLabel1"
         '
         'Panel1
         '
@@ -774,6 +967,7 @@ Partial Class Form1
         '
         'MaskedTextBoxArtikelnummer
         '
+        Me.MaskedTextBoxArtikelnummer.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ArtikelBindingSource, "Artikelnr", True))
         Me.MaskedTextBoxArtikelnummer.Location = New System.Drawing.Point(116, 62)
         Me.MaskedTextBoxArtikelnummer.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.MaskedTextBoxArtikelnummer.Mask = "00-0000-0000"
@@ -790,14 +984,10 @@ Partial Class Form1
         Me.URLTextBox.Size = New System.Drawing.Size(580, 22)
         Me.URLTextBox.TabIndex = 7
         '
-        'ArtikelBindingSource
-        '
-        Me.ArtikelBindingSource.DataMember = "Artikel"
-        Me.ArtikelBindingSource.DataSource = Me.DataSet1
-        '
         'ArtikelkurztextTextBox
         '
         Me.ArtikelkurztextTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ArtikelBindingSource, "Artikelkurztext", True))
+        Me.ArtikelkurztextTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Tag", Me.ArtikelBindingSource, "ArtikelID", True))
         Me.ArtikelkurztextTextBox.Location = New System.Drawing.Point(117, 30)
         Me.ArtikelkurztextTextBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.ArtikelkurztextTextBox.Name = "ArtikelkurztextTextBox"
@@ -816,6 +1006,7 @@ Partial Class Form1
         '
         'EKPreisTextBox
         '
+        Me.EKPreisTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ArtikelBindingSource, "EKPreis", True))
         Me.EKPreisTextBox.Location = New System.Drawing.Point(385, 62)
         Me.EKPreisTextBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.EKPreisTextBox.Name = "EKPreisTextBox"
@@ -824,6 +1015,7 @@ Partial Class Form1
         '
         'VKPreisTextBox
         '
+        Me.VKPreisTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ArtikelBindingSource, "VKPreis", True))
         Me.VKPreisTextBox.Location = New System.Drawing.Point(385, 89)
         Me.VKPreisTextBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.VKPreisTextBox.Name = "VKPreisTextBox"
@@ -892,6 +1084,7 @@ Partial Class Form1
         '
         'ToolStrip3
         '
+        Me.ToolStrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
         Me.ToolStrip3.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddManufacturerNode, Me.AddProductNode, Me.AddArticleNode, Me.DelNode})
         Me.ToolStrip3.Location = New System.Drawing.Point(0, 0)
@@ -1028,89 +1221,99 @@ Partial Class Form1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'ArtikelIDDataGridViewTextBoxColumn
+        'TabPage3
         '
-        Me.ArtikelIDDataGridViewTextBoxColumn.DataPropertyName = "ArtikelID"
-        Me.ArtikelIDDataGridViewTextBoxColumn.HeaderText = "ArtikelID"
-        Me.ArtikelIDDataGridViewTextBoxColumn.Name = "ArtikelIDDataGridViewTextBoxColumn"
+        Me.TabPage3.Controls.Add(Me.ArtikelDataGridView)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Size = New System.Drawing.Size(1161, 497)
+        Me.TabPage3.TabIndex = 2
+        Me.TabPage3.Text = "TabPage3"
+        Me.TabPage3.UseVisualStyleBackColor = True
         '
-        'OptionIDDataGridViewTextBoxColumn
+        'ArtikelDataGridView
         '
-        Me.OptionIDDataGridViewTextBoxColumn.DataPropertyName = "OptionID"
-        Me.OptionIDDataGridViewTextBoxColumn.HeaderText = "OptionID"
-        Me.OptionIDDataGridViewTextBoxColumn.Name = "OptionIDDataGridViewTextBoxColumn"
+        Me.ArtikelDataGridView.AutoGenerateColumns = False
+        Me.ArtikelDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.ArtikelDataGridView.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5, Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn10, Me.DataGridViewTextBoxColumn11, Me.DataGridViewCheckBoxColumn1})
+        Me.ArtikelDataGridView.DataSource = Me.ArtikelBindingSource
+        Me.ArtikelDataGridView.Location = New System.Drawing.Point(64, 24)
+        Me.ArtikelDataGridView.Name = "ArtikelDataGridView"
+        Me.ArtikelDataGridView.RowTemplate.Height = 24
+        Me.ArtikelDataGridView.Size = New System.Drawing.Size(832, 220)
+        Me.ArtikelDataGridView.TabIndex = 0
         '
-        'AngebotsnummerDataGridViewTextBoxColumn
+        'DataGridViewTextBoxColumn1
         '
-        Me.AngebotsnummerDataGridViewTextBoxColumn.DataPropertyName = "Angebotsnummer"
-        Me.AngebotsnummerDataGridViewTextBoxColumn.HeaderText = "Angebotsnummer"
-        Me.AngebotsnummerDataGridViewTextBoxColumn.Name = "AngebotsnummerDataGridViewTextBoxColumn"
+        Me.DataGridViewTextBoxColumn1.DataPropertyName = "ArtikelID"
+        Me.DataGridViewTextBoxColumn1.HeaderText = "ArtikelID"
+        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
         '
-        'SortRowDataGridViewTextBoxColumn
+        'DataGridViewTextBoxColumn2
         '
-        Me.SortRowDataGridViewTextBoxColumn.DataPropertyName = "SortRow"
-        Me.SortRowDataGridViewTextBoxColumn.HeaderText = "SortRow"
-        Me.SortRowDataGridViewTextBoxColumn.Name = "SortRowDataGridViewTextBoxColumn"
+        Me.DataGridViewTextBoxColumn2.DataPropertyName = "ProduktID"
+        Me.DataGridViewTextBoxColumn2.HeaderText = "ProduktID"
+        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
         '
-        'Column1
+        'DataGridViewTextBoxColumn3
         '
-        Me.Column1.DataPropertyName = "ArtikelID"
-        Me.Column1.DataSource = Me.ArtikelBindingSource
-        Me.Column1.DisplayMember = "Artikelkurztext"
-        Me.Column1.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
-        Me.Column1.HeaderText = "Artikelkurztext"
-        Me.Column1.Name = "Column1"
-        Me.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.Column1.ValueMember = "ArtikelID"
+        Me.DataGridViewTextBoxColumn3.DataPropertyName = "lfdNrPosAG"
+        Me.DataGridViewTextBoxColumn3.HeaderText = "lfdNrPosAG"
+        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
         '
-        'Column2
+        'DataGridViewTextBoxColumn4
         '
-        Me.Column2.DataPropertyName = "ArtikelID"
-        Me.Column2.DataSource = Me.ArtikelBindingSource
-        Me.Column2.DisplayMember = "Artikelnr"
-        Me.Column2.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
-        Me.Column2.HeaderText = "Artikelnummer"
-        Me.Column2.Name = "Column2"
-        Me.Column2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Column2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.Column2.ValueMember = "ArtikelID"
+        Me.DataGridViewTextBoxColumn4.DataPropertyName = "URL"
+        Me.DataGridViewTextBoxColumn4.HeaderText = "URL"
+        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
         '
-        'Column3
+        'DataGridViewTextBoxColumn5
         '
-        Me.Column3.DataPropertyName = "ArtikelID"
-        Me.Column3.DataSource = Me.ArtikelBindingSource
-        Me.Column3.DisplayMember = "Rubrik"
-        Me.Column3.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
-        Me.Column3.HeaderText = "Rubrik"
-        Me.Column3.Name = "Column3"
-        Me.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.Column3.ValueMember = "ArtikelID"
+        Me.DataGridViewTextBoxColumn5.DataPropertyName = "Artikelnr"
+        Me.DataGridViewTextBoxColumn5.HeaderText = "Artikelnr"
+        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
         '
-        'Column4
+        'DataGridViewTextBoxColumn6
         '
-        Me.Column4.DataPropertyName = "ArtikelID"
-        Me.Column4.DataSource = Me.ArtikelBindingSource
-        Me.Column4.DisplayMember = "EKPreis"
-        Me.Column4.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
-        Me.Column4.HeaderText = "EK-Preis"
-        Me.Column4.Name = "Column4"
-        Me.Column4.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Column4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.Column4.ValueMember = "ArtikelID"
+        Me.DataGridViewTextBoxColumn6.DataPropertyName = "Rubrik"
+        Me.DataGridViewTextBoxColumn6.HeaderText = "Rubrik"
+        Me.DataGridViewTextBoxColumn6.Name = "DataGridViewTextBoxColumn6"
         '
-        'Column5
+        'DataGridViewTextBoxColumn7
         '
-        Me.Column5.DataPropertyName = "ArtikelID"
-        Me.Column5.DataSource = Me.ArtikelBindingSource
-        Me.Column5.DisplayMember = "VKPreis"
-        Me.Column5.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
-        Me.Column5.HeaderText = "VK-Preis"
-        Me.Column5.Name = "Column5"
-        Me.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
-        Me.Column5.ValueMember = "ArtikelID"
+        Me.DataGridViewTextBoxColumn7.DataPropertyName = "Artikelkurztext"
+        Me.DataGridViewTextBoxColumn7.HeaderText = "Artikelkurztext"
+        Me.DataGridViewTextBoxColumn7.Name = "DataGridViewTextBoxColumn7"
+        '
+        'DataGridViewTextBoxColumn8
+        '
+        Me.DataGridViewTextBoxColumn8.DataPropertyName = "Beschreibung"
+        Me.DataGridViewTextBoxColumn8.HeaderText = "Beschreibung"
+        Me.DataGridViewTextBoxColumn8.Name = "DataGridViewTextBoxColumn8"
+        '
+        'DataGridViewTextBoxColumn9
+        '
+        Me.DataGridViewTextBoxColumn9.DataPropertyName = "EKPreis"
+        Me.DataGridViewTextBoxColumn9.HeaderText = "EKPreis"
+        Me.DataGridViewTextBoxColumn9.Name = "DataGridViewTextBoxColumn9"
+        '
+        'DataGridViewTextBoxColumn10
+        '
+        Me.DataGridViewTextBoxColumn10.DataPropertyName = "VKPreis"
+        Me.DataGridViewTextBoxColumn10.HeaderText = "VKPreis"
+        Me.DataGridViewTextBoxColumn10.Name = "DataGridViewTextBoxColumn10"
+        '
+        'DataGridViewTextBoxColumn11
+        '
+        Me.DataGridViewTextBoxColumn11.DataPropertyName = "Faktor"
+        Me.DataGridViewTextBoxColumn11.HeaderText = "Faktor"
+        Me.DataGridViewTextBoxColumn11.Name = "DataGridViewTextBoxColumn11"
+        '
+        'DataGridViewCheckBoxColumn1
+        '
+        Me.DataGridViewCheckBoxColumn1.DataPropertyName = "AGSelected"
+        Me.DataGridViewCheckBoxColumn1.HeaderText = "AGSelected"
+        Me.DataGridViewCheckBoxColumn1.Name = "DataGridViewCheckBoxColumn1"
         '
         'Form1
         '
@@ -1140,15 +1343,19 @@ Partial Class Form1
         Me.TabPage2.ResumeLayout(False)
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
+        Me.SplitContainer1.Panel2.PerformLayout()
         CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
+        Me.ContextMenuStrip_NewTreeView1.ResumeLayout(False)
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ArtikelBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.FKAngebotSpezOptionenBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ToolStrip4.ResumeLayout(False)
+        Me.ToolStrip4.PerformLayout()
         Me.Panel1.ResumeLayout(False)
         Me.Panel1.PerformLayout()
         Me.ArtikelGroupBox.ResumeLayout(False)
         Me.ArtikelGroupBox.PerformLayout()
-        CType(Me.ArtikelBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ProduktgruppeGroupBox.ResumeLayout(False)
         Me.ProduktgruppeGroupBox.PerformLayout()
         CType(Me.HerstellerBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1159,6 +1366,8 @@ Partial Class Form1
         CType(Me.DataSet2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
+        Me.TabPage3.ResumeLayout(False)
+        CType(Me.ArtikelDataGridView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1239,13 +1448,34 @@ Partial Class Form1
     Friend WithEvents AngebotURLDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents FKKundeAngebotBindingSource As BindingSource
     Friend WithEvents FKAngebotSpezOptionenBindingSource As BindingSource
-    Friend WithEvents ArtikelIDDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents OptionIDDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents AngebotsnummerDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents SortRowDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents ContextMenuStrip_NewTreeView1 As ContextMenuStrip
+    Friend WithEvents UmbenennenToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents AnzeigenToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStrip4 As ToolStrip
+    Friend WithEvents ToolStripButtonUp As ToolStripButton
+    Friend WithEvents ToolStripButtonDown As ToolStripButton
+    Friend WithEvents ToolStripLabel1 As ToolStripLabel
     Friend WithEvents Column1 As DataGridViewComboBoxColumn
     Friend WithEvents Column2 As DataGridViewComboBoxColumn
     Friend WithEvents Column3 As DataGridViewComboBoxColumn
     Friend WithEvents Column4 As DataGridViewComboBoxColumn
     Friend WithEvents Column5 As DataGridViewComboBoxColumn
+    Friend WithEvents ArtikelIDDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents OptionIDDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents AngebotsnummerDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents SortRowDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents ArtikelDataGridView As DataGridView
+    Friend WithEvents DataGridViewTextBoxColumn1 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn2 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn3 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn4 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn5 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn6 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn7 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn8 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn9 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn10 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn11 As DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewCheckBoxColumn1 As DataGridViewCheckBoxColumn
 End Class

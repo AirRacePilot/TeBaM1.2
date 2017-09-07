@@ -78,8 +78,8 @@ Public Class Form1
                 DokumentenvorlageComboBox.Items.Add(file.Name)
             End If
         Next
-        'TreeView_actualize()
-        ' GroupBox2.Text = "Artikel (" & DataSet1.Artikel.Rows.Count & ")" 'Anzahl Artikel
+        TreeView_actualize()
+        ArtikelGroupBox.Text = "Artikel (" & DataSet1.Artikel.Rows.Count & ")" 'Anzahl Artikel
         KundeGroupBox.Text = "Kunde (" & DataSet1.Kunde.Rows.Count & ")" 'Anzahl Kunden
         Dim tn As TreeNode = NewTreeView1.Nodes(0)
         NewTreeView1.SelectedNode = tn
@@ -115,7 +115,6 @@ Public Class Form1
         End If
     End Sub
 #End Region
-
 
 #Region "Einzelne Äste des Baumes komplett ein- oder auschecken und in Angebotstabelle kopieren"
     Private Sub NewTreeView1_AfterCheck(sender As Object, e As TreeViewEventArgs) Handles NewTreeView1.AfterCheck
@@ -187,9 +186,6 @@ Public Class Form1
         End If
     End Sub
 #End Region
-
-
-
 
 #Region "Neuen Kunden einfügen oder löschen"
     Private Sub AddCustomer_Click(sender As Object, e As EventArgs) Handles AddCustomer.Click
@@ -281,6 +277,44 @@ Public Class Form1
             Case DialogResult.No
                 MsgBox("Löschen abgebrochen", vbExclamation)
         End Select
+    End Sub
+#End Region
+
+#Region "Treeview entsprechend ausgewähltem Angebot aktualisieren"
+    Private Sub TraverseChildNodes(nodes As TreeNodeCollection)
+        For Each nd As TreeNode In nodes
+            nd.Checked = False
+            TraverseChildNodes(nd.Nodes)
+        Next
+    End Sub
+    Private Sub DataGridView1_SelectionChanged(sender As Object, e As EventArgs) Handles DataGridView1.SelectionChanged
+        TreeView_actualize()
+    End Sub
+
+    Private Sub KdNummerComboBox_SelectedValueChanged(sender As Object, e As EventArgs) Handles KdNummerComboBox.SelectedValueChanged
+        TreeView_actualize()
+    End Sub
+
+    Sub TreeView_actualize()
+        If DataGridView1.CurrentRow IsNot Nothing Then
+            NewTreeView1.Enabled = True
+            ToolStripLabel1.Text = "Angebot: " & DataGridView1.CurrentRow.Cells(0).Value
+            Dim SpezRow As DataSet1.SpezOptionenRow = Nothing
+            TraverseChildNodes(NewTreeView1.Nodes)
+            For i = 0 To DataSet1.SpezOptionen.Rows.Count - 1
+                SpezRow = DataSet1.SpezOptionen.Rows(i)
+                If DataGridView1.CurrentRow.Cells(0).Value = SpezRow.Angebotsnummer Then
+                    Dim Nodes As TreeNode() = Nothing
+                    Nodes = NewTreeView1.Nodes.Find(SpezRow.ArtikelID, True)
+                    For Each node As TreeNode In Nodes
+                        node.Checked = True
+                    Next
+                End If
+            Next
+        Else
+            NewTreeView1.Enabled = False
+            ToolStripLabel1.Text = "kein Angebot ausgewählt"
+        End If
     End Sub
 #End Region
 
@@ -451,6 +485,7 @@ Public Class Form1
 
     Private Sub ProduktsrukturÖffnenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProduktsrukturÖffnenToolStripMenuItem.Click
         Open_product_structure()
+        TreeView_actualize()
     End Sub
 
     Private Sub SpeichernToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SpeichernToolStripMenuItem.Click
@@ -833,6 +868,125 @@ Public Class Form1
     End Sub
 #End Region
 
+#Region "Artikelfenster Daten updaten"
+    Private Sub NewTreeView1_AfterSelect(sender As Object, e As System.Windows.Forms.TreeViewEventArgs) Handles NewTreeView1.AfterSelect
+        Dim currentNode As TreeNode = Nothing
+        ArticleHMI(NewTreeView1.SelectedNode.Tag)
+        currentNode = e.Node
+        If currentNode.Parent IsNot Nothing Then
+            SelectedNodeChanged()
+        End If
+        Dim WurzelKnoten As String = ""
+        If NewTreeView1.SelectedNode.Tag = "article" Then
+            WurzelKnoten = FindManufacturerNode(currentNode)
+            HerstellerComboBox.Text = WurzelKnoten
+        End If
+        If NewTreeView1.SelectedNode.Tag = "product" Then
+            WurzelKnoten = FindManufacturerNode(currentNode)
+            HerstellerComboBox.Text = WurzelKnoten
+            ProduktTypComboBox.Text = currentNode.Parent.Text
+        End If
+        If NewTreeView1.SelectedNode.Tag = "manufacturer" Then
+            HerstellerComboBox.Text = NewTreeView1.SelectedNode.Text
+            ProduktTypComboBox.Text = ""
+        End If
+        EKPreisTextBox.BeginInvoke(New DelegatePriceChange(AddressOf TM_ChangeEK), EKPreisTextBox.Text)
+        VKPreisTextBox.BeginInvoke(New DelegatePriceChange(AddressOf TM_ChangeVK), VKPreisTextBox.Text)
+    End Sub
+
+    Private Function FindManufacturerNode(node As TreeNode)
+        While node IsNot Nothing
+            If node.Tag = "manufacturer" Then
+                Return node.Text
+            Else
+                node = node.Parent
+            End If
+        End While
+    End Function
+
+    Sub ArticleHMI(NodeTag As String)
+        If NodeTag = "article" Then
+            ArtikelGroupBox.Enabled = True
+        Else
+            ArtikelGroupBox.Enabled = False
+        End If
+    End Sub
+
+    Sub SelectedNodeChanged()
+        'Beim Click auf NewTreeView1 Zeile im Datagrid  selektieren
+        For i As Integer = 0 To DataGridView2.Rows.Count - 1
+            If DataGridView2.Rows(i).Cells(0).Value = NewTreeView1.SelectedNode.Name.ToString() Then
+                'markiert die Zeile
+                DataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+                DataGridView2.Rows(i).Selected = True
+                'DataGridView5.FirstDisplayedScrollingRowIndex = i
+            End If
+        Next
+        'fertig
+        If NewTreeView1.SelectedNode.Tag = "article" Then
+            Dim PRowindex = ProduktBindingSource.Find("ProduktID", NewTreeView1.SelectedNode.Parent.Name)
+            If NewTreeView1.SelectedNode.Parent.Tag <> "manufacturer" Then
+                If PRowindex <> -1 Then
+                    ProduktBindingSource.Position = PRowindex
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub DataGridView2_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView2.CellClick
+        If DataGridView2.Rows.Count > 0 Then
+            Dim ArtikelID As String = ""
+            Dim node As TreeNode = Nothing
+            ArtikelID = DataGridView2.CurrentRow.Cells(0).Value
+            If TBMStructure = True And ArtikelID <> "" Then
+                NewTreeView1.SelectedNode = NewTreeView1.Nodes.Find(ArtikelID, True)(0)
+                NewTreeView1.Select()
+                NewTreeView1.SelectedNode.Expand()
+            End If
+        End If
+    End Sub
+
+    Private Sub HerstellerComboBox_DropDownClosed(sender As Object, e As EventArgs) Handles HerstellerComboBox.DropDownClosed
+        NewTreeView1.SelectedNode = NewTreeView1.Nodes.Find(HerstellerComboBox.SelectedValue, True)(0)
+        NewTreeView1.Select()
+        NewTreeView1.SelectedNode.Expand()
+        ' Me.DataGridView2.Sort(Me.DataGridView2.Columns(7), System.ComponentModel.ListSortDirection.Ascending)
+    End Sub
+
+    Private Sub ProduktTypComboBox_DropDownClosed(sender As Object, e As EventArgs) Handles ProduktTypComboBox.DropDownClosed
+        NewTreeView1.SelectedNode = NewTreeView1.Nodes.Find(ProduktTypComboBox.SelectedValue, True)(0)
+        NewTreeView1.Select()
+        NewTreeView1.SelectedNode.Expand()
+        'Me.DataGridView2.Sort(Me.DataGridView2.Columns(7), System.ComponentModel.ListSortDirection.Ascending)
+    End Sub
+
+    Private Sub ButtonAddURL_Click(sender As Object, e As EventArgs) Handles ButtonAddURL.Click
+        URL_ArticleCheck()
+    End Sub
+
+    Sub URL_ArticleCheck()
+        Dim row As DataSet1.ArtikelRow = Nothing
+        Dim strFile As String = ""
+        OpenFileDialog1.FileName = ""
+        If NewTreeView1.SelectedNode IsNot Nothing Then
+            If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
+                strFile = OpenFileDialog1.FileName.ToString
+                URLTextBox.Text = strFile
+                If File.Exists(URLTextBox.Text) Then
+                    NewTreeView1.SelectedNode.ImageIndex = 2
+                    NewTreeView1.SelectedNode.SelectedImageIndex = 2
+                Else
+                    NewTreeView1.SelectedNode.ImageIndex = 3
+                    NewTreeView1.SelectedNode.SelectedImageIndex = 3
+                End If
+            Else
+                MsgBox("Aktion durch Benutzer abgebrochen!", vbExclamation)
+            End If
+        End If
+    End Sub
+#End Region
+
+
 #Region "Texbox Formatierungen erstellen"
     Delegate Sub DelegatePriceChange(ByVal textvalue As String)
 
@@ -937,129 +1091,105 @@ Public Class Form1
     End Sub
 #End Region
 
-#Region "Artikelfenster Daten updaten"
-    Private Sub NewTreeView1_AfterSelect(sender As Object, e As System.Windows.Forms.TreeViewEventArgs) Handles NewTreeView1.AfterSelect
-        Dim currentNode As TreeNode = Nothing
-        ArticleHMI(NewTreeView1.SelectedNode.Tag)
-        currentNode = e.Node
-        If currentNode.Parent IsNot Nothing Then
-            SelectedNodeChanged()
-        End If
-        Dim WurzelKnoten As String = ""
-        If NewTreeView1.SelectedNode.Tag = "article" Then
-            WurzelKnoten = FindManufacturerNode(currentNode)
-            HerstellerComboBox.Text = WurzelKnoten
-        End If
-        If NewTreeView1.SelectedNode.Tag = "product" Then
-            WurzelKnoten = FindManufacturerNode(currentNode)
-            HerstellerComboBox.Text = WurzelKnoten
-            ProduktTypComboBox.Text = currentNode.Parent.Text
-        End If
-        If NewTreeView1.SelectedNode.Tag = "manufacturer" Then
-            HerstellerComboBox.Text = NewTreeView1.SelectedNode.Text
-            ProduktTypComboBox.Text = ""
-        End If
-
-        ' If NewTreeView1.SelectedNode.Tag = "product" Then CBox_Produkt.Text = NewTreeView1.SelectedNode.Text
-        'TBox_NodeText.Text = NewTreeView1.SelectedNode.Text
-        'TBox_NodeName.Text = NewTreeView1.SelectedNode.Name
-        'TBox_NodeTag.Text = NewTreeView1.SelectedNode.Tag
-        'TBox_NodeImageIndex.Text = CStr(NewTreeView1.SelectedNode.ImageIndex)
-        'TBox_NodeSelImageIndex.Text = CStr(NewTreeView1.SelectedNode.SelectedImageIndex)
-        EKPreisTextBox.BeginInvoke(New DelegatePriceChange(AddressOf TM_ChangeEK), EKPreisTextBox.Text)
-        VKPreisTextBox.BeginInvoke(New DelegatePriceChange(AddressOf TM_ChangeVK), VKPreisTextBox.Text)
-    End Sub
-
-    Private Function FindManufacturerNode(node As TreeNode)
-        While node IsNot Nothing
-            If node.Tag = "manufacturer" Then
-                Return node.Text
-            Else
-                node = node.Parent
-            End If
-        End While
-    End Function
-
-    Sub ArticleHMI(NodeTag As String)
-        If NodeTag = "article" Then
-            ArtikelGroupBox.Enabled = True
-        Else
-            ArtikelGroupBox.Enabled = False
-        End If
-    End Sub
-
-    Sub SelectedNodeChanged()
-        'Beim Click auf NewTreeView1 Zeile im Datagrid  selektieren
-        For i As Integer = 0 To DataGridView2.Rows.Count - 1
-            If DataGridView2.Rows(i).Cells(0).Value = NewTreeView1.SelectedNode.Name.ToString() Then
-                'markiert die Zeile
-                DataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect
-                DataGridView2.Rows(i).Selected = True
-                'DataGridView5.FirstDisplayedScrollingRowIndex = i
-            End If
-        Next
-        'fertig
-        If NewTreeView1.SelectedNode.Tag = "article" Then
-            Dim PRowindex = ProduktBindingSource.Find("ProduktID", NewTreeView1.SelectedNode.Parent.Name)
-            If NewTreeView1.SelectedNode.Parent.Tag <> "manufacturer" Then
-                If PRowindex <> -1 Then
-                    ProduktBindingSource.Position = PRowindex
-                End If
+#Region "Knotennamen editieren"
+    Private Sub UmbenennenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles UmbenennenToolStripMenuItem.Click
+        If Not (mySelectedNode Is Nothing) Then
+            NewTreeView1.SelectedNode = mySelectedNode
+            NewTreeView1.LabelEdit = True
+            If Not mySelectedNode.IsEditing Then
+                mySelectedNode.BeginEdit()
             End If
         End If
     End Sub
 
-    Private Sub DataGridView2_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView2.CellClick
-        If DataGridView2.Rows.Count > 0 Then
-            Dim ArtikelID As String = ""
-            Dim node As TreeNode = Nothing
-            ArtikelID = DataGridView2.CurrentRow.Cells(0).Value
-            If TBMStructure = True And ArtikelID <> "" Then
-                NewTreeView1.SelectedNode = NewTreeView1.Nodes.Find(ArtikelID, True)(0)
-                NewTreeView1.Select()
-                NewTreeView1.SelectedNode.Expand()
-            End If
+    Private Sub AfterLabelEdit(ByVal text As String, ByVal tag As String, ByVal name As String)
+        If tag = "manufacturer" Then
+            Dim NewHerstellerRow As DataSet1.HerstellerRow
+            NewHerstellerRow = DataSet1.Hersteller.FindByHerstellerID(name)
+            NewHerstellerRow.Hersteller = text
+            ' CBox_Hersteller.Text = text
+        End If
+        If tag = "product" Then
+            Dim NewProduktRow As DataSet1.ProduktRow
+            NewProduktRow = DataSet1.Produkt.FindByProduktID(name)
+            NewProduktRow.ProduktTyp = text
         End If
     End Sub
 
-    Private Sub HerstellerComboBox_DropDownClosed(sender As Object, e As EventArgs) Handles HerstellerComboBox.DropDownClosed
-        NewTreeView1.SelectedNode = NewTreeView1.Nodes.Find(HerstellerComboBox.SelectedValue, True)(0)
-        NewTreeView1.Select()
-        NewTreeView1.SelectedNode.Expand()
-        ' Me.DataGridView2.Sort(Me.DataGridView2.Columns(7), System.ComponentModel.ListSortDirection.Ascending)
-    End Sub
+    Delegate Sub InvokeDelegate(ByVal label As String, ByVal NodeTag As String, ByVal NodeNAme As String)
 
-    Private Sub ProduktTypComboBox_DropDownClosed(sender As Object, e As EventArgs) Handles ProduktTypComboBox.DropDownClosed
-        NewTreeView1.SelectedNode = NewTreeView1.Nodes.Find(ProduktTypComboBox.SelectedValue, True)(0)
-        NewTreeView1.Select()
-        NewTreeView1.SelectedNode.Expand()
-        'Me.DataGridView2.Sort(Me.DataGridView2.Columns(7), System.ComponentModel.ListSortDirection.Ascending)
-    End Sub
-
-    Private Sub ButtonAddURL_Click(sender As Object, e As EventArgs) Handles ButtonAddURL.Click
-        URL_ArticleCheck()
-    End Sub
-
-    Sub URL_ArticleCheck()
-        Dim row As DataSet1.ArtikelRow = Nothing
-        Dim strFile As String = ""
-        OpenFileDialog1.FileName = ""
-        If NewTreeView1.SelectedNode IsNot Nothing Then
-            If OpenFileDialog1.ShowDialog() = DialogResult.OK Then
-                strFile = OpenFileDialog1.FileName.ToString
-                URLTextBox.Text = strFile
-                If File.Exists(URLTextBox.Text) Then
-                    NewTreeView1.SelectedNode.ImageIndex = 2
-                    NewTreeView1.SelectedNode.SelectedImageIndex = 2
+    Private Sub NewTreeView1_AfterLabelEdit_1(sender As Object, e As NodeLabelEditEventArgs) Handles NewTreeView1.AfterLabelEdit
+        Dim NodeTag As String = NewTreeView1.SelectedNode.Tag
+        Dim NodeName As String = NewTreeView1.SelectedNode.Name
+        If Not (e.Label Is Nothing) Then
+            If e.Label.Length > 0 Then
+                If e.Label.IndexOfAny(New Char() {"@"c, "."c, ","c, "!"c}) = -1 Then
+                    ' Stop editing without canceling the label change.
+                    NewTreeView1.BeginInvoke(New InvokeDelegate(AddressOf AfterLabelEdit), e.Label, NodeTag, NodeName)
+                    e.Node.EndEdit(False)
                 Else
-                    NewTreeView1.SelectedNode.ImageIndex = 3
-                    NewTreeView1.SelectedNode.SelectedImageIndex = 3
+                    ' Cancel the label edit action, inform the user, and
+                    ' place the node in edit mode again. 
+                    e.CancelEdit = True
+                    MessageBox.Show("Invalid tree node label." & Microsoft.VisualBasic.ControlChars.Cr & "The invalid characters are '@','.', ',', '!'", "Node Label Edit")
+                    e.Node.BeginEdit()
                 End If
             Else
-                MsgBox("Aktion durch Benutzer abgebrochen!", vbExclamation)
+                ' Cancel the label edit action, inform the user, and
+                ' place the node in edit mode again. 
+                e.CancelEdit = True
+                MessageBox.Show("Invalid tree node label." & Microsoft.VisualBasic.ControlChars.Cr & "The label cannot be blank", "Node Label Edit")
+                e.Node.BeginEdit()
             End If
         End If
     End Sub
 #End Region
+
+#Region "Word Textmarken Verknüpfungen erstellen/ändern"
+    Private Sub ToolStripButtonUp_Click(sender As Object, e As EventArgs) Handles ToolStripButtonUp.Click
+        'Me.DataGridView5.Sort(Me.DataGridView5.Columns(8), System.ComponentModel.ListSortDirection.Ascending)
+        Dim Idx As DataSet1.SpezOptionenRow = FKAngebotSpezOptionenBindingSource.Item(FKAngebotSpezOptionenBindingSource.Position).row
+        DataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        If DataGridView2.CurrentRow.Index > 0 Then
+            Dim DRx As DataSet1.SpezOptionenRow = FKAngebotSpezOptionenBindingSource.Item(FKAngebotSpezOptionenBindingSource.Position - 1).row
+            Dim Index_DRx As Integer
+            Dim Index_Idx As Integer
+            If Idx.SortRow = DRx.SortRow Then
+                If DRx.SortRow >= 1 Then
+                    DRx.SortRow = DRx.SortRow - 1
+                End If
+            End If
+            Index_DRx = DRx.SortRow
+            Index_Idx = Idx.SortRow
+            DRx.SortRow = Index_Idx
+            Idx.SortRow = Index_DRx
+        End If
+    End Sub
+
+    Private Sub ToolStripButtonDown_Click(sender As Object, e As EventArgs) Handles ToolStripButtonDown.Click
+        'Me.DataGridView5.Sort(Me.DataGridView5.Columns(8), System.ComponentModel.ListSortDirection.Ascending)
+        Dim Idx As DataSet1.SpezOptionenRow = FKAngebotSpezOptionenBindingSource.Item(FKAngebotSpezOptionenBindingSource.Position).row
+        DataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        If DataGridView2.CurrentRow.Index < DataGridView2.Rows.Count - 2 Then
+            Dim DRx As DataSet1.SpezOptionenRow = FKAngebotSpezOptionenBindingSource.Item(FKAngebotSpezOptionenBindingSource.Position + 1).row
+            Dim Index_DRx As Integer
+            Dim Index_Idx As Integer
+            If Idx.SortRow = DRx.SortRow Then
+                If DRx.SortRow >= 1 Then
+                    DRx.SortRow = DRx.SortRow + 1
+                End If
+            End If
+            Index_DRx = DRx.SortRow
+            Index_Idx = Idx.SortRow
+            DRx.SortRow = Index_Idx
+            Idx.SortRow = Index_DRx
+        End If
+    End Sub
+
+
+#End Region
+
+
+
 
 End Class
