@@ -47,6 +47,12 @@
     <OptionInfer>On</OptionInfer>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
@@ -79,6 +85,7 @@
     <Compile Include="AddOfferDialog.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GenerateWordDocument.vb" />
     <Compile Include="Form2.Designer.vb">
       <DependentUpon>Form2.vb</DependentUpon>
     </Compile>
@@ -190,10 +197,23 @@
     <Content Include="img\006074-floppy-disk-ok.png" />
     <Content Include="img\042b_AddCategory_24x24_72.png" />
     <Content Include="img\077_AddFile_24x24_72.png" />
+    <Content Include="img\arrow-down-3.ico" />
+    <Content Include="img\arrow-up-3.ico" />
     <Content Include="img\base_checkboxes.png" />
+    <Content Include="img\configure-toolbars.ico" />
+    <Content Include="img\contact-new-2.ico" />
+    <Content Include="img\contact-new.ico" />
     <Content Include="img\Control_SaveFileDialog.bmp" />
     <Content Include="img\delete.png" />
+    <Content Include="img\document-open-2.ico" />
+    <Content Include="img\document-open-4.ico" />
+    <Content Include="img\document-save-2.ico" />
+    <Content Include="img\document-save-as-2.ico" />
+    <Content Include="img\edit-delete-2.ico" />
     <Content Include="img\edit-delete-5.ico" />
+    <Content Include="img\edit-find-project.ico" />
+    <Content Include="img\edit-group.ico" />
+    <Content Include="img\edit-user.ico" />
     <Content Include="img\file new.jpeg" />
     <Content Include="img\file-doc.ico" />
     <Content Include="img\file_open.jpeg" />
@@ -209,12 +229,18 @@
     <Content Include="img\icons8-Microsoft Word-48.png" />
     <Content Include="img\icons8-Save as-50.png" />
     <Content Include="img\icons8-Save-50.png" />
+    <Content Include="img\meeting-attending.ico" />
+    <Content Include="img\network-connect-3.ico" />
+    <Content Include="img\news-subscribe.ico" />
     <Content Include="img\node.png" />
     <Content Include="img\node_chained.png" />
     <Content Include="img\node_chainedbroken.png" />
     <Content Include="img\node_chain_broken.png" />
     <Content Include="img\Open-Folder-Add.png" />
     <Content Include="img\Ordered%28Numbered%29ListOL_5795_24x.png" />
+    <Content Include="img\project-development-close.ico" />
+    <Content Include="img\project-development-new-template.ico" />
+    <Content Include="img\project-development.ico" />
     <Content Include="img\root-system-bin.ico" />
     <Content Include="img\system-file-manager-2.ico" />
     <Content Include="img\system-file-manager-6.ico" />
@@ -222,6 +248,11 @@
     <Content Include="img\TBM.ico" />
     <Content Include="img\TBM.png" />
     <Content Include="img\unchecked_checkboxes.png" />
+    <Content Include="img\user-delete-2.ico" />
+    <Content Include="img\user-new-3.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

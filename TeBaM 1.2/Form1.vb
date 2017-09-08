@@ -154,14 +154,6 @@ Public Class Form1
     End Sub
 
 
-
-
-
-
-
-
-
-
     Private Sub CheckAllChildNodes(treenode As TreeNode)
         Dim TBrow_edit As DataRow = Nothing
         If treenode.Tag = "article" Then
@@ -321,13 +313,21 @@ Public Class Form1
             TraverseChildNodes(nd.Nodes)
         Next
     End Sub
+
     Private Sub DataGridView1_SelectionChanged(sender As Object, e As EventArgs) Handles DataGridView1.SelectionChanged
         TreeView_actualize()
     End Sub
 
     Private Sub KdNummerComboBox_SelectedValueChanged(sender As Object, e As EventArgs) Handles KdNummerComboBox.SelectedValueChanged
+        If KdNummerComboBox.Text <> "" Then
+            Dim KDrow As DataSet1.KundeRow
+            KDrow = DataSet1.Kunde.FindByKdNummer(KdNummerComboBox.Text)
+            VertreterComboBox.Text = KDrow.ZustVertreter
+            DokumentenvorlageComboBox.Text = KDrow.DokVorlage
+        End If
         TreeView_actualize()
     End Sub
+
 
     Sub TreeView_actualize()
         If DataGridView1.CurrentRow IsNot Nothing Then
@@ -519,7 +519,20 @@ Public Class Form1
         CenterAlignTitel()
     End Sub
 
+    Private Sub NewStructure_Click(sender As Object, e As EventArgs) Handles NewStructure.Click
+        TBMStructure = False
+        NewTreeView1.Nodes.Clear()
+        Dateiname_tree = ""
+        DataSet1.Clear()
+        CenterAlignTitel()
+    End Sub
+
     Private Sub ProduktsrukturÖffnenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProduktsrukturÖffnenToolStripMenuItem.Click
+        Open_product_structure()
+        TreeView_actualize()
+    End Sub
+
+    Private Sub OpenStucture_Click(sender As Object, e As EventArgs) Handles OpenStucture.Click
         Open_product_structure()
         TreeView_actualize()
     End Sub
@@ -532,7 +545,23 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub SafeStructure_Click(sender As Object, e As EventArgs) Handles SafeStructure.Click
+        If TBMStructure = True Then
+            Save_product_structure()
+        Else
+            MsgBox("keine Daten vorhanden")
+        End If
+    End Sub
+
     Private Sub SpeichernUnterToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SpeichernUnterToolStripMenuItem.Click
+        If TBMStructure = True Then
+            Save_product_structure_under()
+        Else
+            MsgBox("keine Daten vorhanden")
+        End If
+    End Sub
+
+    Private Sub SafeStructureUnder_Click(sender As Object, e As EventArgs) Handles SafeStructureUnder.Click
         If TBMStructure = True Then
             Save_product_structure_under()
         Else
@@ -1033,7 +1062,6 @@ Public Class Form1
     End Sub
 #End Region
 
-
 #Region "Texbox Formatierungen erstellen"
     Delegate Sub DelegatePriceChange(ByVal textvalue As String)
 
@@ -1196,6 +1224,34 @@ Public Class Form1
     End Sub
 #End Region
 
+#Region "Vertreterdaten in ComboBox einlesen bzw. editieren"
+    Private Sub ListeBearbeitenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ListeBearbeitenToolStripMenuItem.Click
+        VT_edit = True
+        Form2.Show()
+    End Sub
+
+    Private Sub SalesPartner_Click(sender As Object, e As EventArgs) Handles SalesPartner.Click
+        VT_edit = True
+        Form2.Show()
+    End Sub
+
+    Private Sub VertreterComboBox_Click(sender As Object, e As EventArgs) Handles VertreterComboBox.Click
+        If VT_edit = True Then
+            DataSet2.Vertreter.Clear()
+            DataSet2.Vertreter.ReadXml(VT_DataFile.FullName)
+            VT_edit = False
+        End If
+    End Sub
+
+    Private Sub TextmarkenDefinierenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TextmarkenDefinierenToolStripMenuItem.Click
+        Form3.Show()
+    End Sub
+
+    Private Sub TextmarkConfiguration_Click(sender As Object, e As EventArgs) Handles TextmarkConfiguration.Click
+        Form3.Show()
+    End Sub
+#End Region
+
 #Region "Word Textmarken Verknüpfungen erstellen/ändern"
     Private Sub ToolStripButtonUp_Click(sender As Object, e As EventArgs) Handles ToolStripButtonUp.Click
         Me.DataGridView2.Sort(Me.DataGridView2.Columns(8), System.ComponentModel.ListSortDirection.Ascending)
@@ -1238,25 +1294,80 @@ Public Class Form1
     End Sub
 #End Region
 
-
-#Region "Vertreterdaten in ComboBox einlesen bzw. editieren"
-    Private Sub ListeBearbeitenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ListeBearbeitenToolStripMenuItem.Click
-        VT_edit = True
-        Form2.Show()
+#Region "word Angebot erstellen"
+    Private Sub ErstellenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ErstellenToolStripMenuItem.Click
+        GenerateWordOffer()
     End Sub
 
-    Private Sub VertreterComboBox_Click(sender As Object, e As EventArgs) Handles VertreterComboBox.Click
-        If VT_edit = True Then
-            DataSet2.Vertreter.Clear()
-            DataSet2.Vertreter.ReadXml(VT_DataFile.FullName)
-            VT_edit = False
+    Private Sub GenerateOffer_Click(sender As Object, e As EventArgs) Handles GenerateOffer.Click
+        GenerateWordOffer()
+    End Sub
+
+    Private Sub GenerateWordOffer()
+        ToolStripProgressBar1.Visible = True
+        'ToolStripStatusLabel1.Visible = True
+        If TBMStructure = False Then
+            MsgBox("Keine Produktstruktur oder Angebot geladen!", vbExclamation)
+        Else
+            Dim foundVT_row As DataSet2.VertreterRow
+            foundVT_row = DataSet2.Vertreter.FindByangezeigterName(VertreterComboBox.Text)
+            Vertreter_e_mail = foundVT_row.e_mail
+            Vertreter_Mobilummer = foundVT_row.Telefonnummer
+            GenerateWordDocument.Winword_open(Vertreter_e_mail, Vertreter_Mobilummer)
+        End If
+    End Sub
+#End Region
+
+#Region "Textbaustein aus der Anwendung heraus anzeigen"
+    Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
+        Dim ArticleRow As DataSet1.ArtikelRow
+        ArticleRow = DataSet1.Artikel.FindByArtikelID(DataGridView2.CurrentRow.Cells(0).Value)
+        Dim openFileInfo As String = ArticleRow.URL
+        If ArticleRow.URL <> "" Then
+            ShowTextModul(openFileInfo)
         End If
     End Sub
 
-    Private Sub TextmarkenDefinierenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TextmarkenDefinierenToolStripMenuItem.Click
-        Form3.Show()
+    Private Sub ShowTextModul(ModulFilename As String)
+        Dim TB_extension As String = (Path.GetExtension(ModulFilename))
+        Dim TB_FileName As String = Path.GetFileName(ModulFilename)
+        Dim document As String = Microsoft.VisualBasic.Left(TB_FileName, (CInt(Len(TB_FileName)) - CInt(Len(TB_extension))))
+        If File.Exists(ModulFilename) Then
+            If TB_extension = ".docx" Or TB_extension = ".doc" Then
+                GenerateWordDocument.Textbaustein_open_word(ModulFilename)
+                'Microsoft.VisualBasic.Interaction.AppActivate(document & ".docx - Word")
+            End If
+            If TB_extension = ".xlsx" Or TB_extension = ".xls" Or TB_extension = ".xlsm" Then
+                GenerateWordDocument.Textbaustein_open_excel(ModulFilename)
+                'Microsoft.VisualBasic.Interaction.AppActivate(document & ".xlsx - Excel")
+            End If
+        End If
+    End Sub
+
+    Private Sub VertreterComboBox_SelectedValueChanged(sender As Object, e As EventArgs) Handles VertreterComboBox.SelectedValueChanged
+        If VertreterComboBox.Text <> "" Then
+            Dim KDrow As DataSet1.KundeRow
+            KDrow = DataSet1.Kunde.FindByKdNummer(KdNummerComboBox.Text)
+            KDrow.ZustVertreter = VertreterComboBox.Text
+        End If
+    End Sub
+
+    Private Sub DokumentenvorlageComboBox_SelectedValueChanged(sender As Object, e As EventArgs) Handles DokumentenvorlageComboBox.SelectedValueChanged
+        If DokumentenvorlageComboBox.Text <> "" Then
+            Dim KDrow As DataSet1.KundeRow
+            KDrow = DataSet1.Kunde.FindByKdNummer(KdNummerComboBox.Text)
+            KDrow.DokVorlage = DokumentenvorlageComboBox.Text
+        End If
     End Sub
 
 
+
+
+
+
+
+
 #End Region
+
+
 End Class

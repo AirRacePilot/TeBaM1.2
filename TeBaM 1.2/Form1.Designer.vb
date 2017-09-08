@@ -42,15 +42,26 @@ Partial Class Form1
         Dim EKPreisLabel As System.Windows.Forms.Label
         Dim VKPreisLabel As System.Windows.Forms.Label
         Dim FaktorLabel As System.Windows.Forms.Label
-        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
-        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.NewStructure = New System.Windows.Forms.ToolStripButton()
+        Me.OpenStucture = New System.Windows.Forms.ToolStripButton()
+        Me.SafeStructure = New System.Windows.Forms.ToolStripButton()
+        Me.SafeStructureUnder = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator3 = New System.Windows.Forms.ToolStripSeparator()
+        Me.GenerateOffer = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator4 = New System.Windows.Forms.ToolStripSeparator()
+        Me.SalesPartner = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator5 = New System.Windows.Forms.ToolStripSeparator()
+        Me.TextmarkConfiguration = New System.Windows.Forms.ToolStripButton()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
+        Me.ToolStripProgressBar1 = New System.Windows.Forms.ToolStripProgressBar()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
@@ -102,12 +113,16 @@ Partial Class Form1
         Me.SortRowDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FKAngebotSpezOptionenBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.VKDL = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.VKMaschinenpreis = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.ToolStrip4 = New System.Windows.Forms.ToolStrip()
         Me.ToolStripButtonUp = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButtonDown = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
+        Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.ArtikelGroupBox = New System.Windows.Forms.GroupBox()
         Me.RubrikMaskedTextBox = New System.Windows.Forms.MaskedTextBox()
@@ -136,14 +151,14 @@ Partial Class Form1
         Me.SpeichernToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SpeichernUnterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.BeendenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AngebotToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ErstellenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.VertreterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ListeBearbeitenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.KonfigurationToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TextmarkenDefinierenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.VKDL = New System.Windows.Forms.Label()
         KdNummerLabel = New System.Windows.Forms.Label()
         Firma1Label = New System.Windows.Forms.Label()
         Firma2Label = New System.Windows.Forms.Label()
@@ -163,6 +178,8 @@ Partial Class Form1
         EKPreisLabel = New System.Windows.Forms.Label()
         VKPreisLabel = New System.Windows.Forms.Label()
         FaktorLabel = New System.Windows.Forms.Label()
+        Me.ToolStrip1.SuspendLayout()
+        Me.StatusStrip1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -197,215 +214,319 @@ Partial Class Form1
         'KdNummerLabel
         '
         KdNummerLabel.AutoSize = True
-        KdNummerLabel.Location = New System.Drawing.Point(19, 32)
+        KdNummerLabel.Location = New System.Drawing.Point(14, 26)
+        KdNummerLabel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         KdNummerLabel.Name = "KdNummerLabel"
-        KdNummerLabel.Size = New System.Drawing.Size(86, 17)
+        KdNummerLabel.Size = New System.Drawing.Size(65, 13)
         KdNummerLabel.TabIndex = 3
         KdNummerLabel.Text = "Kd Nummer:"
         '
         'Firma1Label
         '
         Firma1Label.AutoSize = True
-        Firma1Label.Location = New System.Drawing.Point(19, 60)
+        Firma1Label.Location = New System.Drawing.Point(14, 49)
+        Firma1Label.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Firma1Label.Name = "Firma1Label"
-        Firma1Label.Size = New System.Drawing.Size(55, 17)
+        Firma1Label.Size = New System.Drawing.Size(41, 13)
         Firma1Label.TabIndex = 5
         Firma1Label.Text = "Firma1:"
         '
         'Firma2Label
         '
         Firma2Label.AutoSize = True
-        Firma2Label.Location = New System.Drawing.Point(552, 60)
+        Firma2Label.Location = New System.Drawing.Point(414, 49)
+        Firma2Label.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Firma2Label.Name = "Firma2Label"
-        Firma2Label.Size = New System.Drawing.Size(55, 17)
+        Firma2Label.Size = New System.Drawing.Size(41, 13)
         Firma2Label.TabIndex = 7
         Firma2Label.Text = "Firma2:"
         '
         'Name1Label
         '
         Name1Label.AutoSize = True
-        Name1Label.Location = New System.Drawing.Point(19, 89)
+        Name1Label.Location = New System.Drawing.Point(14, 72)
+        Name1Label.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Name1Label.Name = "Name1Label"
-        Name1Label.Size = New System.Drawing.Size(57, 17)
+        Name1Label.Size = New System.Drawing.Size(44, 13)
         Name1Label.TabIndex = 9
         Name1Label.Text = "Name1:"
         '
         'Name2Label
         '
         Name2Label.AutoSize = True
-        Name2Label.Location = New System.Drawing.Point(552, 89)
+        Name2Label.Location = New System.Drawing.Point(414, 72)
+        Name2Label.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Name2Label.Name = "Name2Label"
-        Name2Label.Size = New System.Drawing.Size(57, 17)
+        Name2Label.Size = New System.Drawing.Size(44, 13)
         Name2Label.TabIndex = 11
         Name2Label.Text = "Name2:"
         '
         'StrasseLabel
         '
         StrasseLabel.AutoSize = True
-        StrasseLabel.Location = New System.Drawing.Point(19, 116)
+        StrasseLabel.Location = New System.Drawing.Point(14, 94)
+        StrasseLabel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         StrasseLabel.Name = "StrasseLabel"
-        StrasseLabel.Size = New System.Drawing.Size(60, 17)
+        StrasseLabel.Size = New System.Drawing.Size(45, 13)
         StrasseLabel.TabIndex = 13
         StrasseLabel.Text = "Strasse:"
         '
         'PLZLabel
         '
         PLZLabel.AutoSize = True
-        PLZLabel.Location = New System.Drawing.Point(19, 144)
+        PLZLabel.Location = New System.Drawing.Point(14, 117)
+        PLZLabel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         PLZLabel.Name = "PLZLabel"
-        PLZLabel.Size = New System.Drawing.Size(38, 17)
+        PLZLabel.Size = New System.Drawing.Size(30, 13)
         PLZLabel.TabIndex = 15
         PLZLabel.Text = "PLZ:"
         '
         'OrtLabel
         '
         OrtLabel.AutoSize = True
-        OrtLabel.Location = New System.Drawing.Point(219, 144)
+        OrtLabel.Location = New System.Drawing.Point(164, 117)
+        OrtLabel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         OrtLabel.Name = "OrtLabel"
-        OrtLabel.Size = New System.Drawing.Size(32, 17)
+        OrtLabel.Size = New System.Drawing.Size(24, 13)
         OrtLabel.TabIndex = 17
         OrtLabel.Text = "Ort:"
         '
         'AngezeigterNameLabel
         '
         AngezeigterNameLabel.AutoSize = True
-        AngezeigterNameLabel.Location = New System.Drawing.Point(19, 176)
+        AngezeigterNameLabel.Location = New System.Drawing.Point(14, 143)
+        AngezeigterNameLabel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         AngezeigterNameLabel.Name = "AngezeigterNameLabel"
-        AngezeigterNameLabel.Size = New System.Drawing.Size(68, 17)
+        AngezeigterNameLabel.Size = New System.Drawing.Size(50, 13)
         AngezeigterNameLabel.TabIndex = 21
         AngezeigterNameLabel.Text = "Vertreter:"
         '
         'HerstellerLabel
         '
         HerstellerLabel.AutoSize = True
-        HerstellerLabel.Location = New System.Drawing.Point(16, 26)
+        HerstellerLabel.Location = New System.Drawing.Point(12, 21)
+        HerstellerLabel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         HerstellerLabel.Name = "HerstellerLabel"
-        HerstellerLabel.Size = New System.Drawing.Size(73, 17)
+        HerstellerLabel.Size = New System.Drawing.Size(54, 13)
         HerstellerLabel.TabIndex = 4
         HerstellerLabel.Text = "Hersteller:"
         '
         'ProduktTypLabel
         '
         ProduktTypLabel.AutoSize = True
-        ProduktTypLabel.Location = New System.Drawing.Point(400, 26)
+        ProduktTypLabel.Location = New System.Drawing.Point(300, 21)
+        ProduktTypLabel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         ProduktTypLabel.Name = "ProduktTypLabel"
-        ProduktTypLabel.Size = New System.Drawing.Size(89, 17)
+        ProduktTypLabel.Size = New System.Drawing.Size(68, 13)
         ProduktTypLabel.TabIndex = 10
         ProduktTypLabel.Text = "Produkt Typ:"
         '
         'URLLabel
         '
         URLLabel.AutoSize = True
-        URLLabel.Location = New System.Drawing.Point(11, 240)
+        URLLabel.Location = New System.Drawing.Point(8, 195)
+        URLLabel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         URLLabel.Name = "URLLabel"
-        URLLabel.Size = New System.Drawing.Size(40, 17)
+        URLLabel.Size = New System.Drawing.Size(32, 13)
         URLLabel.TabIndex = 6
         URLLabel.Text = "URL:"
         '
         'ArtikelnrLabel
         '
         ArtikelnrLabel.AutoSize = True
-        ArtikelnrLabel.Location = New System.Drawing.Point(11, 64)
+        ArtikelnrLabel.Location = New System.Drawing.Point(8, 52)
+        ArtikelnrLabel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         ArtikelnrLabel.Name = "ArtikelnrLabel"
-        ArtikelnrLabel.Size = New System.Drawing.Size(64, 17)
+        ArtikelnrLabel.Size = New System.Drawing.Size(48, 13)
         ArtikelnrLabel.TabIndex = 8
         ArtikelnrLabel.Text = "Artikelnr:"
         '
         'RubrikLabel
         '
         RubrikLabel.AutoSize = True
-        RubrikLabel.Location = New System.Drawing.Point(11, 92)
+        RubrikLabel.Location = New System.Drawing.Point(8, 75)
+        RubrikLabel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         RubrikLabel.Name = "RubrikLabel"
-        RubrikLabel.Size = New System.Drawing.Size(53, 17)
+        RubrikLabel.Size = New System.Drawing.Size(41, 13)
         RubrikLabel.TabIndex = 10
         RubrikLabel.Text = "Rubrik:"
         '
         'ArtikelkurztextLabel
         '
         ArtikelkurztextLabel.AutoSize = True
-        ArtikelkurztextLabel.Location = New System.Drawing.Point(11, 33)
+        ArtikelkurztextLabel.Location = New System.Drawing.Point(8, 27)
+        ArtikelkurztextLabel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         ArtikelkurztextLabel.Name = "ArtikelkurztextLabel"
-        ArtikelkurztextLabel.Size = New System.Drawing.Size(100, 17)
+        ArtikelkurztextLabel.Size = New System.Drawing.Size(76, 13)
         ArtikelkurztextLabel.TabIndex = 12
         ArtikelkurztextLabel.Text = "Artikelkurztext:"
         '
         'BeschreibungLabel
         '
         BeschreibungLabel.AutoSize = True
-        BeschreibungLabel.Location = New System.Drawing.Point(11, 121)
+        BeschreibungLabel.Location = New System.Drawing.Point(8, 98)
+        BeschreibungLabel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         BeschreibungLabel.Name = "BeschreibungLabel"
-        BeschreibungLabel.Size = New System.Drawing.Size(99, 17)
+        BeschreibungLabel.Size = New System.Drawing.Size(75, 13)
         BeschreibungLabel.TabIndex = 14
         BeschreibungLabel.Text = "Beschreibung:"
         '
         'EKPreisLabel
         '
         EKPreisLabel.AutoSize = True
-        EKPreisLabel.Location = New System.Drawing.Point(279, 62)
+        EKPreisLabel.Location = New System.Drawing.Point(209, 50)
+        EKPreisLabel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         EKPreisLabel.Name = "EKPreisLabel"
-        EKPreisLabel.Size = New System.Drawing.Size(62, 17)
+        EKPreisLabel.Size = New System.Drawing.Size(47, 13)
         EKPreisLabel.TabIndex = 16
         EKPreisLabel.Text = "EKPreis:"
         '
         'VKPreisLabel
         '
         VKPreisLabel.AutoSize = True
-        VKPreisLabel.Location = New System.Drawing.Point(279, 92)
+        VKPreisLabel.Location = New System.Drawing.Point(209, 75)
+        VKPreisLabel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         VKPreisLabel.Name = "VKPreisLabel"
-        VKPreisLabel.Size = New System.Drawing.Size(62, 17)
+        VKPreisLabel.Size = New System.Drawing.Size(47, 13)
         VKPreisLabel.TabIndex = 18
         VKPreisLabel.Text = "VKPreis:"
         '
         'FaktorLabel
         '
         FaktorLabel.AutoSize = True
-        FaktorLabel.Location = New System.Drawing.Point(552, 64)
+        FaktorLabel.Location = New System.Drawing.Point(414, 52)
+        FaktorLabel.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         FaktorLabel.Name = "FaktorLabel"
-        FaktorLabel.Size = New System.Drawing.Size(52, 17)
+        FaktorLabel.Size = New System.Drawing.Size(40, 13)
         FaktorLabel.TabIndex = 20
         FaktorLabel.Text = "Faktor:"
         '
         'ToolStrip1
         '
         Me.ToolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ToolStrip1.Location = New System.Drawing.Point(0, 28)
+        Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(24, 24)
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NewStructure, Me.OpenStucture, Me.SafeStructure, Me.SafeStructureUnder, Me.ToolStripSeparator3, Me.GenerateOffer, Me.ToolStripSeparator4, Me.SalesPartner, Me.ToolStripSeparator5, Me.TextmarkConfiguration})
+        Me.ToolStrip1.Location = New System.Drawing.Point(0, 24)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(1169, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(989, 31)
         Me.ToolStrip1.TabIndex = 0
         Me.ToolStrip1.Text = "ToolStrip1"
+        '
+        'NewStructure
+        '
+        Me.NewStructure.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.NewStructure.Image = CType(resources.GetObject("NewStructure.Image"), System.Drawing.Image)
+        Me.NewStructure.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.NewStructure.Name = "NewStructure"
+        Me.NewStructure.Size = New System.Drawing.Size(28, 28)
+        Me.NewStructure.Text = "ToolStripButton2"
+        '
+        'OpenStucture
+        '
+        Me.OpenStucture.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.OpenStucture.Image = CType(resources.GetObject("OpenStucture.Image"), System.Drawing.Image)
+        Me.OpenStucture.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.OpenStucture.Name = "OpenStucture"
+        Me.OpenStucture.Size = New System.Drawing.Size(28, 28)
+        Me.OpenStucture.Text = "ToolStripButton3"
+        '
+        'SafeStructure
+        '
+        Me.SafeStructure.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.SafeStructure.Image = CType(resources.GetObject("SafeStructure.Image"), System.Drawing.Image)
+        Me.SafeStructure.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.SafeStructure.Name = "SafeStructure"
+        Me.SafeStructure.Size = New System.Drawing.Size(28, 28)
+        Me.SafeStructure.Text = "ToolStripButton4"
+        '
+        'SafeStructureUnder
+        '
+        Me.SafeStructureUnder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.SafeStructureUnder.Image = CType(resources.GetObject("SafeStructureUnder.Image"), System.Drawing.Image)
+        Me.SafeStructureUnder.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.SafeStructureUnder.Name = "SafeStructureUnder"
+        Me.SafeStructureUnder.Size = New System.Drawing.Size(28, 28)
+        Me.SafeStructureUnder.Text = "ToolStripButton5"
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(6, 31)
+        '
+        'GenerateOffer
+        '
+        Me.GenerateOffer.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.GenerateOffer.Image = CType(resources.GetObject("GenerateOffer.Image"), System.Drawing.Image)
+        Me.GenerateOffer.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.GenerateOffer.Name = "GenerateOffer"
+        Me.GenerateOffer.Size = New System.Drawing.Size(28, 28)
+        Me.GenerateOffer.Text = "ToolStripButton6"
+        '
+        'ToolStripSeparator4
+        '
+        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(6, 31)
+        '
+        'SalesPartner
+        '
+        Me.SalesPartner.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.SalesPartner.Image = CType(resources.GetObject("SalesPartner.Image"), System.Drawing.Image)
+        Me.SalesPartner.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.SalesPartner.Name = "SalesPartner"
+        Me.SalesPartner.Size = New System.Drawing.Size(28, 28)
+        Me.SalesPartner.Text = "ToolStripButton7"
+        '
+        'ToolStripSeparator5
+        '
+        Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(6, 31)
+        '
+        'TextmarkConfiguration
+        '
+        Me.TextmarkConfiguration.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.TextmarkConfiguration.Image = CType(resources.GetObject("TextmarkConfiguration.Image"), System.Drawing.Image)
+        Me.TextmarkConfiguration.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TextmarkConfiguration.Name = "TextmarkConfiguration"
+        Me.TextmarkConfiguration.Size = New System.Drawing.Size(28, 28)
+        Me.TextmarkConfiguration.Text = "ToolStripButton8"
         '
         'StatusStrip1
         '
         Me.StatusStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.StatusStrip1.Location = New System.Drawing.Point(0, 677)
+        Me.StatusStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripProgressBar1})
+        Me.StatusStrip1.Location = New System.Drawing.Point(0, 577)
         Me.StatusStrip1.Name = "StatusStrip1"
-        Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(1, 0, 13, 0)
-        Me.StatusStrip1.Size = New System.Drawing.Size(1169, 22)
+        Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(1, 0, 10, 0)
+        Me.StatusStrip1.Size = New System.Drawing.Size(989, 26)
         Me.StatusStrip1.TabIndex = 1
         Me.StatusStrip1.Text = "StatusStrip1"
+        '
+        'ToolStripProgressBar1
+        '
+        Me.ToolStripProgressBar1.Name = "ToolStripProgressBar1"
+        Me.ToolStripProgressBar1.Size = New System.Drawing.Size(200, 20)
         '
         'TabControl1
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.TabControl1.Location = New System.Drawing.Point(0, 53)
-        Me.TabControl1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TabControl1.Location = New System.Drawing.Point(0, 55)
+        Me.TabControl1.Margin = New System.Windows.Forms.Padding(2)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1169, 624)
+        Me.TabControl1.Size = New System.Drawing.Size(989, 522)
         Me.TabControl1.TabIndex = 2
         '
         'TabPage1
         '
         Me.TabPage1.Controls.Add(Me.DataGridView1)
         Me.TabPage1.Controls.Add(Me.Kunden)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TabPage1.Size = New System.Drawing.Size(1161, 595)
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(2)
+        Me.TabPage1.Size = New System.Drawing.Size(981, 496)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Kunden"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -414,33 +535,33 @@ Partial Class Form1
         '
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
-        DataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle13
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
         Me.DataGridView1.AutoGenerateColumns = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.AngebotsIDDataGridViewTextBoxColumn, Me.Angebotstitel, Me.KundennummerDataGridViewTextBoxColumn, Me.AngebotURLDataGridViewTextBoxColumn})
         Me.DataGridView1.DataSource = Me.FKKundeAngebotBindingSource
-        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle14.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle14
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2
-        Me.DataGridView1.Location = New System.Drawing.Point(3, 267)
-        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.DataGridView1.Location = New System.Drawing.Point(2, 217)
+        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(2)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.RowTemplate.Height = 24
-        Me.DataGridView1.Size = New System.Drawing.Size(1155, 326)
+        Me.DataGridView1.Size = New System.Drawing.Size(977, 277)
         Me.DataGridView1.TabIndex = 1
         '
         'AngebotsIDDataGridViewTextBoxColumn
@@ -488,10 +609,10 @@ Partial Class Form1
         Me.Kunden.Controls.Add(Me.KundeGroupBox)
         Me.Kunden.Controls.Add(Me.ToolStrip2)
         Me.Kunden.Dock = System.Windows.Forms.DockStyle.Top
-        Me.Kunden.Location = New System.Drawing.Point(3, 2)
-        Me.Kunden.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Kunden.Location = New System.Drawing.Point(2, 2)
+        Me.Kunden.Margin = New System.Windows.Forms.Padding(2)
         Me.Kunden.Name = "Kunden"
-        Me.Kunden.Size = New System.Drawing.Size(1155, 265)
+        Me.Kunden.Size = New System.Drawing.Size(977, 215)
         Me.Kunden.TabIndex = 0
         '
         'KundeGroupBox
@@ -518,10 +639,10 @@ Partial Class Form1
         Me.KundeGroupBox.Controls.Add(Me.Name1TextBox)
         Me.KundeGroupBox.Dock = System.Windows.Forms.DockStyle.Fill
         Me.KundeGroupBox.Location = New System.Drawing.Point(0, 27)
-        Me.KundeGroupBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.KundeGroupBox.Margin = New System.Windows.Forms.Padding(2)
         Me.KundeGroupBox.Name = "KundeGroupBox"
-        Me.KundeGroupBox.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.KundeGroupBox.Size = New System.Drawing.Size(1155, 238)
+        Me.KundeGroupBox.Padding = New System.Windows.Forms.Padding(2)
+        Me.KundeGroupBox.Size = New System.Drawing.Size(977, 188)
         Me.KundeGroupBox.TabIndex = 24
         Me.KundeGroupBox.TabStop = False
         Me.KundeGroupBox.Text = "Kunde"
@@ -529,19 +650,20 @@ Partial Class Form1
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(465, 176)
+        Me.Label1.Location = New System.Drawing.Point(349, 143)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(139, 17)
+        Me.Label1.Size = New System.Drawing.Size(106, 13)
         Me.Label1.TabIndex = 25
         Me.Label1.Text = "Dokumentenvorlage:"
         '
         'DokumentenvorlageComboBox
         '
         Me.DokumentenvorlageComboBox.FormattingEnabled = True
-        Me.DokumentenvorlageComboBox.Location = New System.Drawing.Point(627, 172)
-        Me.DokumentenvorlageComboBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.DokumentenvorlageComboBox.Location = New System.Drawing.Point(470, 140)
+        Me.DokumentenvorlageComboBox.Margin = New System.Windows.Forms.Padding(2)
         Me.DokumentenvorlageComboBox.Name = "DokumentenvorlageComboBox"
-        Me.DokumentenvorlageComboBox.Size = New System.Drawing.Size(385, 24)
+        Me.DokumentenvorlageComboBox.Size = New System.Drawing.Size(290, 21)
         Me.DokumentenvorlageComboBox.TabIndex = 24
         '
         'VertreterComboBox
@@ -549,10 +671,10 @@ Partial Class Form1
         Me.VertreterComboBox.DataSource = Me.VertreterBindingSource
         Me.VertreterComboBox.DisplayMember = "angezeigterName"
         Me.VertreterComboBox.FormattingEnabled = True
-        Me.VertreterComboBox.Location = New System.Drawing.Point(117, 172)
-        Me.VertreterComboBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.VertreterComboBox.Location = New System.Drawing.Point(88, 140)
+        Me.VertreterComboBox.Margin = New System.Windows.Forms.Padding(2)
         Me.VertreterComboBox.Name = "VertreterComboBox"
-        Me.VertreterComboBox.Size = New System.Drawing.Size(319, 24)
+        Me.VertreterComboBox.Size = New System.Drawing.Size(240, 21)
         Me.VertreterComboBox.TabIndex = 23
         '
         'VertreterBindingSource
@@ -568,10 +690,10 @@ Partial Class Form1
         'OrtTextBox
         '
         Me.OrtTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.KundeBindingSource, "Ort", True))
-        Me.OrtTextBox.Location = New System.Drawing.Point(256, 142)
-        Me.OrtTextBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.OrtTextBox.Location = New System.Drawing.Point(192, 115)
+        Me.OrtTextBox.Margin = New System.Windows.Forms.Padding(2)
         Me.OrtTextBox.Name = "OrtTextBox"
-        Me.OrtTextBox.Size = New System.Drawing.Size(271, 22)
+        Me.OrtTextBox.Size = New System.Drawing.Size(204, 20)
         Me.OrtTextBox.TabIndex = 18
         '
         'KdNummerComboBox
@@ -579,65 +701,65 @@ Partial Class Form1
         Me.KdNummerComboBox.DataSource = Me.KundeBindingSource
         Me.KdNummerComboBox.DisplayMember = "KdNummer"
         Me.KdNummerComboBox.FormattingEnabled = True
-        Me.KdNummerComboBox.Location = New System.Drawing.Point(117, 30)
-        Me.KdNummerComboBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.KdNummerComboBox.Location = New System.Drawing.Point(88, 24)
+        Me.KdNummerComboBox.Margin = New System.Windows.Forms.Padding(2)
         Me.KdNummerComboBox.Name = "KdNummerComboBox"
-        Me.KdNummerComboBox.Size = New System.Drawing.Size(167, 24)
+        Me.KdNummerComboBox.Size = New System.Drawing.Size(126, 21)
         Me.KdNummerComboBox.TabIndex = 21
         Me.KdNummerComboBox.ValueMember = "KundenID"
         '
         'PLZTextBox
         '
         Me.PLZTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.KundeBindingSource, "PLZ", True))
-        Me.PLZTextBox.Location = New System.Drawing.Point(117, 142)
-        Me.PLZTextBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.PLZTextBox.Location = New System.Drawing.Point(88, 115)
+        Me.PLZTextBox.Margin = New System.Windows.Forms.Padding(2)
         Me.PLZTextBox.Name = "PLZTextBox"
-        Me.PLZTextBox.Size = New System.Drawing.Size(95, 22)
+        Me.PLZTextBox.Size = New System.Drawing.Size(72, 20)
         Me.PLZTextBox.TabIndex = 16
         '
         'Firma1TextBox
         '
         Me.Firma1TextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.KundeBindingSource, "Firma1", True))
-        Me.Firma1TextBox.Location = New System.Drawing.Point(117, 57)
-        Me.Firma1TextBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Firma1TextBox.Location = New System.Drawing.Point(88, 46)
+        Me.Firma1TextBox.Margin = New System.Windows.Forms.Padding(2)
         Me.Firma1TextBox.Name = "Firma1TextBox"
-        Me.Firma1TextBox.Size = New System.Drawing.Size(319, 22)
+        Me.Firma1TextBox.Size = New System.Drawing.Size(240, 20)
         Me.Firma1TextBox.TabIndex = 6
         '
         'StrasseTextBox
         '
         Me.StrasseTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.KundeBindingSource, "Strasse", True))
-        Me.StrasseTextBox.Location = New System.Drawing.Point(117, 113)
-        Me.StrasseTextBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.StrasseTextBox.Location = New System.Drawing.Point(88, 92)
+        Me.StrasseTextBox.Margin = New System.Windows.Forms.Padding(2)
         Me.StrasseTextBox.Name = "StrasseTextBox"
-        Me.StrasseTextBox.Size = New System.Drawing.Size(409, 22)
+        Me.StrasseTextBox.Size = New System.Drawing.Size(308, 20)
         Me.StrasseTextBox.TabIndex = 14
         '
         'Firma2TextBox
         '
         Me.Firma2TextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.KundeBindingSource, "Firma2", True))
-        Me.Firma2TextBox.Location = New System.Drawing.Point(627, 57)
-        Me.Firma2TextBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Firma2TextBox.Location = New System.Drawing.Point(470, 46)
+        Me.Firma2TextBox.Margin = New System.Windows.Forms.Padding(2)
         Me.Firma2TextBox.Name = "Firma2TextBox"
-        Me.Firma2TextBox.Size = New System.Drawing.Size(385, 22)
+        Me.Firma2TextBox.Size = New System.Drawing.Size(290, 20)
         Me.Firma2TextBox.TabIndex = 8
         '
         'Name2TextBox
         '
         Me.Name2TextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.KundeBindingSource, "Name2", True))
-        Me.Name2TextBox.Location = New System.Drawing.Point(627, 85)
-        Me.Name2TextBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Name2TextBox.Location = New System.Drawing.Point(470, 69)
+        Me.Name2TextBox.Margin = New System.Windows.Forms.Padding(2)
         Me.Name2TextBox.Name = "Name2TextBox"
-        Me.Name2TextBox.Size = New System.Drawing.Size(385, 22)
+        Me.Name2TextBox.Size = New System.Drawing.Size(290, 20)
         Me.Name2TextBox.TabIndex = 12
         '
         'Name1TextBox
         '
         Me.Name1TextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.KundeBindingSource, "Name1", True))
-        Me.Name1TextBox.Location = New System.Drawing.Point(117, 85)
-        Me.Name1TextBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Name1TextBox.Location = New System.Drawing.Point(88, 69)
+        Me.Name1TextBox.Margin = New System.Windows.Forms.Padding(2)
         Me.Name1TextBox.Name = "Name1TextBox"
-        Me.Name1TextBox.Size = New System.Drawing.Size(319, 22)
+        Me.Name1TextBox.Size = New System.Drawing.Size(240, 20)
         Me.Name1TextBox.TabIndex = 10
         '
         'ToolStrip2
@@ -646,7 +768,7 @@ Partial Class Form1
         Me.ToolStrip2.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddCustomer, Me.DelCustomer, Me.ToolStripSeparator1, Me.AddOffer, Me.DelOffer})
         Me.ToolStrip2.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip2.Name = "ToolStrip2"
-        Me.ToolStrip2.Size = New System.Drawing.Size(1155, 27)
+        Me.ToolStrip2.Size = New System.Drawing.Size(977, 27)
         Me.ToolStrip2.TabIndex = 0
         Me.ToolStrip2.Text = "ToolStrip2"
         '
@@ -697,11 +819,11 @@ Partial Class Form1
         'TabPage2
         '
         Me.TabPage2.Controls.Add(Me.SplitContainer1)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Margin = New System.Windows.Forms.Padding(2)
         Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TabPage2.Size = New System.Drawing.Size(1161, 595)
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(2)
+        Me.TabPage2.Size = New System.Drawing.Size(981, 496)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Angebot"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -709,8 +831,8 @@ Partial Class Form1
         'SplitContainer1
         '
         Me.SplitContainer1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SplitContainer1.Location = New System.Drawing.Point(3, 2)
-        Me.SplitContainer1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.SplitContainer1.Location = New System.Drawing.Point(2, 2)
+        Me.SplitContainer1.Margin = New System.Windows.Forms.Padding(2)
         Me.SplitContainer1.Name = "SplitContainer1"
         '
         'SplitContainer1.Panel1
@@ -723,8 +845,9 @@ Partial Class Form1
         Me.SplitContainer1.Panel2.Controls.Add(Me.Panel2)
         Me.SplitContainer1.Panel2.Controls.Add(Me.ToolStrip4)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Panel1)
-        Me.SplitContainer1.Size = New System.Drawing.Size(1155, 591)
-        Me.SplitContainer1.SplitterDistance = 380
+        Me.SplitContainer1.Size = New System.Drawing.Size(977, 492)
+        Me.SplitContainer1.SplitterDistance = 320
+        Me.SplitContainer1.SplitterWidth = 3
         Me.SplitContainer1.TabIndex = 0
         '
         'NewTreeView1
@@ -737,10 +860,9 @@ Partial Class Form1
         Me.NewTreeView1.ImageIndex = 0
         Me.NewTreeView1.ImageList = Me.ImageList1
         Me.NewTreeView1.Location = New System.Drawing.Point(0, 0)
-        Me.NewTreeView1.Margin = New System.Windows.Forms.Padding(4)
         Me.NewTreeView1.Name = "NewTreeView1"
         Me.NewTreeView1.SelectedImageIndex = 0
-        Me.NewTreeView1.Size = New System.Drawing.Size(380, 591)
+        Me.NewTreeView1.Size = New System.Drawing.Size(320, 492)
         Me.NewTreeView1.TabIndex = 0
         '
         'ContextMenuStrip_NewTreeView1
@@ -748,18 +870,18 @@ Partial Class Form1
         Me.ContextMenuStrip_NewTreeView1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ContextMenuStrip_NewTreeView1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UmbenennenToolStripMenuItem, Me.AnzeigenToolStripMenuItem})
         Me.ContextMenuStrip_NewTreeView1.Name = "ContextMenuStrip_NewTreeView1"
-        Me.ContextMenuStrip_NewTreeView1.Size = New System.Drawing.Size(171, 56)
+        Me.ContextMenuStrip_NewTreeView1.Size = New System.Drawing.Size(146, 48)
         '
         'UmbenennenToolStripMenuItem
         '
         Me.UmbenennenToolStripMenuItem.Name = "UmbenennenToolStripMenuItem"
-        Me.UmbenennenToolStripMenuItem.Size = New System.Drawing.Size(170, 26)
+        Me.UmbenennenToolStripMenuItem.Size = New System.Drawing.Size(145, 22)
         Me.UmbenennenToolStripMenuItem.Text = "umbenennen"
         '
         'AnzeigenToolStripMenuItem
         '
         Me.AnzeigenToolStripMenuItem.Name = "AnzeigenToolStripMenuItem"
-        Me.AnzeigenToolStripMenuItem.Size = New System.Drawing.Size(170, 26)
+        Me.AnzeigenToolStripMenuItem.Size = New System.Drawing.Size(145, 22)
         Me.AnzeigenToolStripMenuItem.Text = "anzeigen"
         '
         'ImageList1
@@ -784,13 +906,13 @@ Partial Class Form1
         Me.DataGridView2.DataSource = Me.FKAngebotSpezOptionenBindingSource
         Me.DataGridView2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView2.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
-        Me.DataGridView2.Location = New System.Drawing.Point(0, 404)
-        Me.DataGridView2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.DataGridView2.Location = New System.Drawing.Point(0, 337)
+        Me.DataGridView2.Margin = New System.Windows.Forms.Padding(2)
         Me.DataGridView2.MultiSelect = False
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowTemplate.Height = 24
         Me.DataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView2.Size = New System.Drawing.Size(771, 141)
+        Me.DataGridView2.Size = New System.Drawing.Size(654, 118)
         Me.DataGridView2.TabIndex = 1
         '
         'Column1
@@ -798,10 +920,10 @@ Partial Class Form1
         Me.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells
         Me.Column1.DataPropertyName = "ArtikelID"
         Me.Column1.DataSource = Me.ArtikelBindingSource
-        DataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle15.Format = "C2"
-        DataGridViewCellStyle15.NullValue = Nothing
-        Me.Column1.DefaultCellStyle = DataGridViewCellStyle15
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.Format = "C2"
+        DataGridViewCellStyle3.NullValue = Nothing
+        Me.Column1.DefaultCellStyle = DataGridViewCellStyle3
         Me.Column1.DisplayMember = "Artikelkurztext"
         Me.Column1.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
         Me.Column1.HeaderText = "Artikelkurztext"
@@ -810,7 +932,7 @@ Partial Class Form1
         Me.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         Me.Column1.ValueMember = "ArtikelID"
-        Me.Column1.Width = 125
+        Me.Column1.Width = 98
         '
         'ArtikelBindingSource
         '
@@ -821,9 +943,9 @@ Partial Class Form1
         '
         Me.Column2.DataPropertyName = "ArtikelID"
         Me.Column2.DataSource = Me.ArtikelBindingSource
-        DataGridViewCellStyle16.Format = "00-0000-0000"
-        DataGridViewCellStyle16.NullValue = Nothing
-        Me.Column2.DefaultCellStyle = DataGridViewCellStyle16
+        DataGridViewCellStyle4.Format = "00-0000-0000"
+        DataGridViewCellStyle4.NullValue = Nothing
+        Me.Column2.DefaultCellStyle = DataGridViewCellStyle4
         Me.Column2.DisplayMember = "Artikelnr"
         Me.Column2.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
         Me.Column2.HeaderText = "Artikelnummer"
@@ -848,10 +970,10 @@ Partial Class Form1
         '
         Me.Column4.DataPropertyName = "ArtikelID"
         Me.Column4.DataSource = Me.ArtikelBindingSource
-        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle17.Format = "C2"
-        DataGridViewCellStyle17.NullValue = Nothing
-        Me.Column4.DefaultCellStyle = DataGridViewCellStyle17
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle5.Format = "C2"
+        DataGridViewCellStyle5.NullValue = Nothing
+        Me.Column4.DefaultCellStyle = DataGridViewCellStyle5
         Me.Column4.DisplayMember = "EKPreis"
         Me.Column4.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
         Me.Column4.HeaderText = "EK-Preis"
@@ -864,10 +986,10 @@ Partial Class Form1
         '
         Me.Column5.DataPropertyName = "ArtikelID"
         Me.Column5.DataSource = Me.ArtikelBindingSource
-        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle18.Format = "C2"
-        DataGridViewCellStyle18.NullValue = Nothing
-        Me.Column5.DefaultCellStyle = DataGridViewCellStyle18
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle6.Format = "C2"
+        DataGridViewCellStyle6.NullValue = Nothing
+        Me.Column5.DefaultCellStyle = DataGridViewCellStyle6
         Me.Column5.DisplayMember = "VKPreis"
         Me.Column5.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
         Me.Column5.HeaderText = "VK-Preis"
@@ -916,18 +1038,42 @@ Partial Class Form1
         Me.Panel2.Controls.Add(Me.VKMaschinenpreis)
         Me.Panel2.Controls.Add(Me.Label2)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel2.Location = New System.Drawing.Point(0, 545)
+        Me.Panel2.Location = New System.Drawing.Point(0, 455)
+        Me.Panel2.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel2.Name = "Panel2"
-        Me.Panel2.Size = New System.Drawing.Size(771, 46)
+        Me.Panel2.Size = New System.Drawing.Size(654, 37)
         Me.Panel2.TabIndex = 3
+        '
+        'VKDL
+        '
+        Me.VKDL.AutoSize = True
+        Me.VKDL.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.VKDL.Location = New System.Drawing.Point(412, 8)
+        Me.VKDL.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.VKDL.Name = "VKDL"
+        Me.VKDL.Size = New System.Drawing.Size(34, 20)
+        Me.VKDL.TabIndex = 3
+        Me.VKDL.Text = "0 €"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label3.Location = New System.Drawing.Point(268, 8)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(149, 20)
+        Me.Label3.TabIndex = 2
+        Me.Label3.Text = "Dienstleistungen:"
         '
         'VKMaschinenpreis
         '
         Me.VKMaschinenpreis.AutoSize = True
         Me.VKMaschinenpreis.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.VKMaschinenpreis.Location = New System.Drawing.Point(197, 10)
+        Me.VKMaschinenpreis.Location = New System.Drawing.Point(148, 8)
+        Me.VKMaschinenpreis.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.VKMaschinenpreis.Name = "VKMaschinenpreis"
-        Me.VKMaschinenpreis.Size = New System.Drawing.Size(42, 25)
+        Me.VKMaschinenpreis.Size = New System.Drawing.Size(34, 20)
         Me.VKMaschinenpreis.TabIndex = 1
         Me.VKMaschinenpreis.Text = "0 €"
         '
@@ -935,20 +1081,21 @@ Partial Class Form1
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(14, 10)
+        Me.Label2.Location = New System.Drawing.Point(10, 8)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(177, 25)
+        Me.Label2.Size = New System.Drawing.Size(144, 20)
         Me.Label2.TabIndex = 0
         Me.Label2.Text = "Maschinenpreis: "
         '
         'ToolStrip4
         '
         Me.ToolStrip4.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.ToolStrip4.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ToolStrip4.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButtonUp, Me.ToolStripButtonDown, Me.ToolStripLabel1})
-        Me.ToolStrip4.Location = New System.Drawing.Point(0, 377)
+        Me.ToolStrip4.ImageScalingSize = New System.Drawing.Size(24, 24)
+        Me.ToolStrip4.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripButtonUp, Me.ToolStripButtonDown, Me.ToolStripLabel1, Me.ToolStripSeparator2, Me.ToolStripButton1})
+        Me.ToolStrip4.Location = New System.Drawing.Point(0, 306)
         Me.ToolStrip4.Name = "ToolStrip4"
-        Me.ToolStrip4.Size = New System.Drawing.Size(771, 27)
+        Me.ToolStrip4.Size = New System.Drawing.Size(654, 31)
         Me.ToolStrip4.TabIndex = 2
         Me.ToolStrip4.Text = "ToolStrip4"
         '
@@ -958,7 +1105,7 @@ Partial Class Form1
         Me.ToolStripButtonUp.Image = CType(resources.GetObject("ToolStripButtonUp.Image"), System.Drawing.Image)
         Me.ToolStripButtonUp.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButtonUp.Name = "ToolStripButtonUp"
-        Me.ToolStripButtonUp.Size = New System.Drawing.Size(24, 24)
+        Me.ToolStripButtonUp.Size = New System.Drawing.Size(28, 28)
         Me.ToolStripButtonUp.Text = "ToolStripButton1"
         '
         'ToolStripButtonDown
@@ -967,14 +1114,28 @@ Partial Class Form1
         Me.ToolStripButtonDown.Image = CType(resources.GetObject("ToolStripButtonDown.Image"), System.Drawing.Image)
         Me.ToolStripButtonDown.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButtonDown.Name = "ToolStripButtonDown"
-        Me.ToolStripButtonDown.Size = New System.Drawing.Size(24, 24)
+        Me.ToolStripButtonDown.Size = New System.Drawing.Size(28, 28)
         Me.ToolStripButtonDown.Text = "ToolStripButton2"
         '
         'ToolStripLabel1
         '
         Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(114, 24)
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(89, 28)
         Me.ToolStripLabel1.Text = "ToolStripLabel1"
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(6, 31)
+        '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(28, 28)
+        Me.ToolStripButton1.Text = "ToolStripButton1"
         '
         'Panel1
         '
@@ -984,9 +1145,9 @@ Partial Class Form1
         Me.Panel1.Controls.Add(Me.ToolStrip3)
         Me.Panel1.Dock = System.Windows.Forms.DockStyle.Top
         Me.Panel1.Location = New System.Drawing.Point(0, 0)
-        Me.Panel1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(2)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(771, 377)
+        Me.Panel1.Size = New System.Drawing.Size(654, 306)
         Me.Panel1.TabIndex = 0
         '
         'ArtikelGroupBox
@@ -1009,11 +1170,11 @@ Partial Class Form1
         Me.ArtikelGroupBox.Controls.Add(FaktorLabel)
         Me.ArtikelGroupBox.Controls.Add(Me.FaktorTextBox)
         Me.ArtikelGroupBox.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.ArtikelGroupBox.Location = New System.Drawing.Point(0, 95)
-        Me.ArtikelGroupBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.ArtikelGroupBox.Location = New System.Drawing.Point(0, 86)
+        Me.ArtikelGroupBox.Margin = New System.Windows.Forms.Padding(2)
         Me.ArtikelGroupBox.Name = "ArtikelGroupBox"
-        Me.ArtikelGroupBox.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.ArtikelGroupBox.Size = New System.Drawing.Size(771, 282)
+        Me.ArtikelGroupBox.Padding = New System.Windows.Forms.Padding(2)
+        Me.ArtikelGroupBox.Size = New System.Drawing.Size(654, 220)
         Me.ArtikelGroupBox.TabIndex = 17
         Me.ArtikelGroupBox.TabStop = False
         Me.ArtikelGroupBox.Text = "Artikel"
@@ -1021,19 +1182,20 @@ Partial Class Form1
         'RubrikMaskedTextBox
         '
         Me.RubrikMaskedTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ArtikelBindingSource, "Rubrik", True))
-        Me.RubrikMaskedTextBox.Location = New System.Drawing.Point(117, 89)
-        Me.RubrikMaskedTextBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.RubrikMaskedTextBox.Location = New System.Drawing.Point(88, 72)
+        Me.RubrikMaskedTextBox.Margin = New System.Windows.Forms.Padding(2)
         Me.RubrikMaskedTextBox.Mask = "00.00.00"
         Me.RubrikMaskedTextBox.Name = "RubrikMaskedTextBox"
-        Me.RubrikMaskedTextBox.Size = New System.Drawing.Size(119, 22)
+        Me.RubrikMaskedTextBox.Size = New System.Drawing.Size(90, 20)
         Me.RubrikMaskedTextBox.TabIndex = 24
         '
         'ButtonAddURL
         '
-        Me.ButtonAddURL.Location = New System.Drawing.Point(703, 238)
-        Me.ButtonAddURL.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.ButtonAddURL.Image = Global.TeBaM_1._2.My.Resources.Resources.network_connect_3
+        Me.ButtonAddURL.Location = New System.Drawing.Point(526, 182)
+        Me.ButtonAddURL.Margin = New System.Windows.Forms.Padding(2)
         Me.ButtonAddURL.Name = "ButtonAddURL"
-        Me.ButtonAddURL.Size = New System.Drawing.Size(43, 23)
+        Me.ButtonAddURL.Size = New System.Drawing.Size(36, 36)
         Me.ButtonAddURL.TabIndex = 23
         Me.ButtonAddURL.Text = "..."
         Me.ButtonAddURL.UseVisualStyleBackColor = True
@@ -1041,68 +1203,68 @@ Partial Class Form1
         'MaskedTextBoxArtikelnummer
         '
         Me.MaskedTextBoxArtikelnummer.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ArtikelBindingSource, "Artikelnr", True))
-        Me.MaskedTextBoxArtikelnummer.Location = New System.Drawing.Point(116, 62)
-        Me.MaskedTextBoxArtikelnummer.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.MaskedTextBoxArtikelnummer.Location = New System.Drawing.Point(87, 50)
+        Me.MaskedTextBoxArtikelnummer.Margin = New System.Windows.Forms.Padding(2)
         Me.MaskedTextBoxArtikelnummer.Mask = "00-0000-0000"
         Me.MaskedTextBoxArtikelnummer.Name = "MaskedTextBoxArtikelnummer"
-        Me.MaskedTextBoxArtikelnummer.Size = New System.Drawing.Size(119, 22)
+        Me.MaskedTextBoxArtikelnummer.Size = New System.Drawing.Size(90, 20)
         Me.MaskedTextBoxArtikelnummer.TabIndex = 22
         Me.MaskedTextBoxArtikelnummer.TextMaskFormat = System.Windows.Forms.MaskFormat.IncludePrompt
         '
         'URLTextBox
         '
         Me.URLTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ArtikelBindingSource, "URL", True))
-        Me.URLTextBox.Location = New System.Drawing.Point(117, 238)
-        Me.URLTextBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.URLTextBox.Location = New System.Drawing.Point(88, 192)
+        Me.URLTextBox.Margin = New System.Windows.Forms.Padding(2)
         Me.URLTextBox.Name = "URLTextBox"
-        Me.URLTextBox.Size = New System.Drawing.Size(580, 22)
+        Me.URLTextBox.Size = New System.Drawing.Size(434, 20)
         Me.URLTextBox.TabIndex = 7
         '
         'ArtikelkurztextTextBox
         '
         Me.ArtikelkurztextTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ArtikelBindingSource, "Artikelkurztext", True))
         Me.ArtikelkurztextTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Tag", Me.ArtikelBindingSource, "ArtikelID", True))
-        Me.ArtikelkurztextTextBox.Location = New System.Drawing.Point(117, 30)
-        Me.ArtikelkurztextTextBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.ArtikelkurztextTextBox.Location = New System.Drawing.Point(88, 24)
+        Me.ArtikelkurztextTextBox.Margin = New System.Windows.Forms.Padding(2)
         Me.ArtikelkurztextTextBox.Name = "ArtikelkurztextTextBox"
-        Me.ArtikelkurztextTextBox.Size = New System.Drawing.Size(631, 22)
+        Me.ArtikelkurztextTextBox.Size = New System.Drawing.Size(474, 20)
         Me.ArtikelkurztextTextBox.TabIndex = 13
         '
         'BeschreibungTextBox
         '
         Me.BeschreibungTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ArtikelBindingSource, "Beschreibung", True))
-        Me.BeschreibungTextBox.Location = New System.Drawing.Point(116, 117)
-        Me.BeschreibungTextBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.BeschreibungTextBox.Location = New System.Drawing.Point(87, 95)
+        Me.BeschreibungTextBox.Margin = New System.Windows.Forms.Padding(2)
         Me.BeschreibungTextBox.Multiline = True
         Me.BeschreibungTextBox.Name = "BeschreibungTextBox"
-        Me.BeschreibungTextBox.Size = New System.Drawing.Size(631, 114)
+        Me.BeschreibungTextBox.Size = New System.Drawing.Size(474, 83)
         Me.BeschreibungTextBox.TabIndex = 15
         '
         'EKPreisTextBox
         '
         Me.EKPreisTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ArtikelBindingSource, "EKPreis", True))
-        Me.EKPreisTextBox.Location = New System.Drawing.Point(385, 62)
-        Me.EKPreisTextBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.EKPreisTextBox.Location = New System.Drawing.Point(289, 50)
+        Me.EKPreisTextBox.Margin = New System.Windows.Forms.Padding(2)
         Me.EKPreisTextBox.Name = "EKPreisTextBox"
-        Me.EKPreisTextBox.Size = New System.Drawing.Size(152, 22)
+        Me.EKPreisTextBox.Size = New System.Drawing.Size(115, 20)
         Me.EKPreisTextBox.TabIndex = 17
         '
         'VKPreisTextBox
         '
         Me.VKPreisTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ArtikelBindingSource, "VKPreis", True))
-        Me.VKPreisTextBox.Location = New System.Drawing.Point(385, 89)
-        Me.VKPreisTextBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.VKPreisTextBox.Location = New System.Drawing.Point(289, 72)
+        Me.VKPreisTextBox.Margin = New System.Windows.Forms.Padding(2)
         Me.VKPreisTextBox.Name = "VKPreisTextBox"
-        Me.VKPreisTextBox.Size = New System.Drawing.Size(152, 22)
+        Me.VKPreisTextBox.Size = New System.Drawing.Size(115, 20)
         Me.VKPreisTextBox.TabIndex = 19
         '
         'FaktorTextBox
         '
         Me.FaktorTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.ArtikelBindingSource, "Faktor", True))
-        Me.FaktorTextBox.Location = New System.Drawing.Point(643, 62)
-        Me.FaktorTextBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.FaktorTextBox.Location = New System.Drawing.Point(482, 50)
+        Me.FaktorTextBox.Margin = New System.Windows.Forms.Padding(2)
         Me.FaktorTextBox.Name = "FaktorTextBox"
-        Me.FaktorTextBox.Size = New System.Drawing.Size(104, 22)
+        Me.FaktorTextBox.Size = New System.Drawing.Size(79, 20)
         Me.FaktorTextBox.TabIndex = 21
         '
         'ProduktgruppeGroupBox
@@ -1112,11 +1274,11 @@ Partial Class Form1
         Me.ProduktgruppeGroupBox.Controls.Add(ProduktTypLabel)
         Me.ProduktgruppeGroupBox.Controls.Add(Me.ProduktTypComboBox)
         Me.ProduktgruppeGroupBox.Dock = System.Windows.Forms.DockStyle.Top
-        Me.ProduktgruppeGroupBox.Location = New System.Drawing.Point(0, 27)
-        Me.ProduktgruppeGroupBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.ProduktgruppeGroupBox.Location = New System.Drawing.Point(0, 31)
+        Me.ProduktgruppeGroupBox.Margin = New System.Windows.Forms.Padding(2)
         Me.ProduktgruppeGroupBox.Name = "ProduktgruppeGroupBox"
-        Me.ProduktgruppeGroupBox.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.ProduktgruppeGroupBox.Size = New System.Drawing.Size(771, 68)
+        Me.ProduktgruppeGroupBox.Padding = New System.Windows.Forms.Padding(2)
+        Me.ProduktgruppeGroupBox.Size = New System.Drawing.Size(654, 55)
         Me.ProduktgruppeGroupBox.TabIndex = 16
         Me.ProduktgruppeGroupBox.TabStop = False
         Me.ProduktgruppeGroupBox.Text = "Produktgruppe"
@@ -1126,10 +1288,10 @@ Partial Class Form1
         Me.HerstellerComboBox.DataSource = Me.HerstellerBindingSource
         Me.HerstellerComboBox.DisplayMember = "Hersteller"
         Me.HerstellerComboBox.FormattingEnabled = True
-        Me.HerstellerComboBox.Location = New System.Drawing.Point(117, 23)
-        Me.HerstellerComboBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.HerstellerComboBox.Location = New System.Drawing.Point(88, 19)
+        Me.HerstellerComboBox.Margin = New System.Windows.Forms.Padding(2)
         Me.HerstellerComboBox.Name = "HerstellerComboBox"
-        Me.HerstellerComboBox.Size = New System.Drawing.Size(252, 24)
+        Me.HerstellerComboBox.Size = New System.Drawing.Size(190, 21)
         Me.HerstellerComboBox.TabIndex = 5
         Me.HerstellerComboBox.ValueMember = "HerstellerID"
         '
@@ -1144,10 +1306,10 @@ Partial Class Form1
         Me.ProduktTypComboBox.DataSource = Me.ProduktBindingSource
         Me.ProduktTypComboBox.DisplayMember = "ProduktTyp"
         Me.ProduktTypComboBox.FormattingEnabled = True
-        Me.ProduktTypComboBox.Location = New System.Drawing.Point(495, 23)
-        Me.ProduktTypComboBox.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.ProduktTypComboBox.Location = New System.Drawing.Point(371, 19)
+        Me.ProduktTypComboBox.Margin = New System.Windows.Forms.Padding(2)
         Me.ProduktTypComboBox.Name = "ProduktTypComboBox"
-        Me.ProduktTypComboBox.Size = New System.Drawing.Size(252, 24)
+        Me.ProduktTypComboBox.Size = New System.Drawing.Size(190, 21)
         Me.ProduktTypComboBox.TabIndex = 11
         Me.ProduktTypComboBox.ValueMember = "ProduktID"
         '
@@ -1159,11 +1321,11 @@ Partial Class Form1
         'ToolStrip3
         '
         Me.ToolStrip3.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden
-        Me.ToolStrip3.ImageScalingSize = New System.Drawing.Size(20, 20)
+        Me.ToolStrip3.ImageScalingSize = New System.Drawing.Size(24, 24)
         Me.ToolStrip3.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AddManufacturerNode, Me.AddProductNode, Me.AddArticleNode, Me.DelNode})
         Me.ToolStrip3.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip3.Name = "ToolStrip3"
-        Me.ToolStrip3.Size = New System.Drawing.Size(771, 27)
+        Me.ToolStrip3.Size = New System.Drawing.Size(654, 31)
         Me.ToolStrip3.TabIndex = 0
         Me.ToolStrip3.Text = "ToolStrip3"
         '
@@ -1173,7 +1335,7 @@ Partial Class Form1
         Me.AddManufacturerNode.Image = Global.TeBaM_1._2.My.Resources.Resources.folder
         Me.AddManufacturerNode.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.AddManufacturerNode.Name = "AddManufacturerNode"
-        Me.AddManufacturerNode.Size = New System.Drawing.Size(24, 24)
+        Me.AddManufacturerNode.Size = New System.Drawing.Size(28, 28)
         Me.AddManufacturerNode.Text = "ToolStripButton1"
         Me.AddManufacturerNode.ToolTipText = "Hersteller hinzufügen"
         '
@@ -1183,7 +1345,7 @@ Partial Class Form1
         Me.AddProductNode.Image = Global.TeBaM_1._2.My.Resources.Resources.folder_document
         Me.AddProductNode.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.AddProductNode.Name = "AddProductNode"
-        Me.AddProductNode.Size = New System.Drawing.Size(24, 24)
+        Me.AddProductNode.Size = New System.Drawing.Size(28, 28)
         Me.AddProductNode.Text = "ToolStripButton2"
         Me.AddProductNode.ToolTipText = "Produkt hinzufügen"
         '
@@ -1193,7 +1355,7 @@ Partial Class Form1
         Me.AddArticleNode.Image = Global.TeBaM_1._2.My.Resources.Resources.file_doc
         Me.AddArticleNode.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.AddArticleNode.Name = "AddArticleNode"
-        Me.AddArticleNode.Size = New System.Drawing.Size(24, 24)
+        Me.AddArticleNode.Size = New System.Drawing.Size(28, 28)
         Me.AddArticleNode.Text = "ToolStripButton3"
         Me.AddArticleNode.ToolTipText = "Artikel hinzufügen"
         '
@@ -1203,18 +1365,18 @@ Partial Class Form1
         Me.DelNode.Image = Global.TeBaM_1._2.My.Resources.Resources.delete
         Me.DelNode.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.DelNode.Name = "DelNode"
-        Me.DelNode.Size = New System.Drawing.Size(24, 24)
+        Me.DelNode.Size = New System.Drawing.Size(28, 28)
         Me.DelNode.Text = "ToolStripButton4"
         Me.DelNode.ToolTipText = "Knoten löschen"
         '
         'MenuStrip1
         '
         Me.MenuStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DateiToolStripMenuItem, Me.VertreterToolStripMenuItem, Me.KonfigurationToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DateiToolStripMenuItem, Me.AngebotToolStripMenuItem, Me.VertreterToolStripMenuItem, Me.KonfigurationToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
-        Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(5, 2, 0, 2)
-        Me.MenuStrip1.Size = New System.Drawing.Size(1169, 28)
+        Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(4, 2, 0, 2)
+        Me.MenuStrip1.Size = New System.Drawing.Size(989, 24)
         Me.MenuStrip1.TabIndex = 3
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -1222,102 +1384,99 @@ Partial Class Form1
         '
         Me.DateiToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ProduktstrukturNeuToolStripMenuItem, Me.ProduktsrukturÖffnenToolStripMenuItem, Me.SpeichernToolStripMenuItem, Me.SpeichernUnterToolStripMenuItem, Me.BeendenToolStripMenuItem})
         Me.DateiToolStripMenuItem.Name = "DateiToolStripMenuItem"
-        Me.DateiToolStripMenuItem.Size = New System.Drawing.Size(57, 24)
+        Me.DateiToolStripMenuItem.Size = New System.Drawing.Size(46, 20)
         Me.DateiToolStripMenuItem.Text = "Datei"
         '
         'ProduktstrukturNeuToolStripMenuItem
         '
         Me.ProduktstrukturNeuToolStripMenuItem.Name = "ProduktstrukturNeuToolStripMenuItem"
-        Me.ProduktstrukturNeuToolStripMenuItem.Size = New System.Drawing.Size(187, 26)
+        Me.ProduktstrukturNeuToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
         Me.ProduktstrukturNeuToolStripMenuItem.Text = "Neu"
         '
         'ProduktsrukturÖffnenToolStripMenuItem
         '
         Me.ProduktsrukturÖffnenToolStripMenuItem.Name = "ProduktsrukturÖffnenToolStripMenuItem"
-        Me.ProduktsrukturÖffnenToolStripMenuItem.Size = New System.Drawing.Size(187, 26)
+        Me.ProduktsrukturÖffnenToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
         Me.ProduktsrukturÖffnenToolStripMenuItem.Text = "Öffnen"
         '
         'SpeichernToolStripMenuItem
         '
         Me.SpeichernToolStripMenuItem.Name = "SpeichernToolStripMenuItem"
-        Me.SpeichernToolStripMenuItem.Size = New System.Drawing.Size(187, 26)
+        Me.SpeichernToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
         Me.SpeichernToolStripMenuItem.Text = "Speichern"
         '
         'SpeichernUnterToolStripMenuItem
         '
         Me.SpeichernUnterToolStripMenuItem.Name = "SpeichernUnterToolStripMenuItem"
-        Me.SpeichernUnterToolStripMenuItem.Size = New System.Drawing.Size(187, 26)
+        Me.SpeichernUnterToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
         Me.SpeichernUnterToolStripMenuItem.Text = "Speichern unter"
         '
         'BeendenToolStripMenuItem
         '
         Me.BeendenToolStripMenuItem.Name = "BeendenToolStripMenuItem"
-        Me.BeendenToolStripMenuItem.Size = New System.Drawing.Size(187, 26)
+        Me.BeendenToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
         Me.BeendenToolStripMenuItem.Text = "Beenden"
+        '
+        'AngebotToolStripMenuItem
+        '
+        Me.AngebotToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ErstellenToolStripMenuItem})
+        Me.AngebotToolStripMenuItem.Name = "AngebotToolStripMenuItem"
+        Me.AngebotToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
+        Me.AngebotToolStripMenuItem.Text = "Angebot"
+        '
+        'ErstellenToolStripMenuItem
+        '
+        Me.ErstellenToolStripMenuItem.Name = "ErstellenToolStripMenuItem"
+        Me.ErstellenToolStripMenuItem.Size = New System.Drawing.Size(118, 22)
+        Me.ErstellenToolStripMenuItem.Text = "erstellen"
         '
         'VertreterToolStripMenuItem
         '
         Me.VertreterToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ListeBearbeitenToolStripMenuItem})
         Me.VertreterToolStripMenuItem.Name = "VertreterToolStripMenuItem"
-        Me.VertreterToolStripMenuItem.Size = New System.Drawing.Size(79, 24)
+        Me.VertreterToolStripMenuItem.Size = New System.Drawing.Size(64, 20)
         Me.VertreterToolStripMenuItem.Text = "Vertreter"
         '
         'ListeBearbeitenToolStripMenuItem
         '
         Me.ListeBearbeitenToolStripMenuItem.Name = "ListeBearbeitenToolStripMenuItem"
-        Me.ListeBearbeitenToolStripMenuItem.Size = New System.Drawing.Size(190, 26)
+        Me.ListeBearbeitenToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
         Me.ListeBearbeitenToolStripMenuItem.Text = "Liste bearbeiten"
         '
         'KonfigurationToolStripMenuItem
         '
         Me.KonfigurationToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TextmarkenDefinierenToolStripMenuItem})
         Me.KonfigurationToolStripMenuItem.Name = "KonfigurationToolStripMenuItem"
-        Me.KonfigurationToolStripMenuItem.Size = New System.Drawing.Size(112, 24)
+        Me.KonfigurationToolStripMenuItem.Size = New System.Drawing.Size(92, 20)
         Me.KonfigurationToolStripMenuItem.Text = "Konfiguration"
         '
         'TextmarkenDefinierenToolStripMenuItem
         '
         Me.TextmarkenDefinierenToolStripMenuItem.Name = "TextmarkenDefinierenToolStripMenuItem"
-        Me.TextmarkenDefinierenToolStripMenuItem.Size = New System.Drawing.Size(232, 26)
+        Me.TextmarkenDefinierenToolStripMenuItem.Size = New System.Drawing.Size(192, 22)
         Me.TextmarkenDefinierenToolStripMenuItem.Text = "Textmarken definieren"
         '
         'OpenFileDialog1
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(358, 10)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(179, 25)
-        Me.Label3.TabIndex = 2
-        Me.Label3.Text = "Dienstleistungen:"
-        '
-        'VKDL
-        '
-        Me.VKDL.AutoSize = True
-        Me.VKDL.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.VKDL.Location = New System.Drawing.Point(550, 10)
-        Me.VKDL.Name = "VKDL"
-        Me.VKDL.Size = New System.Drawing.Size(42, 25)
-        Me.VKDL.TabIndex = 3
-        Me.VKDL.Text = "0 €"
-        '
         'Form1
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1169, 699)
+        Me.ClientSize = New System.Drawing.Size(989, 603)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.StatusStrip1)
         Me.Controls.Add(Me.ToolStrip1)
         Me.Controls.Add(Me.MenuStrip1)
         Me.MainMenuStrip = Me.MenuStrip1
-        Me.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "Form1"
         Me.Text = "Form1"
+        Me.ToolStrip1.ResumeLayout(False)
+        Me.ToolStrip1.PerformLayout()
+        Me.StatusStrip1.ResumeLayout(False)
+        Me.StatusStrip1.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1460,4 +1619,19 @@ Partial Class Form1
     Friend WithEvents Label2 As Label
     Friend WithEvents VKDL As Label
     Friend WithEvents Label3 As Label
+    Friend WithEvents ToolStripProgressBar1 As ToolStripProgressBar
+    Friend WithEvents AngebotToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ErstellenToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
+    Friend WithEvents ToolStripButton1 As ToolStripButton
+    Friend WithEvents NewStructure As ToolStripButton
+    Friend WithEvents OpenStucture As ToolStripButton
+    Friend WithEvents SafeStructure As ToolStripButton
+    Friend WithEvents SafeStructureUnder As ToolStripButton
+    Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
+    Friend WithEvents GenerateOffer As ToolStripButton
+    Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
+    Friend WithEvents SalesPartner As ToolStripButton
+    Friend WithEvents ToolStripSeparator5 As ToolStripSeparator
+    Friend WithEvents TextmarkConfiguration As ToolStripButton
 End Class
