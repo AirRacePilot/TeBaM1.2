@@ -132,7 +132,35 @@ Public Class Form1
             End If
         End If
         'NewNumberOffer()
+        PriceKalk()
     End Sub
+
+    Sub PriceKalk()
+        Dim SummeMaschine As Integer = 0
+        Dim SummeDL As Integer = 0
+        Dim PriceRow As DataSet1.ArtikelRow
+        For i = 0 To DataGridView2.Rows.Count - 1
+            PriceRow = DataSet1.Artikel.FindByArtikelID(DataGridView2.Rows(i).Cells(0).Value)
+            If Microsoft.VisualBasic.Left(PriceRow.Rubrik, 2) <> "10" Then
+                'If PriceRow.VKPreis <> 0 Then
+                SummeMaschine += PriceRow.VKPreis
+                'End If
+            Else
+                SummeDL += PriceRow.VKPreis
+            End If
+        Next
+        VKMaschinenpreis.Text = SummeMaschine & " €"
+        VKDL.Text = SummeDL & " €"
+    End Sub
+
+
+
+
+
+
+
+
+
 
     Private Sub CheckAllChildNodes(treenode As TreeNode)
         Dim TBrow_edit As DataRow = Nothing
@@ -170,9 +198,11 @@ Public Class Form1
                         SpezRow.Angebotsnummer = DataGridView1.CurrentRow.Cells(0).Value
                         SpezRow.ArtikelID = SelNode.Name
                         SpezRow.OptionID = CStr(Guid.NewGuid.ToString)
-                        If ArtikelRow.lfdNrPosAG = 0 Then ArtikelRow.lfdNrPosAG = 1
-                        SpezRow.SortRow = ArtikelRow.lfdNrPosAG
-                        'SpezRow.SortRow = DataGridView5.Rows.Count + 1
+                        If ArtikelRow.lfdNrPosAG <= 1 Then
+                            SpezRow.SortRow = DataGridView2.Rows.Count + 1
+                        Else
+                            SpezRow.SortRow = ArtikelRow.lfdNrPosAG
+                        End If
                         DataSet1.SpezOptionen.Rows.Add(SpezRow)
                     End If
                 Else
@@ -188,8 +218,9 @@ Public Class Form1
                     End If
                 End If
             End If
-            'NewNumberOffer()
+            'NewNumberOffer()         
         End If
+
     End Sub
 #End Region
 
@@ -301,6 +332,7 @@ Public Class Form1
     Sub TreeView_actualize()
         If DataGridView1.CurrentRow IsNot Nothing Then
             NewTreeView1.Enabled = True
+            ToolStripLabel1.Text = DataGridView1.CurrentRow.Cells(0).Value
             Dim SpezRow As DataSet1.SpezOptionenRow = Nothing
             TraverseChildNodes(NewTreeView1.Nodes)
             For i = 0 To DataSet1.SpezOptionen.Rows.Count - 1
@@ -401,52 +433,52 @@ Public Class Form1
 
 
     Private Sub AddArticleNode_Click(sender As Object, e As EventArgs) Handles AddArticleNode.Click
-        'Try
-        If NewTreeView1.SelectedNode.Tag = "product" Then
-            'MsgBox("add_Artikel")
-            Dim prompt As String = String.Empty
-            Dim title As String = String.Empty
-            Dim defaultResponse As String = String.Empty
-            Dim answer As Object
-            prompt = "Artikel: "
-            title = "Knotennamen des Artikels eingeben"
-            defaultResponse = "Artikel Knoten"
-            answer = InputBox(prompt, title, defaultResponse)
-            If answer IsNot "" Then
-                Dim newNode As TreeNode = New TreeNode(answer, 2, 2)
-                System.Threading.Interlocked.Increment(Me.NodeCount)
-                If NewTreeView1.Nodes.Count = 0 Then
-                    Me.NewTreeView1.Nodes.Add(newNode)
-                Else
-                    Me.NewTreeView1.SelectedNode.Nodes.Add(newNode)
-                End If
-                newNode.Name = "article_" & Guid.NewGuid.ToString
-                newNode.Tag = "article"
-                newNode.ImageIndex = 1
-                newNode.SelectedImageIndex = 1
-                'Datatable schreiben
-                Dim NewARow As DataSet1.ArtikelRow
+        Try
+            If NewTreeView1.SelectedNode.Tag = "product" Then
+                'MsgBox("add_Artikel")
+                Dim prompt As String = String.Empty
+                Dim title As String = String.Empty
+                Dim defaultResponse As String = String.Empty
+                Dim answer As Object
+                prompt = "Artikel: "
+                title = "Knotennamen des Artikels eingeben"
+                defaultResponse = "Artikel Knoten"
+                answer = InputBox(prompt, title, defaultResponse)
+                If answer IsNot "" Then
+                    Dim newNode As TreeNode = New TreeNode(answer, 2, 2)
+                    System.Threading.Interlocked.Increment(Me.NodeCount)
+                    If NewTreeView1.Nodes.Count = 0 Then
+                        Me.NewTreeView1.Nodes.Add(newNode)
+                    Else
+                        Me.NewTreeView1.SelectedNode.Nodes.Add(newNode)
+                    End If
+                    newNode.Name = "article_" & Guid.NewGuid.ToString
+                    newNode.Tag = "article"
+                    newNode.ImageIndex = 1
+                    newNode.SelectedImageIndex = 1
+                    'Datatable schreiben
+                    Dim NewARow As DataSet1.ArtikelRow
 
-                NewARow = DataSet1.Artikel.NewArtikelRow()
-                NewARow.ArtikelID = newNode.Name
-                'NewARow.ProduktID = ProduktTypComboBox.SelectedValue 'Verknüpfung zum Produkt erstellen
-                NewARow.ProduktID = NewTreeView1.SelectedNode.Name 'Verknüpfung zum Produkt erstellen
-                NewARow.lfdNrPosAG = 1
-                DataSet1.Artikel.Rows.Add(NewARow)
-                'TBox_NodeText.Text = newNode.Text
-                'TBox_NodeName.Text = newNode.Name
-                'TBox_NodeTag.Text = newNode.Tag
-                'TBox_NodeImageIndex.Text = 1
-                'TBox_NodeSelImageIndex.Text = 1
-                TBMStructure = True
-                KundeGroupBox.Text = "Artikel (" & DataSet1.Artikel.Rows.Count & ")"
+                    NewARow = DataSet1.Artikel.NewArtikelRow()
+                    NewARow.ArtikelID = newNode.Name
+                    'NewARow.ProduktID = ProduktTypComboBox.SelectedValue 'Verknüpfung zum Produkt erstellen
+                    NewARow.ProduktID = NewTreeView1.SelectedNode.Name 'Verknüpfung zum Produkt erstellen
+                    NewARow.lfdNrPosAG = 1
+                    DataSet1.Artikel.Rows.Add(NewARow)
+                    'TBox_NodeText.Text = newNode.Text
+                    'TBox_NodeName.Text = newNode.Name
+                    'TBox_NodeTag.Text = newNode.Tag
+                    'TBox_NodeImageIndex.Text = 1
+                    'TBox_NodeSelImageIndex.Text = 1
+                    TBMStructure = True
+                    KundeGroupBox.Text = "Artikel (" & DataSet1.Artikel.Rows.Count & ")"
+                End If
+            Else
+                MsgBox("Hier kann kein Artikel eingefügt werden", vbExclamation)
             End If
-        Else
-            MsgBox("Hier kann kein Artikel eingefügt werden", vbExclamation)
-            End If
-        ' Catch ex As Exception
-        'MsgBox("Es existiert kein gültiger Wurzelknoten", vbExclamation)
-        'End Try
+        Catch ex As Exception
+            MsgBox("Es existiert kein gültiger Wurzelknoten", vbExclamation)
+        End Try
     End Sub
 
     Private Sub DelNode_Click(sender As Object, e As EventArgs) Handles DelNode.Click
@@ -1059,6 +1091,13 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub URLTextBox_TextChanged(sender As Object, e As EventArgs) Handles URLTextBox.TextChanged
+        If URLTextBox.Text = "" Then
+            NewTreeView1.SelectedNode.ImageIndex = 1
+            NewTreeView1.SelectedNode.SelectedImageIndex = 1
+        End If
+    End Sub
+
     Sub UpdateTreeIcon()
         Dim row As DataSet1.ArtikelRow = Nothing
         row = DataSet1.Artikel.FindByArtikelID(NewTreeView1.SelectedNode.Name)
@@ -1070,9 +1109,6 @@ Public Class Form1
                 NewTreeView1.SelectedNode.ImageIndex = 3
                 NewTreeView1.SelectedNode.SelectedImageIndex = 3
             End If
-        Else
-            NewTreeView1.SelectedNode.ImageIndex = 1
-            NewTreeView1.SelectedNode.SelectedImageIndex = 1
         End If
 
     End Sub
@@ -1083,7 +1119,7 @@ Public Class Form1
             row = DataSet1.Artikel.Rows(i)
             NewTreeView1.SelectedNode = NewTreeView1.Nodes.Find(row.ArtikelID, True)(0)
             If row.URL <> "" Then
-                If File.Exists(row.URL) And URLTextBox.Text <> "" Then
+                If File.Exists(row.URL) = True And URLTextBox.Text <> "" Then
                     NewTreeView1.SelectedNode.ImageIndex = 2
                     NewTreeView1.SelectedNode.SelectedImageIndex = 2
                 Else
@@ -1216,5 +1252,11 @@ Public Class Form1
             VT_edit = False
         End If
     End Sub
+
+    Private Sub TextmarkenDefinierenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TextmarkenDefinierenToolStripMenuItem.Click
+        Form3.Show()
+    End Sub
+
+
 #End Region
 End Class
