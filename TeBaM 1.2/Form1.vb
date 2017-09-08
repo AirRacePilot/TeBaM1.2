@@ -104,6 +104,10 @@ Public Class Form1
     End Sub
 
     Sub EndProgram()
+
+
+
+
         If TBMStructure = True Then
             If Dateiname_tree = "" Then
                 Select Case MessageBox.Show("Die Produktstruktur ist noch nicht gespeichert!" _
@@ -113,12 +117,13 @@ Public Class Form1
                         Application.Exit()
                     Case DialogResult.No
                         Save_product_structure_under()
+                        Application.Exit()
                 End Select
             Else
                 Save_product_structure()
+                Application.Exit()
             End If
         End If
-        Application.Exit()
     End Sub
 #End Region
 
@@ -141,13 +146,17 @@ Public Class Form1
         Dim PriceRow As DataSet1.ArtikelRow
         For i = 0 To DataGridView2.Rows.Count - 1
             PriceRow = DataSet1.Artikel.FindByArtikelID(DataGridView2.Rows(i).Cells(0).Value)
-            If Microsoft.VisualBasic.Left(PriceRow.Rubrik, 2) <> "10" Then
-                'If PriceRow.VKPreis <> 0 Then
-                SummeMaschine += PriceRow.VKPreis
-                'End If
-            Else
-                SummeDL += PriceRow.VKPreis
-            End If
+            Try
+                If Microsoft.VisualBasic.Left(PriceRow.Rubrik, 2) <> "10" Then
+                    'If PriceRow.VKPreis <> 0 Then
+                    SummeMaschine += PriceRow.VKPreis
+                    'End If
+                Else
+                    SummeDL += PriceRow.VKPreis
+                End If
+            Catch ex As Exception
+                'keine Fehlermeldung ausgeben
+            End Try
         Next
         VKMaschinenpreis.Text = SummeMaschine & " €"
         VKDL.Text = SummeDL & " €"
@@ -577,8 +586,6 @@ Public Class Form1
                 Dim _DataFile As New FileInfo(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & "\Data_" & Path.GetFileNameWithoutExtension(Dateiname_tree) & ".xml")
                 'Dim _DataFile As New FileInfo(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & "\Data.xml")
                 DataSet1.WriteXml(_DataFile.FullName)
-                Me.Text = Path.GetFileName(Dateiname_tree) & " - TeBaM"
-                CenterAlignTitel()
             Else
                 Save_product_structure_under()
             End If
@@ -1311,9 +1318,13 @@ Public Class Form1
         Else
             Dim foundVT_row As DataSet2.VertreterRow
             foundVT_row = DataSet2.Vertreter.FindByangezeigterName(VertreterComboBox.Text)
-            Vertreter_e_mail = foundVT_row.e_mail
-            Vertreter_Mobilummer = foundVT_row.Telefonnummer
-            GenerateWordDocument.Winword_open(Vertreter_e_mail, Vertreter_Mobilummer)
+            If foundVT_row IsNot Nothing Then
+                Vertreter_e_mail = foundVT_row.e_mail
+                Vertreter_Mobilummer = foundVT_row.Telefonnummer
+                GenerateWordDocument.Winword_open(Vertreter_e_mail, Vertreter_Mobilummer)
+            Else
+                MsgBox("Kein Vertreter ausgewählt!", vbExclamation)
+            End If
         End If
     End Sub
 #End Region

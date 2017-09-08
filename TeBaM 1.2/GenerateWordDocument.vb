@@ -132,9 +132,9 @@ Public Class GenerateWordDocument
                 Case "Ort"
                     UserInputString = Form1.OrtTextBox.Text
                 Case "Angebotstitel"
-                    UserInputString = Form1.DataGridView1.CurrentRow.Cells(1).Value
+                    UserInputString = Form1.DataGridView1.CurrentRow.Cells(1).ToString
                 Case "Angebotsnummer"
-                    UserInputString = Form1.DataGridView1.CurrentRow.Cells(0).Value
+                    UserInputString = Form1.DataGridView1.CurrentRow.Cells(0).ToString
                 Case "Vertreter"
                     UserInputString = Form1.VertreterComboBox.Text
                 Case "Mobiltelefon"
