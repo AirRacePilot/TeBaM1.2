@@ -137,6 +137,7 @@ Public Class Form1
                 MsgBox("Es können nicht gleichzeitig alle Bausteine ausgewählt werden!", vbExclamation)
             End If
         End If
+        'NewNumberOffer()
         PriceKalk()
     End Sub
 
@@ -158,9 +159,8 @@ Public Class Form1
                 'keine Fehlermeldung ausgeben
             End Try
         Next
-        VKMaschinenpreis.Text = String.Format("{0:C}", SummeMaschine)
-
-        VKDL.Text = String.Format("{0:C}", SummeDL)
+        VKMaschinenpreis.Text = SummeMaschine & " €"
+        VKDL.Text = SummeDL & " €"
     End Sub
 
 
@@ -965,7 +965,6 @@ Public Class Form1
         End If
         EKPreisTextBox.BeginInvoke(New DelegatePriceChange(AddressOf TM_ChangeEK), EKPreisTextBox.Text)
         VKPreisTextBox.BeginInvoke(New DelegatePriceChange(AddressOf TM_ChangeVK), VKPreisTextBox.Text)
-
     End Sub
 
     Private Function FindManufacturerNode(node As TreeNode)
@@ -1080,7 +1079,6 @@ Public Class Form1
         Else
             EKPreisTextBox.Text = "0,00 €"
         End If
-        PriceKalk()
     End Sub
 
     Sub TM_ChangeVK(ByVal input As String)
@@ -1089,7 +1087,6 @@ Public Class Form1
         Else
             VKPreisTextBox.Text = "0,00 €"
         End If
-        PriceKalk()
     End Sub
 
     Private Sub MaskedTBox_EK_Leave(sender As Object, e As EventArgs) Handles EKPreisTextBox.Leave

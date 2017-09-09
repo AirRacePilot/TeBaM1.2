@@ -23,6 +23,7 @@ Partial Class Form2
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form2))
         Dim VertreternummerLabel As System.Windows.Forms.Label
         Dim AnredeLabel As System.Windows.Forms.Label
         Dim VornameLabel As System.Windows.Forms.Label
@@ -30,21 +31,20 @@ Partial Class Form2
         Dim TelefonnummerLabel As System.Windows.Forms.Label
         Dim AngezeigterNameLabel As System.Windows.Forms.Label
         Dim E_mailLabel As System.Windows.Forms.Label
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form2))
         Me.DataSet2 = New TeBaM_1._2.DataSet2()
         Me.VertreterBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.VertreterBindingNavigator = New System.Windows.Forms.BindingNavigator(Me.components)
-        Me.BindingNavigatorAddNewItem = New System.Windows.Forms.ToolStripButton()
-        Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel()
-        Me.BindingNavigatorDeleteItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorMoveFirstItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorMovePreviousItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorSeparator = New System.Windows.Forms.ToolStripSeparator()
         Me.BindingNavigatorPositionItem = New System.Windows.Forms.ToolStripTextBox()
+        Me.BindingNavigatorCountItem = New System.Windows.Forms.ToolStripLabel()
         Me.BindingNavigatorSeparator1 = New System.Windows.Forms.ToolStripSeparator()
         Me.BindingNavigatorMoveNextItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorMoveLastItem = New System.Windows.Forms.ToolStripButton()
         Me.BindingNavigatorSeparator2 = New System.Windows.Forms.ToolStripSeparator()
+        Me.BindingNavigatorAddNewItem = New System.Windows.Forms.ToolStripButton()
+        Me.BindingNavigatorDeleteItem = New System.Windows.Forms.ToolStripButton()
         Me.VertreterBindingNavigatorSaveItem = New System.Windows.Forms.ToolStripButton()
         Me.VertreternummerTextBox = New System.Windows.Forms.TextBox()
         Me.AnredeTextBox = New System.Windows.Forms.TextBox()
@@ -67,69 +67,6 @@ Partial Class Form2
         Me.VertreterBindingNavigator.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
-        '
-        'VertreternummerLabel
-        '
-        VertreternummerLabel.AutoSize = True
-        VertreternummerLabel.Location = New System.Drawing.Point(33, 28)
-        VertreternummerLabel.Name = "VertreternummerLabel"
-        VertreternummerLabel.Size = New System.Drawing.Size(87, 13)
-        VertreternummerLabel.TabIndex = 1
-        VertreternummerLabel.Text = "Vertreternummer:"
-        '
-        'AnredeLabel
-        '
-        AnredeLabel.AutoSize = True
-        AnredeLabel.Location = New System.Drawing.Point(33, 54)
-        AnredeLabel.Name = "AnredeLabel"
-        AnredeLabel.Size = New System.Drawing.Size(44, 13)
-        AnredeLabel.TabIndex = 3
-        AnredeLabel.Text = "Anrede:"
-        '
-        'VornameLabel
-        '
-        VornameLabel.AutoSize = True
-        VornameLabel.Location = New System.Drawing.Point(33, 80)
-        VornameLabel.Name = "VornameLabel"
-        VornameLabel.Size = New System.Drawing.Size(52, 13)
-        VornameLabel.TabIndex = 5
-        VornameLabel.Text = "Vorname:"
-        '
-        'NachnameLabel
-        '
-        NachnameLabel.AutoSize = True
-        NachnameLabel.Location = New System.Drawing.Point(33, 106)
-        NachnameLabel.Name = "NachnameLabel"
-        NachnameLabel.Size = New System.Drawing.Size(62, 13)
-        NachnameLabel.TabIndex = 7
-        NachnameLabel.Text = "Nachname:"
-        '
-        'TelefonnummerLabel
-        '
-        TelefonnummerLabel.AutoSize = True
-        TelefonnummerLabel.Location = New System.Drawing.Point(33, 132)
-        TelefonnummerLabel.Name = "TelefonnummerLabel"
-        TelefonnummerLabel.Size = New System.Drawing.Size(83, 13)
-        TelefonnummerLabel.TabIndex = 9
-        TelefonnummerLabel.Text = "Telefonnummer:"
-        '
-        'AngezeigterNameLabel
-        '
-        AngezeigterNameLabel.AutoSize = True
-        AngezeigterNameLabel.Location = New System.Drawing.Point(33, 158)
-        AngezeigterNameLabel.Name = "AngezeigterNameLabel"
-        AngezeigterNameLabel.Size = New System.Drawing.Size(96, 13)
-        AngezeigterNameLabel.TabIndex = 11
-        AngezeigterNameLabel.Text = "angezeigter Name:"
-        '
-        'E_mailLabel
-        '
-        E_mailLabel.AutoSize = True
-        E_mailLabel.Location = New System.Drawing.Point(33, 184)
-        E_mailLabel.Name = "E_mailLabel"
-        E_mailLabel.Size = New System.Drawing.Size(37, 13)
-        E_mailLabel.TabIndex = 13
-        E_mailLabel.Text = "e mail:"
         '
         'DataSet2
         '
@@ -158,31 +95,6 @@ Partial Class Form2
         Me.VertreterBindingNavigator.Size = New System.Drawing.Size(420, 25)
         Me.VertreterBindingNavigator.TabIndex = 0
         Me.VertreterBindingNavigator.Text = "BindingNavigator1"
-        '
-        'BindingNavigatorAddNewItem
-        '
-        Me.BindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorAddNewItem.Image = CType(resources.GetObject("BindingNavigatorAddNewItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorAddNewItem.Name = "BindingNavigatorAddNewItem"
-        Me.BindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorAddNewItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorAddNewItem.Text = "Neu hinzufügen"
-        '
-        'BindingNavigatorCountItem
-        '
-        Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(44, 22)
-        Me.BindingNavigatorCountItem.Text = "von {0}"
-        Me.BindingNavigatorCountItem.ToolTipText = "Die Gesamtanzahl der Elemente."
-        '
-        'BindingNavigatorDeleteItem
-        '
-        Me.BindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
-        Me.BindingNavigatorDeleteItem.Image = CType(resources.GetObject("BindingNavigatorDeleteItem.Image"), System.Drawing.Image)
-        Me.BindingNavigatorDeleteItem.Name = "BindingNavigatorDeleteItem"
-        Me.BindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = True
-        Me.BindingNavigatorDeleteItem.Size = New System.Drawing.Size(23, 22)
-        Me.BindingNavigatorDeleteItem.Text = "Löschen"
         '
         'BindingNavigatorMoveFirstItem
         '
@@ -216,9 +128,16 @@ Partial Class Form2
         Me.BindingNavigatorPositionItem.Text = "0"
         Me.BindingNavigatorPositionItem.ToolTipText = "Aktuelle Position"
         '
+        'BindingNavigatorCountItem
+        '
+        Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(44, 22)
+        Me.BindingNavigatorCountItem.Text = "von {0}"
+        Me.BindingNavigatorCountItem.ToolTipText = "Die Gesamtanzahl der Elemente."
+        '
         'BindingNavigatorSeparator1
         '
-        Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator1"
+        Me.BindingNavigatorSeparator1.Name = "BindingNavigatorSeparator"
         Me.BindingNavigatorSeparator1.Size = New System.Drawing.Size(6, 25)
         '
         'BindingNavigatorMoveNextItem
@@ -241,8 +160,26 @@ Partial Class Form2
         '
         'BindingNavigatorSeparator2
         '
-        Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator2"
+        Me.BindingNavigatorSeparator2.Name = "BindingNavigatorSeparator"
         Me.BindingNavigatorSeparator2.Size = New System.Drawing.Size(6, 25)
+        '
+        'BindingNavigatorAddNewItem
+        '
+        Me.BindingNavigatorAddNewItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorAddNewItem.Image = CType(resources.GetObject("BindingNavigatorAddNewItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorAddNewItem.Name = "BindingNavigatorAddNewItem"
+        Me.BindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorAddNewItem.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorAddNewItem.Text = "Neu hinzufügen"
+        '
+        'BindingNavigatorDeleteItem
+        '
+        Me.BindingNavigatorDeleteItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image
+        Me.BindingNavigatorDeleteItem.Image = CType(resources.GetObject("BindingNavigatorDeleteItem.Image"), System.Drawing.Image)
+        Me.BindingNavigatorDeleteItem.Name = "BindingNavigatorDeleteItem"
+        Me.BindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = True
+        Me.BindingNavigatorDeleteItem.Size = New System.Drawing.Size(23, 22)
+        Me.BindingNavigatorDeleteItem.Text = "Löschen"
         '
         'VertreterBindingNavigatorSaveItem
         '
@@ -253,6 +190,15 @@ Partial Class Form2
         Me.VertreterBindingNavigatorSaveItem.Size = New System.Drawing.Size(23, 22)
         Me.VertreterBindingNavigatorSaveItem.Text = "Daten speichern"
         '
+        'VertreternummerLabel
+        '
+        VertreternummerLabel.AutoSize = True
+        VertreternummerLabel.Location = New System.Drawing.Point(33, 28)
+        VertreternummerLabel.Name = "VertreternummerLabel"
+        VertreternummerLabel.Size = New System.Drawing.Size(87, 13)
+        VertreternummerLabel.TabIndex = 1
+        VertreternummerLabel.Text = "Vertreternummer:"
+        '
         'VertreternummerTextBox
         '
         Me.VertreternummerTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.VertreterBindingSource, "Vertreternummer", True))
@@ -260,6 +206,15 @@ Partial Class Form2
         Me.VertreternummerTextBox.Name = "VertreternummerTextBox"
         Me.VertreternummerTextBox.Size = New System.Drawing.Size(273, 20)
         Me.VertreternummerTextBox.TabIndex = 2
+        '
+        'AnredeLabel
+        '
+        AnredeLabel.AutoSize = True
+        AnredeLabel.Location = New System.Drawing.Point(33, 54)
+        AnredeLabel.Name = "AnredeLabel"
+        AnredeLabel.Size = New System.Drawing.Size(44, 13)
+        AnredeLabel.TabIndex = 3
+        AnredeLabel.Text = "Anrede:"
         '
         'AnredeTextBox
         '
@@ -269,6 +224,15 @@ Partial Class Form2
         Me.AnredeTextBox.Size = New System.Drawing.Size(273, 20)
         Me.AnredeTextBox.TabIndex = 4
         '
+        'VornameLabel
+        '
+        VornameLabel.AutoSize = True
+        VornameLabel.Location = New System.Drawing.Point(33, 80)
+        VornameLabel.Name = "VornameLabel"
+        VornameLabel.Size = New System.Drawing.Size(52, 13)
+        VornameLabel.TabIndex = 5
+        VornameLabel.Text = "Vorname:"
+        '
         'VornameTextBox
         '
         Me.VornameTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.VertreterBindingSource, "Vorname", True))
@@ -276,6 +240,15 @@ Partial Class Form2
         Me.VornameTextBox.Name = "VornameTextBox"
         Me.VornameTextBox.Size = New System.Drawing.Size(273, 20)
         Me.VornameTextBox.TabIndex = 6
+        '
+        'NachnameLabel
+        '
+        NachnameLabel.AutoSize = True
+        NachnameLabel.Location = New System.Drawing.Point(33, 106)
+        NachnameLabel.Name = "NachnameLabel"
+        NachnameLabel.Size = New System.Drawing.Size(62, 13)
+        NachnameLabel.TabIndex = 7
+        NachnameLabel.Text = "Nachname:"
         '
         'NachnameTextBox
         '
@@ -285,6 +258,15 @@ Partial Class Form2
         Me.NachnameTextBox.Size = New System.Drawing.Size(273, 20)
         Me.NachnameTextBox.TabIndex = 8
         '
+        'TelefonnummerLabel
+        '
+        TelefonnummerLabel.AutoSize = True
+        TelefonnummerLabel.Location = New System.Drawing.Point(33, 132)
+        TelefonnummerLabel.Name = "TelefonnummerLabel"
+        TelefonnummerLabel.Size = New System.Drawing.Size(83, 13)
+        TelefonnummerLabel.TabIndex = 9
+        TelefonnummerLabel.Text = "Telefonnummer:"
+        '
         'TelefonnummerTextBox
         '
         Me.TelefonnummerTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.VertreterBindingSource, "Telefonnummer", True))
@@ -293,6 +275,15 @@ Partial Class Form2
         Me.TelefonnummerTextBox.Size = New System.Drawing.Size(273, 20)
         Me.TelefonnummerTextBox.TabIndex = 10
         '
+        'AngezeigterNameLabel
+        '
+        AngezeigterNameLabel.AutoSize = True
+        AngezeigterNameLabel.Location = New System.Drawing.Point(33, 158)
+        AngezeigterNameLabel.Name = "AngezeigterNameLabel"
+        AngezeigterNameLabel.Size = New System.Drawing.Size(96, 13)
+        AngezeigterNameLabel.TabIndex = 11
+        AngezeigterNameLabel.Text = "angezeigter Name:"
+        '
         'AngezeigterNameTextBox
         '
         Me.AngezeigterNameTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.VertreterBindingSource, "angezeigterName", True))
@@ -300,6 +291,15 @@ Partial Class Form2
         Me.AngezeigterNameTextBox.Name = "AngezeigterNameTextBox"
         Me.AngezeigterNameTextBox.Size = New System.Drawing.Size(273, 20)
         Me.AngezeigterNameTextBox.TabIndex = 12
+        '
+        'E_mailLabel
+        '
+        E_mailLabel.AutoSize = True
+        E_mailLabel.Location = New System.Drawing.Point(33, 184)
+        E_mailLabel.Name = "E_mailLabel"
+        E_mailLabel.Size = New System.Drawing.Size(37, 13)
+        E_mailLabel.TabIndex = 13
+        E_mailLabel.Text = "e mail:"
         '
         'E_mailTextBox
         '
@@ -344,7 +344,7 @@ Partial Class Form2
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "Form2"
-        Me.Text = "Vertreter"
+        Me.Text = "Form2"
         CType(Me.DataSet2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VertreterBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VertreterBindingNavigator, System.ComponentModel.ISupportInitialize).EndInit()
