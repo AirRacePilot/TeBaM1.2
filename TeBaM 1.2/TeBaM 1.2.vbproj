@@ -205,6 +205,7 @@
     <Content Include="img\contact-new.ico" />
     <Content Include="img\Control_SaveFileDialog.bmp" />
     <Content Include="img\delete.png" />
+    <Content Include="img\document-edit.ico" />
     <Content Include="img\document-open-2.ico" />
     <Content Include="img\document-open-4.ico" />
     <Content Include="img\document-save-2.ico" />
@@ -229,6 +230,7 @@
     <Content Include="img\icons8-Microsoft Word-48.png" />
     <Content Include="img\icons8-Save as-50.png" />
     <Content Include="img\icons8-Save-50.png" />
+    <Content Include="img\irc-close-channel.ico" />
     <Content Include="img\meeting-attending.ico" />
     <Content Include="img\network-connect-3.ico" />
     <Content Include="img\news-subscribe.ico" />

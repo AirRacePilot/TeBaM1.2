@@ -69,6 +69,8 @@ Partial Class Form1
         Me.Angebotstitel = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.KundennummerDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.AngebotURLDataGridViewTextBoxColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.ContextMenuStripOfferTitle = New System.Windows.Forms.ContextMenuStrip(Me.components)
+        Me.TitelUmbennenenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FKKundeAngebotBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.KundeBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DataSet1 = New TeBaM_1._2.DataSet1()
@@ -125,6 +127,7 @@ Partial Class Form1
         Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.ArtikelGroupBox = New System.Windows.Forms.GroupBox()
+        Me.PrintEnabledCheckBox = New System.Windows.Forms.CheckBox()
         Me.RubrikMaskedTextBox = New System.Windows.Forms.MaskedTextBox()
         Me.ButtonAddURL = New System.Windows.Forms.Button()
         Me.MaskedTextBoxArtikelnummer = New System.Windows.Forms.MaskedTextBox()
@@ -183,6 +186,7 @@ Partial Class Form1
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.ContextMenuStripOfferTitle.SuspendLayout()
         CType(Me.FKKundeAngebotBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.KundeBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -420,6 +424,7 @@ Partial Class Form1
         Me.NewStructure.Name = "NewStructure"
         Me.NewStructure.Size = New System.Drawing.Size(28, 28)
         Me.NewStructure.Text = "ToolStripButton2"
+        Me.NewStructure.ToolTipText = "neu"
         '
         'OpenStucture
         '
@@ -429,6 +434,7 @@ Partial Class Form1
         Me.OpenStucture.Name = "OpenStucture"
         Me.OpenStucture.Size = New System.Drawing.Size(28, 28)
         Me.OpenStucture.Text = "ToolStripButton3"
+        Me.OpenStucture.ToolTipText = "öffnen"
         '
         'SafeStructure
         '
@@ -438,6 +444,7 @@ Partial Class Form1
         Me.SafeStructure.Name = "SafeStructure"
         Me.SafeStructure.Size = New System.Drawing.Size(28, 28)
         Me.SafeStructure.Text = "ToolStripButton4"
+        Me.SafeStructure.ToolTipText = "speichern"
         '
         'SafeStructureUnder
         '
@@ -447,6 +454,7 @@ Partial Class Form1
         Me.SafeStructureUnder.Name = "SafeStructureUnder"
         Me.SafeStructureUnder.Size = New System.Drawing.Size(28, 28)
         Me.SafeStructureUnder.Text = "ToolStripButton5"
+        Me.SafeStructureUnder.ToolTipText = "speichern unter"
         '
         'ToolStripSeparator3
         '
@@ -461,6 +469,7 @@ Partial Class Form1
         Me.GenerateOffer.Name = "GenerateOffer"
         Me.GenerateOffer.Size = New System.Drawing.Size(28, 28)
         Me.GenerateOffer.Text = "ToolStripButton6"
+        Me.GenerateOffer.ToolTipText = "Angebot erstellen"
         '
         'ToolStripSeparator4
         '
@@ -475,6 +484,7 @@ Partial Class Form1
         Me.SalesPartner.Name = "SalesPartner"
         Me.SalesPartner.Size = New System.Drawing.Size(28, 28)
         Me.SalesPartner.Text = "ToolStripButton7"
+        Me.SalesPartner.ToolTipText = "Vertreterliste"
         '
         'ToolStripSeparator5
         '
@@ -489,6 +499,7 @@ Partial Class Form1
         Me.TextmarkConfiguration.Name = "TextmarkConfiguration"
         Me.TextmarkConfiguration.Size = New System.Drawing.Size(28, 28)
         Me.TextmarkConfiguration.Text = "ToolStripButton8"
+        Me.TextmarkConfiguration.ToolTipText = "Konfigurieren"
         '
         'StatusStrip1
         '
@@ -545,6 +556,7 @@ Partial Class Form1
         Me.DataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.AngebotsIDDataGridViewTextBoxColumn, Me.Angebotstitel, Me.KundennummerDataGridViewTextBoxColumn, Me.AngebotURLDataGridViewTextBoxColumn})
+        Me.DataGridView1.ContextMenuStrip = Me.ContextMenuStripOfferTitle
         Me.DataGridView1.DataSource = Me.FKKundeAngebotBindingSource
         DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
         DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
@@ -555,7 +567,7 @@ Partial Class Form1
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle2
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.DataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnF2
+        Me.DataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridView1.Location = New System.Drawing.Point(2, 217)
         Me.DataGridView1.Margin = New System.Windows.Forms.Padding(2)
         Me.DataGridView1.Name = "DataGridView1"
@@ -581,12 +593,26 @@ Partial Class Form1
         Me.KundennummerDataGridViewTextBoxColumn.DataPropertyName = "Kundennummer"
         Me.KundennummerDataGridViewTextBoxColumn.HeaderText = "Kundennummer"
         Me.KundennummerDataGridViewTextBoxColumn.Name = "KundennummerDataGridViewTextBoxColumn"
+        Me.KundennummerDataGridViewTextBoxColumn.Visible = False
         '
         'AngebotURLDataGridViewTextBoxColumn
         '
         Me.AngebotURLDataGridViewTextBoxColumn.DataPropertyName = "AngebotURL"
         Me.AngebotURLDataGridViewTextBoxColumn.HeaderText = "AngebotURL"
         Me.AngebotURLDataGridViewTextBoxColumn.Name = "AngebotURLDataGridViewTextBoxColumn"
+        Me.AngebotURLDataGridViewTextBoxColumn.Visible = False
+        '
+        'ContextMenuStripOfferTitle
+        '
+        Me.ContextMenuStripOfferTitle.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TitelUmbennenenToolStripMenuItem})
+        Me.ContextMenuStripOfferTitle.Name = "ContextMenuStripOfferTitle"
+        Me.ContextMenuStripOfferTitle.Size = New System.Drawing.Size(172, 48)
+        '
+        'TitelUmbennenenToolStripMenuItem
+        '
+        Me.TitelUmbennenenToolStripMenuItem.Name = "TitelUmbennenenToolStripMenuItem"
+        Me.TitelUmbennenenToolStripMenuItem.Size = New System.Drawing.Size(171, 22)
+        Me.TitelUmbennenenToolStripMenuItem.Text = "Titel umbennenen"
         '
         'FKKundeAngebotBindingSource
         '
@@ -1024,6 +1050,7 @@ Partial Class Form1
         Me.SortRowDataGridViewTextBoxColumn.DataPropertyName = "SortRow"
         Me.SortRowDataGridViewTextBoxColumn.HeaderText = "SortRow"
         Me.SortRowDataGridViewTextBoxColumn.Name = "SortRowDataGridViewTextBoxColumn"
+        Me.SortRowDataGridViewTextBoxColumn.Visible = False
         '
         'FKAngebotSpezOptionenBindingSource
         '
@@ -1098,6 +1125,7 @@ Partial Class Form1
         Me.ToolStrip4.Size = New System.Drawing.Size(654, 31)
         Me.ToolStrip4.TabIndex = 2
         Me.ToolStrip4.Text = "ToolStrip4"
+        Me.ToolTip1.SetToolTip(Me.ToolStrip4, "auf")
         '
         'ToolStripButtonUp
         '
@@ -1116,6 +1144,7 @@ Partial Class Form1
         Me.ToolStripButtonDown.Name = "ToolStripButtonDown"
         Me.ToolStripButtonDown.Size = New System.Drawing.Size(28, 28)
         Me.ToolStripButtonDown.Text = "ToolStripButton2"
+        Me.ToolStripButtonDown.ToolTipText = "ab"
         '
         'ToolStripLabel1
         '
@@ -1136,6 +1165,7 @@ Partial Class Form1
         Me.ToolStripButton1.Name = "ToolStripButton1"
         Me.ToolStripButton1.Size = New System.Drawing.Size(28, 28)
         Me.ToolStripButton1.Text = "ToolStripButton1"
+        Me.ToolStripButton1.ToolTipText = "Baustein öffnen/editieren"
         '
         'Panel1
         '
@@ -1152,6 +1182,7 @@ Partial Class Form1
         '
         'ArtikelGroupBox
         '
+        Me.ArtikelGroupBox.Controls.Add(Me.PrintEnabledCheckBox)
         Me.ArtikelGroupBox.Controls.Add(Me.RubrikMaskedTextBox)
         Me.ArtikelGroupBox.Controls.Add(Me.ButtonAddURL)
         Me.ArtikelGroupBox.Controls.Add(Me.MaskedTextBoxArtikelnummer)
@@ -1178,6 +1209,17 @@ Partial Class Form1
         Me.ArtikelGroupBox.TabIndex = 17
         Me.ArtikelGroupBox.TabStop = False
         Me.ArtikelGroupBox.Text = "Artikel"
+        '
+        'PrintEnabledCheckBox
+        '
+        Me.PrintEnabledCheckBox.AutoSize = True
+        Me.PrintEnabledCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Me.ArtikelBindingSource, "AGSelected", True))
+        Me.PrintEnabledCheckBox.Location = New System.Drawing.Point(567, 193)
+        Me.PrintEnabledCheckBox.Name = "PrintEnabledCheckBox"
+        Me.PrintEnabledCheckBox.Size = New System.Drawing.Size(67, 17)
+        Me.PrintEnabledCheckBox.TabIndex = 25
+        Me.PrintEnabledCheckBox.Text = "Drucken"
+        Me.PrintEnabledCheckBox.UseVisualStyleBackColor = True
         '
         'RubrikMaskedTextBox
         '
@@ -1389,30 +1431,35 @@ Partial Class Form1
         '
         'ProduktstrukturNeuToolStripMenuItem
         '
+        Me.ProduktstrukturNeuToolStripMenuItem.Image = CType(resources.GetObject("ProduktstrukturNeuToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ProduktstrukturNeuToolStripMenuItem.Name = "ProduktstrukturNeuToolStripMenuItem"
         Me.ProduktstrukturNeuToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
         Me.ProduktstrukturNeuToolStripMenuItem.Text = "Neu"
         '
         'ProduktsrukturÖffnenToolStripMenuItem
         '
+        Me.ProduktsrukturÖffnenToolStripMenuItem.Image = CType(resources.GetObject("ProduktsrukturÖffnenToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ProduktsrukturÖffnenToolStripMenuItem.Name = "ProduktsrukturÖffnenToolStripMenuItem"
         Me.ProduktsrukturÖffnenToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
         Me.ProduktsrukturÖffnenToolStripMenuItem.Text = "Öffnen"
         '
         'SpeichernToolStripMenuItem
         '
+        Me.SpeichernToolStripMenuItem.Image = CType(resources.GetObject("SpeichernToolStripMenuItem.Image"), System.Drawing.Image)
         Me.SpeichernToolStripMenuItem.Name = "SpeichernToolStripMenuItem"
         Me.SpeichernToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
         Me.SpeichernToolStripMenuItem.Text = "Speichern"
         '
         'SpeichernUnterToolStripMenuItem
         '
+        Me.SpeichernUnterToolStripMenuItem.Image = CType(resources.GetObject("SpeichernUnterToolStripMenuItem.Image"), System.Drawing.Image)
         Me.SpeichernUnterToolStripMenuItem.Name = "SpeichernUnterToolStripMenuItem"
         Me.SpeichernUnterToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
         Me.SpeichernUnterToolStripMenuItem.Text = "Speichern unter"
         '
         'BeendenToolStripMenuItem
         '
+        Me.BeendenToolStripMenuItem.Image = CType(resources.GetObject("BeendenToolStripMenuItem.Image"), System.Drawing.Image)
         Me.BeendenToolStripMenuItem.Name = "BeendenToolStripMenuItem"
         Me.BeendenToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
         Me.BeendenToolStripMenuItem.Text = "Beenden"
@@ -1426,6 +1473,7 @@ Partial Class Form1
         '
         'ErstellenToolStripMenuItem
         '
+        Me.ErstellenToolStripMenuItem.Image = CType(resources.GetObject("ErstellenToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ErstellenToolStripMenuItem.Name = "ErstellenToolStripMenuItem"
         Me.ErstellenToolStripMenuItem.Size = New System.Drawing.Size(118, 22)
         Me.ErstellenToolStripMenuItem.Text = "erstellen"
@@ -1439,6 +1487,7 @@ Partial Class Form1
         '
         'ListeBearbeitenToolStripMenuItem
         '
+        Me.ListeBearbeitenToolStripMenuItem.Image = CType(resources.GetObject("ListeBearbeitenToolStripMenuItem.Image"), System.Drawing.Image)
         Me.ListeBearbeitenToolStripMenuItem.Name = "ListeBearbeitenToolStripMenuItem"
         Me.ListeBearbeitenToolStripMenuItem.Size = New System.Drawing.Size(157, 22)
         Me.ListeBearbeitenToolStripMenuItem.Text = "Liste bearbeiten"
@@ -1452,6 +1501,7 @@ Partial Class Form1
         '
         'TextmarkenDefinierenToolStripMenuItem
         '
+        Me.TextmarkenDefinierenToolStripMenuItem.Image = CType(resources.GetObject("TextmarkenDefinierenToolStripMenuItem.Image"), System.Drawing.Image)
         Me.TextmarkenDefinierenToolStripMenuItem.Name = "TextmarkenDefinierenToolStripMenuItem"
         Me.TextmarkenDefinierenToolStripMenuItem.Size = New System.Drawing.Size(192, 22)
         Me.TextmarkenDefinierenToolStripMenuItem.Text = "Textmarken definieren"
@@ -1480,6 +1530,7 @@ Partial Class Form1
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ContextMenuStripOfferTitle.ResumeLayout(False)
         CType(Me.FKKundeAngebotBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.KundeBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataSet1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1600,20 +1651,7 @@ Partial Class Form1
     Friend WithEvents ToolStripButtonUp As ToolStripButton
     Friend WithEvents ToolStripButtonDown As ToolStripButton
     Friend WithEvents ToolStripLabel1 As ToolStripLabel
-    Friend WithEvents AngebotsIDDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents Angebotstitel As DataGridViewTextBoxColumn
-    Friend WithEvents KundennummerDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents AngebotURLDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents VertreterBindingSource As BindingSource
-    Friend WithEvents Column1 As DataGridViewComboBoxColumn
-    Friend WithEvents Column2 As DataGridViewComboBoxColumn
-    Friend WithEvents Column3 As DataGridViewComboBoxColumn
-    Friend WithEvents Column4 As DataGridViewComboBoxColumn
-    Friend WithEvents Column5 As DataGridViewComboBoxColumn
-    Friend WithEvents ArtikelIDDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents OptionIDDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents AngebotsnummerDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
-    Friend WithEvents SortRowDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents Panel2 As Panel
     Friend WithEvents VKMaschinenpreis As Label
     Friend WithEvents Label2 As Label
@@ -1634,4 +1672,20 @@ Partial Class Form1
     Friend WithEvents SalesPartner As ToolStripButton
     Friend WithEvents ToolStripSeparator5 As ToolStripSeparator
     Friend WithEvents TextmarkConfiguration As ToolStripButton
+    Friend WithEvents AngebotsIDDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents Angebotstitel As DataGridViewTextBoxColumn
+    Friend WithEvents KundennummerDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents AngebotURLDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents Column1 As DataGridViewComboBoxColumn
+    Friend WithEvents Column2 As DataGridViewComboBoxColumn
+    Friend WithEvents Column3 As DataGridViewComboBoxColumn
+    Friend WithEvents Column4 As DataGridViewComboBoxColumn
+    Friend WithEvents Column5 As DataGridViewComboBoxColumn
+    Friend WithEvents ArtikelIDDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents OptionIDDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents AngebotsnummerDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents SortRowDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
+    Friend WithEvents PrintEnabledCheckBox As CheckBox
+    Friend WithEvents ContextMenuStripOfferTitle As ContextMenuStrip
+    Friend WithEvents TitelUmbennenenToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -52,8 +52,8 @@ Public Class Form1
             File.WriteAllText(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & "\TextBausteinManager.ini", "")
         End If
         With DataGridView1
-            .RowsDefaultCellStyle.BackColor = Color.Bisque
-            .AlternatingRowsDefaultCellStyle.BackColor = Color.Beige
+            .RowsDefaultCellStyle.BackColor = Color.PowderBlue
+            .AlternatingRowsDefaultCellStyle.BackColor = Color.LightCyan
         End With
         With DataGridView2
             .RowsDefaultCellStyle.BackColor = Color.Bisque
@@ -69,6 +69,7 @@ Public Class Form1
         End With
         CenterAlignTitel()
         DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
+        ToolStripProgressBar1.Visible = False
     End Sub
 
     Sub InitHMI()
@@ -96,32 +97,32 @@ Public Class Form1
 
 #Region "Programm beenden"
     Private Sub BeendenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BeendenToolStripMenuItem.Click
+        Application.Exit()
         EndProgram()
     End Sub
 
     Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        Application.Exit()
         EndProgram()
     End Sub
 
     Sub EndProgram()
-
-
-
-
-        If TBMStructure = True Then
-            If Dateiname_tree = "" Then
-                Select Case MessageBox.Show("Die Produktstruktur ist noch nicht gespeichert!" _
-                             & vbCrLf & "Wollen Sie wirklich beenden ohne zu speichern?" _
-                             & vbCrLf & "Alle Daten gehen verloren!", "ohne speichern fortsetzen?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
-                    Case DialogResult.Yes
-                        Application.Exit()
-                    Case DialogResult.No
-                        Save_product_structure_under()
-                        Application.Exit()
-                End Select
-            Else
-                Save_product_structure()
-                Application.Exit()
+        If DataSet1.Kunde.Rows.Count > 0 Then
+            If TBMStructure = True Then
+                If Dateiname_tree = "" Then
+                    Select Case MessageBox.Show("Die Produktstruktur ist noch nicht gespeichert!" _
+                                 & vbCrLf & "Wollen Sie wirklich beenden ohne zu speichern?" _
+                                 & vbCrLf & "Alle Daten gehen verloren!", "ohne speichern fortsetzen?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
+                        Case DialogResult.Yes
+                            Application.Exit()
+                        Case DialogResult.No
+                            Save_product_structure_under()
+                            Application.Exit()
+                    End Select
+                Else
+                    Save_product_structure()
+                    Application.Exit()
+                End If
             End If
         End If
     End Sub
@@ -259,6 +260,7 @@ Public Class Form1
                 NewKRow.PLZ = PLZTextBox.Text
                 NewKRow.Ort = OrtTextBox.Text
                 DataSet1.Kunde.Rows.Add(NewKRow)
+                TBMStructure = True
             End If
             KundeGroupBox.Text = "Kunde (" & DataSet1.Kunde.Rows.Count & ")" 'Anzahl Kunden
         Catch ex As Exception
@@ -277,16 +279,13 @@ Public Class Form1
         End Select
         KundeGroupBox.Text = "Kunde (" & DataSet1.Kunde.Rows.Count & ")" 'Anzahl Kunden
     End Sub
-
-
-
 #End Region
 
 #Region "Neues Angebot einfügen oder löschen"
     Private Sub AddOffer_Click(sender As Object, e As EventArgs) Handles AddOffer.Click
-
         Try
             Dim AddOfferDialog As New AddOfferDialog
+            AddOfferDialog.Text = "Neues Angebot:"
             If AddOfferDialog.ShowDialog = DialogResult.OK Then
                 Dim NewAGRow As DataSet1.AngebotRow = Nothing
                 NewAGRow = DataSet1.Angebot.NewAngebotRow
@@ -296,10 +295,10 @@ Public Class Form1
                 NewAGRow.AngebotURL = "noch nicht definiert"
                 DataSet1.Angebot.Rows.Add(NewAGRow)
             Else
-                MsgBox("s wird kein neues Angebot angelegt!", vbExclamation)
+                MsgBox("Es wird kein neues Angebot angelegt!", vbExclamation)
             End If
         Catch ex As Exception
-            MsgBox("Diese Angebotsnummer ist bereits vorhanden!", vbExclamation)
+            MsgBox("Diese Angebotsnummer ist bereits vorhanden oder es ist noch kein Kunde angelegt!", vbExclamation)
         End Try
     End Sub
 
@@ -474,6 +473,7 @@ Public Class Form1
                     NewARow.ProduktID = NewTreeView1.SelectedNode.Name 'Verknüpfung zum Produkt erstellen
                     NewARow.lfdNrPosAG = 1
                     DataSet1.Artikel.Rows.Add(NewARow)
+                    PrintEnabledCheckBox.Checked = False
                     'TBox_NodeText.Text = newNode.Text
                     'TBox_NodeName.Text = newNode.Name
                     'TBox_NodeTag.Text = newNode.Tag
@@ -620,6 +620,7 @@ Public Class Form1
                 If Not _DataFile.Exists Then Return
                 NewTreeView1.Nodes.Clear()
                 DataSet1.ReadXml(_DataFile.FullName)
+                DataSet2.Vertreter.ReadXml(VT_DataFile.FullName)
                 XMLp.importTreeViewXML(NewTreeView1, _DataTree.FullName)
                 If NewTreeView1.Nodes.Count > 0 Then
                     InitHMI()
@@ -648,7 +649,7 @@ Public Class Form1
         End If
         Dim g As Graphics = Me.CreateGraphics()
 
-        Dim startingPoint As Double = (Me.Width / 2) - (g.MeasureString(Titel.Trim, Me.Font).Width / 2)
+        Dim startingPoint As Double = ((Me.Width) / 2) - (g.MeasureString(Titel.Trim, Me.Font).Width / 2)
         Dim widthOfASpace As Double = g.MeasureString(" ", Me.Font).Width
         Dim tmp As String = " "
         Dim tmpWidth As Double = 0
@@ -1311,7 +1312,6 @@ Public Class Form1
     End Sub
 
     Private Sub GenerateWordOffer()
-        ToolStripProgressBar1.Visible = True
         'ToolStripStatusLabel1.Visible = True
         If TBMStructure = False Then
             MsgBox("Keine Produktstruktur oder Angebot geladen!", vbExclamation)
@@ -1326,10 +1326,20 @@ Public Class Form1
                 MsgBox("Kein Vertreter ausgewählt!", vbExclamation)
             End If
         End If
+        ToolStripProgressBar1.Visible = False
     End Sub
 #End Region
 
 #Region "Textbaustein aus der Anwendung heraus anzeigen"
+    Private Sub AnzeigenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AnzeigenToolStripMenuItem.Click
+        Dim ArticleRow As DataSet1.ArtikelRow
+        ArticleRow = DataSet1.Artikel.FindByArtikelID(NewTreeView1.SelectedNode.Name)
+        Dim openFileInfo As String = ArticleRow.URL
+        If ArticleRow.URL <> "" Then
+            ShowTextModul(openFileInfo)
+        End If
+    End Sub
+
     Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
         Dim ArticleRow As DataSet1.ArtikelRow
         ArticleRow = DataSet1.Artikel.FindByArtikelID(DataGridView2.CurrentRow.Cells(0).Value)
@@ -1373,12 +1383,22 @@ Public Class Form1
 
 
 
-
-
-
-
-
 #End Region
+    Private Sub ContextMenuStripOfferTitle_Click(sender As Object, e As EventArgs) Handles ContextMenuStripOfferTitle.Click
+        AddOfferDialog.TextBoxOfferNumber.Enabled = False
+        AddOfferDialog.Text = "Angebotstitel ändern:"
+        'AddOfferDialog.ShowDialog.t= "Angebotstitel ändern"
+        Dim AngebotRow As DataSet1.AngebotRow
+        AngebotRow = DataSet1.Angebot.FindByAngebotsID(DataGridView1.CurrentRow.Cells(0).Value)
+        AddOfferDialog.TextBoxOfferTitle.Text = AngebotRow.Angebotstitel
+        If AddOfferDialog.ShowDialog = DialogResult.OK Then
+            AngebotRow.Angebotstitel = AddOfferDialog.TextBoxOfferTitle.Text
+        Else
+            MsgBox("Es wird nichts umbenannt!", vbExclamation)
+        End If
+    End Sub
+
+
 
 
 End Class
