@@ -10,7 +10,7 @@ Public Class GenerateWordDocument
 
 #Region "Angebot in Microsoft Word erstellen"
     Shared Sub Winword_open(ByVal Email As String, ByVal Telefon As String)
-        Dim ArticleRow As DataSet1.ArtikelRow
+
         Dim TSPB_Step As Integer = (85 / (Form1.DataGridView2.Rows.Count - 1))
         Dim OrtEigeneDateien As String = Environment.GetFolderPath(Environment.SpecialFolder.Personal)
         Dim extension As String
@@ -32,42 +32,39 @@ Public Class GenerateWordDocument
                     Else
                         Form1.ToolStripProgressBar1.Value = 100
                     End If
+                    Dim ArticleRow As DataSet1.ArtikelRow
                     ArticleRow = Form1.DataSet1.Artikel.FindByArtikelID(Form1.DataGridView2.Rows(i).Cells(0).Value)
-                    Try
-                        Document_URL = ArticleRow.URL
-                        If ArticleRow.AGSelected = True Then
-                            If File.Exists(Document_URL) Then
-                                extension = Path.GetExtension(Document_URL)
-                                If extension = ".xls" Or extension = ".xlsx" Then
-                                    oExcel.Workbooks.Open(Document_URL)
-                                    oExcel.ActiveWorkbook.ActiveSheet.select
-                                    druckbereich = oExcel.ActiveSheet.PageSetup.printArea
-                                    If druckbereich IsNot Nothing Then
-                                        oExcel.ActiveSheet.range(druckbereich).copy
-                                    Else
-                                        oExcel.ActiveSheet.range("A1:D10").copy
-                                    End If
-                                    oWord.Selection.PasteExcelTable(False, False, False)
-                                    'Clipboard.Clear()
-                                    oExcel.ActiveWorkbook.Close(False, Document_URL)
-                                    oExcel.Quit()
-                                    oWord.Selection.InsertBreak()
+                    Document_URL = ArticleRow.URL
+                    If ArticleRow.AGSelected = True Then
+                        If File.Exists(Document_URL) Then
+                            extension = Path.GetExtension(Document_URL)
+                            If extension = ".xls" Or extension = ".xlsx" Then
+                                oExcel.Workbooks.Open(Document_URL)
+                                oExcel.ActiveWorkbook.ActiveSheet.select
+                                druckbereich = oExcel.ActiveSheet.PageSetup.printArea
+                                If druckbereich IsNot Nothing Then
+                                    oExcel.ActiveSheet.range(druckbereich).copy
+                                Else
+                                    oExcel.ActiveSheet.range("A1:D10").copy
                                 End If
-                                If extension = ".doc" Or extension = ".docx" Then
-                                    oWord.Selection.InsertFile(FileName:=Document_URL, Range:="", ConfirmConversions:=False, Link:=False, Attachment:=False)
-                                    oWord.Selection.EndKey(Unit:=Word.WdUnits.wdStory, Extend:=Word.WdMovementType.wdExtend)
-                                    oWord.Selection.Delete(Unit:=Word.WdUnits.wdCharacter, Count:=1)
-                                End If
-                            Else
-                                oWord.Selection.Font.Size = 14
-                                oWord.Selection.Font.Bold = True
-                                oWord.Selection.Text = vbCrLf & "Textbaustein " & Document_URL & " fehlt!" & vbCrLf & vbCrLf
-                                oWord.Selection.EndKey(Word.WdUnits.wdStory)
+                                oWord.Selection.PasteExcelTable(False, False, False)
+                                'Clipboard.Clear()
+                                oExcel.ActiveWorkbook.Close(False, Document_URL)
+                                oExcel.Quit()
+                                oWord.Selection.InsertBreak()
                             End If
+                            If extension = ".doc" Or extension = ".docx" Then
+                                oWord.Selection.InsertFile(FileName:=Document_URL, Range:="", ConfirmConversions:=False, Link:=False, Attachment:=False)
+                                oWord.Selection.EndKey(Unit:=Word.WdUnits.wdStory, Extend:=Word.WdMovementType.wdExtend)
+                                oWord.Selection.Delete(Unit:=Word.WdUnits.wdCharacter, Count:=1)
+                            End If
+                        Else
+                            oWord.Selection.Font.Size = 14
+                            oWord.Selection.Font.Bold = True
+                            oWord.Selection.Text = vbCrLf & "Textbaustein " & Document_URL & " fehlt!" & vbCrLf & vbCrLf
+                            oWord.Selection.EndKey(Word.WdUnits.wdStory)
                         End If
-                    Catch ex As Exception
-                        MsgBox("Artikel ist in der Datenbank nicht vorhanden und sollte manuell entfernt werden!", vbExclamation)
-                    End Try
+                    End If
                 Next
             End If
             Dim TSPB_value = Form1.ToolStripProgressBar1.Value

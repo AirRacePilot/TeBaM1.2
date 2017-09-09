@@ -50,6 +50,18 @@
         </Point>
       </RoutePoints>
     </Connector>
+    <Connector ID="DesignRelation:FK_Artikel_SpezOptionen" ZOrder="3" LineWidth="11">
+      <RoutePoints>
+        <Point>
+          <X>501</X>
+          <Y>507</Y>
+        </Point>
+        <Point>
+          <X>668</X>
+          <Y>507</Y>
+        </Point>
+      </RoutePoints>
+    </Connector>
     <Connector ID="DesignRelation:FK_Angebot_SpezOptionen" ZOrder="1" LineWidth="11">
       <RoutePoints>
         <Point>
@@ -63,18 +75,6 @@
         <Point>
           <X>837</X>
           <Y>475</Y>
-        </Point>
-      </RoutePoints>
-    </Connector>
-    <Connector ID="DesignRelation:FK_Artikel_SpezOptionen" ZOrder="3" LineWidth="11">
-      <RoutePoints>
-        <Point>
-          <X>501</X>
-          <Y>507</Y>
-        </Point>
-        <Point>
-          <X>668</X>
-          <Y>507</Y>
         </Point>
       </RoutePoints>
     </Connector>

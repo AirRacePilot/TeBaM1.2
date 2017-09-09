@@ -1398,7 +1398,10 @@ Public Class Form1
         End If
     End Sub
 
-
-
-
+    Private Sub AGToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AGToolStripMenuItem.Click
+        Dim ArticleRow As DataSet1.ArtikelRow
+        For Each ArticleRow In DataSet1.Artikel.Rows
+            ArticleRow.AGSelected = True
+        Next
+    End Sub
 End Class
