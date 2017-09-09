@@ -159,8 +159,8 @@ Public Class Form1
                 'keine Fehlermeldung ausgeben
             End Try
         Next
-        VKMaschinenpreis.Text = SummeMaschine & " €"
-        VKDL.Text = SummeDL & " €"
+        VKMaschinenpreis.Text = String.Format("{0:C}", SummeMaschine)
+        VKDL.Text = String.Format("{0:C}", SummeDL)
     End Sub
 
 
@@ -1079,6 +1079,7 @@ Public Class Form1
         Else
             EKPreisTextBox.Text = "0,00 €"
         End If
+        PriceKalk()
     End Sub
 
     Sub TM_ChangeVK(ByVal input As String)
@@ -1087,6 +1088,7 @@ Public Class Form1
         Else
             VKPreisTextBox.Text = "0,00 €"
         End If
+        PriceKalk()
     End Sub
 
     Private Sub MaskedTBox_EK_Leave(sender As Object, e As EventArgs) Handles EKPreisTextBox.Leave
