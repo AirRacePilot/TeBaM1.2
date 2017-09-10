@@ -43,6 +43,11 @@ Public Class Form1
     Private mdrect As Rectangle
     Private mdindex As Integer
 
+    Delegate Sub DelegateSafeData()
+    Delegate Sub DelegateNTV1act()
+    Delegate Sub DelegatePriceChange(ByVal textvalue As String)
+    Delegate Sub InvokeDelegate(ByVal label As String, ByVal NodeTag As String, ByVal NodeNAme As String)
+
 #Region "Programm und UserInterface initialisieren"
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         If Not File.Exists(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & "\Vertreter.xml") Then
@@ -84,7 +89,7 @@ Public Class Form1
                 DokumentenvorlageComboBox.Items.Add(file.Name)
             End If
         Next
-        TreeView_actualize()
+        BeginInvoke(New DelegateNTV1act(AddressOf TreeView_actualize))
         ArtikelGroupBox.Text = "Artikel (" & DataSet1.Artikel.Rows.Count & ")" 'Anzahl Artikel
         KundeGroupBox.Text = "Kunde (" & DataSet1.Kunde.Rows.Count & ")" 'Anzahl Kunden
         Dim tn As TreeNode = NewTreeView1.Nodes(0)
@@ -114,14 +119,12 @@ Public Class Form1
                                  & vbCrLf & "Wollen Sie wirklich beenden ohne zu speichern?" _
                                  & vbCrLf & "Alle Daten gehen verloren!", "ohne speichern fortsetzen?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning)
                         Case DialogResult.Yes
-                            Application.Exit()
+                            ' beenden ohne zu speichern!
                         Case DialogResult.No
                             Save_product_structure_under()
-                            Application.Exit()
                     End Select
                 Else
-                    Save_product_structure()
-                    Application.Exit()
+                    Invoke(New DelegateSafeData(AddressOf Save_product_structure))
                 End If
             End If
         End If
@@ -322,8 +325,10 @@ Public Class Form1
         Next
     End Sub
 
+
+
     Private Sub DataGridView1_SelectionChanged(sender As Object, e As EventArgs) Handles DataGridView1.SelectionChanged
-        TreeView_actualize()
+        BeginInvoke(New DelegateNTV1act(AddressOf TreeView_actualize))
     End Sub
 
     Private Sub KdNummerComboBox_SelectedValueChanged(sender As Object, e As EventArgs) Handles KdNummerComboBox.SelectedValueChanged
@@ -332,8 +337,8 @@ Public Class Form1
             KDrow = DataSet1.Kunde.FindByKdNummer(KdNummerComboBox.Text)
             VertreterComboBox.Text = KDrow.ZustVertreter
             DokumentenvorlageComboBox.Text = KDrow.DokVorlage
+            BeginInvoke(New DelegateNTV1act(AddressOf TreeView_actualize))
         End If
-        TreeView_actualize()
     End Sub
 
 
@@ -538,17 +543,17 @@ Public Class Form1
 
     Private Sub ProduktsrukturÖffnenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ProduktsrukturÖffnenToolStripMenuItem.Click
         Open_product_structure()
-        TreeView_actualize()
+        BeginInvoke(New DelegateNTV1act(AddressOf TreeView_actualize))
     End Sub
 
     Private Sub OpenStucture_Click(sender As Object, e As EventArgs) Handles OpenStucture.Click
         Open_product_structure()
-        TreeView_actualize()
+        BeginInvoke(New DelegateNTV1act(AddressOf TreeView_actualize))
     End Sub
 
     Private Sub SpeichernToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SpeichernToolStripMenuItem.Click
         If TBMStructure = True Then
-            Save_product_structure()
+            Invoke(New DelegateSafeData(AddressOf Save_product_structure))
         Else
             MsgBox("keine Daten vorhanden")
         End If
@@ -556,7 +561,7 @@ Public Class Form1
 
     Private Sub SafeStructure_Click(sender As Object, e As EventArgs) Handles SafeStructure.Click
         If TBMStructure = True Then
-            Save_product_structure()
+            Invoke(New DelegateSafeData(AddressOf Save_product_structure))
         Else
             MsgBox("keine Daten vorhanden")
         End If
@@ -601,7 +606,7 @@ Public Class Form1
         If saveFileDialog1.ShowDialog() = DialogResult.OK Then
             Dateiname_tree = saveFileDialog1.FileName
             Dim _DataTree As New FileInfo("neu.xml")
-            Save_product_structure()
+            Invoke(New DelegateSafeData(AddressOf Save_product_structure))
             TBMStructure = True
         End If
     End Sub
@@ -611,7 +616,7 @@ Public Class Form1
             Dim openFileDialog1 As New OpenFileDialog()
             openFileDialog1.Filter = "Cursor Files|*.xml"
             openFileDialog1.Title = "Bitte eine Produktstruktur auswählen"
-            If TBMStructure = True Then Save_product_structure() ' bestehende Produktstruktur abspeichern!
+            If TBMStructure = True Then Invoke(New DelegateSafeData(AddressOf Save_product_structure)) ' bestehende Produktstruktur abspeichern!
             If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
                 Dateiname_tree = openFileDialog1.FileName
                 Dim _DataTree As New FileInfo(Dateiname_tree)
@@ -629,7 +634,7 @@ Public Class Form1
                 CenterAlignTitel()
             End If
         Else
-            Save_product_structure()
+            Invoke(New DelegateSafeData(AddressOf Save_product_structure))
             TBMStructure = False
             DataSet1.Clear()
             Open_product_structure()
@@ -1071,7 +1076,7 @@ Public Class Form1
 #End Region
 
 #Region "Texbox Formatierungen erstellen"
-    Delegate Sub DelegatePriceChange(ByVal textvalue As String)
+
 
     Sub TM_ChangeEK(ByVal input As String)
         If EKPreisTextBox.Text <> "" Then
@@ -1205,7 +1210,7 @@ Public Class Form1
         End If
     End Sub
 
-    Delegate Sub InvokeDelegate(ByVal label As String, ByVal NodeTag As String, ByVal NodeNAme As String)
+
 
     Private Sub NewTreeView1_AfterLabelEdit_1(sender As Object, e As NodeLabelEditEventArgs) Handles NewTreeView1.AfterLabelEdit
         Dim NodeTag As String = NewTreeView1.SelectedNode.Tag
@@ -1400,10 +1405,16 @@ Public Class Form1
         End If
     End Sub
 
+
+
+    'nur Hilfsfunktion - wird wieder entfernt
     Private Sub AGToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AGToolStripMenuItem.Click
         Dim ArticleRow As DataSet1.ArtikelRow
         For Each ArticleRow In DataSet1.Artikel.Rows
             ArticleRow.AGSelected = True
         Next
     End Sub
+    'Ende der Hilfsfunktion
+
+
 End Class
