@@ -245,6 +245,7 @@
     <Content Include="img\root-system-bin.ico" />
     <Content Include="img\system-file-manager-2.ico" />
     <Content Include="img\system-file-manager-6.ico" />
+    <None Include="img\system-search-4.ico" />
     <Content Include="img\tasks.ico" />
     <Content Include="img\TBM.ico" />
     <Content Include="img\TBM.png" />

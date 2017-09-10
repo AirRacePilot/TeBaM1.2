@@ -75,6 +75,8 @@ Public Class Form1
         CenterAlignTitel()
         DataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         ToolStripProgressBar1.Visible = False
+        ComboBox1.Visible = False
+
     End Sub
 
     Sub InitHMI()
@@ -338,6 +340,8 @@ Public Class Form1
             VertreterComboBox.Text = KDrow.ZustVertreter
             DokumentenvorlageComboBox.Text = KDrow.DokVorlage
             BeginInvoke(New DelegateNTV1act(AddressOf TreeView_actualize))
+            ComboBox1.Visible = False
+            Button1.Enabled = True
         End If
     End Sub
 
@@ -618,6 +622,7 @@ Public Class Form1
             openFileDialog1.Title = "Bitte eine Produktstruktur auswählen"
             If TBMStructure = True Then Invoke(New DelegateSafeData(AddressOf Save_product_structure)) ' bestehende Produktstruktur abspeichern!
             If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
+
                 Dateiname_tree = openFileDialog1.FileName
                 Dim _DataTree As New FileInfo(Dateiname_tree)
                 Dim _DataFile As New FileInfo(My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData & "\Data_" & Path.GetFileNameWithoutExtension(Dateiname_tree) & ".xml")
@@ -632,6 +637,7 @@ Public Class Form1
                     TBMStructure = True
                 End If
                 CenterAlignTitel()
+                Button1.Enabled = True
             End If
         Else
             Invoke(New DelegateSafeData(AddressOf Save_product_structure))
@@ -1414,6 +1420,13 @@ Public Class Form1
             ArticleRow.AGSelected = True
         Next
     End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        ComboBox1.Visible = True
+        Button1.Enabled = False
+    End Sub
+
+
     'Ende der Hilfsfunktion
 
 
