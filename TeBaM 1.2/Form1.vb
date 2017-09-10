@@ -1411,6 +1411,17 @@ Public Class Form1
         End If
     End Sub
 
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        ComboBox1.Visible = True
+        Button1.Enabled = False
+    End Sub
+
+    Private Sub InfoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles InfoToolStripMenuItem.Click
+        Dim InfoForm As New Form4()
+        InfoForm.ShowDialog(Me)
+    End Sub
+
+
 
 
     'nur Hilfsfunktion - wird wieder entfernt
@@ -1420,14 +1431,13 @@ Public Class Form1
             ArticleRow.AGSelected = True
         Next
     End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        ComboBox1.Visible = True
-        Button1.Enabled = False
-    End Sub
-
-
     'Ende der Hilfsfunktion
+
+
+
+
+
+
 
 
 End Class
