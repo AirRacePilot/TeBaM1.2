@@ -104,11 +104,13 @@ Public Class Form1
 
 #Region "Programm beenden"
     Private Sub BeendenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BeendenToolStripMenuItem.Click
+        Me.Visible = False
         Application.Exit()
         EndProgram()
     End Sub
 
     Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles MyBase.FormClosing
+        Me.Visible = False
         Application.Exit()
         EndProgram()
     End Sub
