@@ -105,6 +105,7 @@ Public Class Form1
 #Region "Programm beenden"
     Private Sub BeendenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles BeendenToolStripMenuItem.Click
         Me.Visible = False
+
         Application.Exit()
         EndProgram()
     End Sub
@@ -966,6 +967,7 @@ Public Class Form1
         If NewTreeView1.SelectedNode.Tag = "article" Then
             WurzelKnoten = FindManufacturerNode(currentNode)
             HerstellerComboBox.Text = WurzelKnoten
+            ProduktTypComboBox.Text = currentNode.Parent.Text
         End If
         If NewTreeView1.SelectedNode.Tag = "product" Then
             WurzelKnoten = FindManufacturerNode(currentNode)
@@ -1031,9 +1033,9 @@ Public Class Form1
     End Sub
 
     Private Sub DataGridView2_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView2.CellClick
+        Dim ArtikelID As String = ""
+        Dim node As TreeNode = Nothing
         If DataGridView2.Rows.Count > 0 Then
-            Dim ArtikelID As String = ""
-            Dim node As TreeNode = Nothing
             ArtikelID = DataGridView2.CurrentRow.Cells(0).Value
             If TBMStructure = True And ArtikelID <> "" Then
                 NewTreeView1.SelectedNode = NewTreeView1.Nodes.Find(ArtikelID, True)(0)
@@ -1047,14 +1049,14 @@ Public Class Form1
         NewTreeView1.SelectedNode = NewTreeView1.Nodes.Find(HerstellerComboBox.SelectedValue, True)(0)
         NewTreeView1.Select()
         NewTreeView1.SelectedNode.Expand()
-        ' Me.DataGridView2.Sort(Me.DataGridView2.Columns(7), System.ComponentModel.ListSortDirection.Ascending)
+        ' Me.DataGridView2.Sort(Me.DataGridView2.Columns(8), System.ComponentModel.ListSortDirection.Ascending)
     End Sub
 
     Private Sub ProduktTypComboBox_DropDownClosed(sender As Object, e As EventArgs) Handles ProduktTypComboBox.DropDownClosed
         NewTreeView1.SelectedNode = NewTreeView1.Nodes.Find(ProduktTypComboBox.SelectedValue, True)(0)
         NewTreeView1.Select()
         NewTreeView1.SelectedNode.Expand()
-        'Me.DataGridView2.Sort(Me.DataGridView2.Columns(7), System.ComponentModel.ListSortDirection.Ascending)
+        'Me.DataGridView2.Sort(Me.DataGridView2.Columns(8), System.ComponentModel.ListSortDirection.Ascending)
     End Sub
 
     Private Sub ButtonAddURL_Click(sender As Object, e As EventArgs) Handles ButtonAddURL.Click
@@ -1357,7 +1359,8 @@ Public Class Form1
 
     Private Sub ToolStripButton1_Click(sender As Object, e As EventArgs) Handles ToolStripButton1.Click
         Dim ArticleRow As DataSet1.ArtikelRow
-        ArticleRow = DataSet1.Artikel.FindByArtikelID(DataGridView2.CurrentRow.Cells(0).Value)
+        'ArticleRow = DataSet1.Artikel.FindByArtikelID(DataGridView2.CurrentRow.Cells(0).Value)
+        ArticleRow = DataSet1.Artikel.FindByArtikelID(NewTreeView1.SelectedNode.Name)
         Dim openFileInfo As String = ArticleRow.URL
         If ArticleRow.URL <> "" Then
             ShowTextModul(openFileInfo)
