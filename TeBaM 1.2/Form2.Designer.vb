@@ -28,7 +28,6 @@ Partial Class Form2
         Dim VornameLabel As System.Windows.Forms.Label
         Dim NachnameLabel As System.Windows.Forms.Label
         Dim TelefonnummerLabel As System.Windows.Forms.Label
-        Dim AngezeigterNameLabel As System.Windows.Forms.Label
         Dim E_mailLabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form2))
         Me.DataSet2 = New TeBaM_1._2.DataSet2()
@@ -51,7 +50,6 @@ Partial Class Form2
         Me.VornameTextBox = New System.Windows.Forms.TextBox()
         Me.NachnameTextBox = New System.Windows.Forms.TextBox()
         Me.TelefonnummerTextBox = New System.Windows.Forms.TextBox()
-        Me.AngezeigterNameTextBox = New System.Windows.Forms.TextBox()
         Me.E_mailTextBox = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         VertreternummerLabel = New System.Windows.Forms.Label()
@@ -59,7 +57,6 @@ Partial Class Form2
         VornameLabel = New System.Windows.Forms.Label()
         NachnameLabel = New System.Windows.Forms.Label()
         TelefonnummerLabel = New System.Windows.Forms.Label()
-        AngezeigterNameLabel = New System.Windows.Forms.Label()
         E_mailLabel = New System.Windows.Forms.Label()
         CType(Me.DataSet2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VertreterBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -71,70 +68,54 @@ Partial Class Form2
         'VertreternummerLabel
         '
         VertreternummerLabel.AutoSize = True
-        VertreternummerLabel.Location = New System.Drawing.Point(44, 34)
-        VertreternummerLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        VertreternummerLabel.Location = New System.Drawing.Point(33, 28)
         VertreternummerLabel.Name = "VertreternummerLabel"
-        VertreternummerLabel.Size = New System.Drawing.Size(119, 17)
+        VertreternummerLabel.Size = New System.Drawing.Size(87, 13)
         VertreternummerLabel.TabIndex = 1
         VertreternummerLabel.Text = "Vertreternummer:"
         '
         'AnredeLabel
         '
         AnredeLabel.AutoSize = True
-        AnredeLabel.Location = New System.Drawing.Point(44, 66)
-        AnredeLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        AnredeLabel.Location = New System.Drawing.Point(33, 54)
         AnredeLabel.Name = "AnredeLabel"
-        AnredeLabel.Size = New System.Drawing.Size(58, 17)
+        AnredeLabel.Size = New System.Drawing.Size(44, 13)
         AnredeLabel.TabIndex = 3
         AnredeLabel.Text = "Anrede:"
         '
         'VornameLabel
         '
         VornameLabel.AutoSize = True
-        VornameLabel.Location = New System.Drawing.Point(44, 98)
-        VornameLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        VornameLabel.Location = New System.Drawing.Point(33, 80)
         VornameLabel.Name = "VornameLabel"
-        VornameLabel.Size = New System.Drawing.Size(69, 17)
+        VornameLabel.Size = New System.Drawing.Size(52, 13)
         VornameLabel.TabIndex = 5
         VornameLabel.Text = "Vorname:"
         '
         'NachnameLabel
         '
         NachnameLabel.AutoSize = True
-        NachnameLabel.Location = New System.Drawing.Point(44, 130)
-        NachnameLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        NachnameLabel.Location = New System.Drawing.Point(33, 106)
         NachnameLabel.Name = "NachnameLabel"
-        NachnameLabel.Size = New System.Drawing.Size(80, 17)
+        NachnameLabel.Size = New System.Drawing.Size(62, 13)
         NachnameLabel.TabIndex = 7
         NachnameLabel.Text = "Nachname:"
         '
         'TelefonnummerLabel
         '
         TelefonnummerLabel.AutoSize = True
-        TelefonnummerLabel.Location = New System.Drawing.Point(44, 162)
-        TelefonnummerLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        TelefonnummerLabel.Location = New System.Drawing.Point(33, 132)
         TelefonnummerLabel.Name = "TelefonnummerLabel"
-        TelefonnummerLabel.Size = New System.Drawing.Size(111, 17)
+        TelefonnummerLabel.Size = New System.Drawing.Size(83, 13)
         TelefonnummerLabel.TabIndex = 9
         TelefonnummerLabel.Text = "Telefonnummer:"
-        '
-        'AngezeigterNameLabel
-        '
-        AngezeigterNameLabel.AutoSize = True
-        AngezeigterNameLabel.Location = New System.Drawing.Point(44, 194)
-        AngezeigterNameLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        AngezeigterNameLabel.Name = "AngezeigterNameLabel"
-        AngezeigterNameLabel.Size = New System.Drawing.Size(128, 17)
-        AngezeigterNameLabel.TabIndex = 11
-        AngezeigterNameLabel.Text = "angezeigter Name:"
         '
         'E_mailLabel
         '
         E_mailLabel.AutoSize = True
-        E_mailLabel.Location = New System.Drawing.Point(44, 226)
-        E_mailLabel.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        E_mailLabel.Location = New System.Drawing.Point(33, 158)
         E_mailLabel.Name = "E_mailLabel"
-        E_mailLabel.Size = New System.Drawing.Size(49, 17)
+        E_mailLabel.Size = New System.Drawing.Size(37, 13)
         E_mailLabel.TabIndex = 13
         E_mailLabel.Text = "e mail:"
         '
@@ -163,7 +144,7 @@ Partial Class Form2
         Me.VertreterBindingNavigator.MovePreviousItem = Me.BindingNavigatorMovePreviousItem
         Me.VertreterBindingNavigator.Name = "VertreterBindingNavigator"
         Me.VertreterBindingNavigator.PositionItem = Me.BindingNavigatorPositionItem
-        Me.VertreterBindingNavigator.Size = New System.Drawing.Size(560, 27)
+        Me.VertreterBindingNavigator.Size = New System.Drawing.Size(420, 27)
         Me.VertreterBindingNavigator.TabIndex = 0
         Me.VertreterBindingNavigator.Text = "BindingNavigator1"
         '
@@ -179,7 +160,7 @@ Partial Class Form2
         'BindingNavigatorCountItem
         '
         Me.BindingNavigatorCountItem.Name = "BindingNavigatorCountItem"
-        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(55, 24)
+        Me.BindingNavigatorCountItem.Size = New System.Drawing.Size(44, 24)
         Me.BindingNavigatorCountItem.Text = "von {0}"
         Me.BindingNavigatorCountItem.ToolTipText = "Die Gesamtanzahl der Elemente."
         '
@@ -220,7 +201,7 @@ Partial Class Form2
         Me.BindingNavigatorPositionItem.AccessibleName = "Position"
         Me.BindingNavigatorPositionItem.AutoSize = False
         Me.BindingNavigatorPositionItem.Name = "BindingNavigatorPositionItem"
-        Me.BindingNavigatorPositionItem.Size = New System.Drawing.Size(65, 27)
+        Me.BindingNavigatorPositionItem.Size = New System.Drawing.Size(50, 23)
         Me.BindingNavigatorPositionItem.Text = "0"
         Me.BindingNavigatorPositionItem.ToolTipText = "Aktuelle Position"
         '
@@ -264,64 +245,49 @@ Partial Class Form2
         'VertreternummerTextBox
         '
         Me.VertreternummerTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.VertreterBindingSource, "Vertreternummer", True))
-        Me.VertreternummerTextBox.Location = New System.Drawing.Point(180, 31)
-        Me.VertreternummerTextBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.VertreternummerTextBox.Location = New System.Drawing.Point(135, 25)
         Me.VertreternummerTextBox.Name = "VertreternummerTextBox"
-        Me.VertreternummerTextBox.Size = New System.Drawing.Size(363, 22)
+        Me.VertreternummerTextBox.Size = New System.Drawing.Size(273, 20)
         Me.VertreternummerTextBox.TabIndex = 2
         '
         'AnredeTextBox
         '
         Me.AnredeTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.VertreterBindingSource, "Anrede", True))
-        Me.AnredeTextBox.Location = New System.Drawing.Point(180, 63)
-        Me.AnredeTextBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.AnredeTextBox.Location = New System.Drawing.Point(135, 51)
         Me.AnredeTextBox.Name = "AnredeTextBox"
-        Me.AnredeTextBox.Size = New System.Drawing.Size(363, 22)
+        Me.AnredeTextBox.Size = New System.Drawing.Size(273, 20)
         Me.AnredeTextBox.TabIndex = 4
         '
         'VornameTextBox
         '
         Me.VornameTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.VertreterBindingSource, "Vorname", True))
-        Me.VornameTextBox.Location = New System.Drawing.Point(180, 95)
-        Me.VornameTextBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.VornameTextBox.Location = New System.Drawing.Point(135, 77)
         Me.VornameTextBox.Name = "VornameTextBox"
-        Me.VornameTextBox.Size = New System.Drawing.Size(363, 22)
+        Me.VornameTextBox.Size = New System.Drawing.Size(273, 20)
         Me.VornameTextBox.TabIndex = 6
         '
         'NachnameTextBox
         '
         Me.NachnameTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.VertreterBindingSource, "Nachname", True))
-        Me.NachnameTextBox.Location = New System.Drawing.Point(180, 127)
-        Me.NachnameTextBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.NachnameTextBox.Location = New System.Drawing.Point(135, 103)
         Me.NachnameTextBox.Name = "NachnameTextBox"
-        Me.NachnameTextBox.Size = New System.Drawing.Size(363, 22)
+        Me.NachnameTextBox.Size = New System.Drawing.Size(273, 20)
         Me.NachnameTextBox.TabIndex = 8
         '
         'TelefonnummerTextBox
         '
         Me.TelefonnummerTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.VertreterBindingSource, "Telefonnummer", True))
-        Me.TelefonnummerTextBox.Location = New System.Drawing.Point(180, 159)
-        Me.TelefonnummerTextBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TelefonnummerTextBox.Location = New System.Drawing.Point(135, 129)
         Me.TelefonnummerTextBox.Name = "TelefonnummerTextBox"
-        Me.TelefonnummerTextBox.Size = New System.Drawing.Size(363, 22)
+        Me.TelefonnummerTextBox.Size = New System.Drawing.Size(273, 20)
         Me.TelefonnummerTextBox.TabIndex = 10
-        '
-        'AngezeigterNameTextBox
-        '
-        Me.AngezeigterNameTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.VertreterBindingSource, "angezeigterName", True))
-        Me.AngezeigterNameTextBox.Location = New System.Drawing.Point(180, 191)
-        Me.AngezeigterNameTextBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.AngezeigterNameTextBox.Name = "AngezeigterNameTextBox"
-        Me.AngezeigterNameTextBox.Size = New System.Drawing.Size(363, 22)
-        Me.AngezeigterNameTextBox.TabIndex = 12
         '
         'E_mailTextBox
         '
         Me.E_mailTextBox.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.VertreterBindingSource, "e_mail", True))
-        Me.E_mailTextBox.Location = New System.Drawing.Point(180, 223)
-        Me.E_mailTextBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.E_mailTextBox.Location = New System.Drawing.Point(135, 155)
         Me.E_mailTextBox.Name = "E_mailTextBox"
-        Me.E_mailTextBox.Size = New System.Drawing.Size(363, 22)
+        Me.E_mailTextBox.Size = New System.Drawing.Size(273, 20)
         Me.E_mailTextBox.TabIndex = 14
         '
         'GroupBox1
@@ -331,34 +297,30 @@ Partial Class Form2
         Me.GroupBox1.Controls.Add(Me.VertreternummerTextBox)
         Me.GroupBox1.Controls.Add(E_mailLabel)
         Me.GroupBox1.Controls.Add(AnredeLabel)
-        Me.GroupBox1.Controls.Add(Me.AngezeigterNameTextBox)
         Me.GroupBox1.Controls.Add(Me.AnredeTextBox)
-        Me.GroupBox1.Controls.Add(AngezeigterNameLabel)
         Me.GroupBox1.Controls.Add(VornameLabel)
         Me.GroupBox1.Controls.Add(Me.TelefonnummerTextBox)
         Me.GroupBox1.Controls.Add(Me.VornameTextBox)
         Me.GroupBox1.Controls.Add(TelefonnummerLabel)
         Me.GroupBox1.Controls.Add(NachnameLabel)
         Me.GroupBox1.Controls.Add(Me.NachnameTextBox)
+        Me.GroupBox1.DataBindings.Add(New System.Windows.Forms.Binding("Text", Me.VertreterBindingSource, "angezeigterName", True))
         Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.GroupBox1.Location = New System.Drawing.Point(0, 27)
-        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.GroupBox1.Size = New System.Drawing.Size(560, 267)
+        Me.GroupBox1.Size = New System.Drawing.Size(420, 186)
         Me.GroupBox1.TabIndex = 15
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "GroupBox1"
         '
         'Form2
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(560, 294)
+        Me.ClientSize = New System.Drawing.Size(420, 213)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.VertreterBindingNavigator)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "Form2"
@@ -395,7 +357,6 @@ Partial Class Form2
     Friend WithEvents VornameTextBox As TextBox
     Friend WithEvents NachnameTextBox As TextBox
     Friend WithEvents TelefonnummerTextBox As TextBox
-    Friend WithEvents AngezeigterNameTextBox As TextBox
     Friend WithEvents E_mailTextBox As TextBox
     Friend WithEvents GroupBox1 As GroupBox
 End Class
