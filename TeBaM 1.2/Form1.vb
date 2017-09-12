@@ -336,7 +336,9 @@ Public Class Form1
         BeginInvoke(New DelegateNTV1act(AddressOf TreeView_actualize))
     End Sub
 
-    Private Sub KdNummerComboBox_SelectedValueChanged(sender As Object, e As EventArgs) Handles KdNummerComboBox.SelectedValueChanged
+
+
+    Private Sub KdNummerComboBox_DropDownClosed(sender As Object, e As EventArgs) Handles KdNummerComboBox.DropDownClosed
         If KdNummerComboBox.Text <> "" Then
             Dim KDrow As DataSet1.KundeRow
             KDrow = DataSet1.Kunde.FindByKdNummer(KdNummerComboBox.Text)
@@ -347,7 +349,6 @@ Public Class Form1
             Button1.Enabled = True
         End If
     End Sub
-
 
     Sub TreeView_actualize()
         If DataGridView1.CurrentRow IsNot Nothing Then
@@ -1436,6 +1437,7 @@ Public Class Form1
             ArticleRow.AGSelected = True
         Next
     End Sub
+
     'Ende der Hilfsfunktion
 
 
