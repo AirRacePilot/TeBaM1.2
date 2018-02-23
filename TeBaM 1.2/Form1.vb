@@ -79,6 +79,31 @@ Public Class Form1
 
     End Sub
 
+    Sub Vertreter_akt()
+        If KdNummerComboBox.Text <> "" Then
+
+            Me.Cursor = Cursors.WaitCursor
+
+
+            Dim search As String
+            search = "Firma1 Like '" & Firma1TextBox.Text & "'"
+            Dim foundrows() As DataRow
+            foundrows = DataSet1.Tables("Kunde").Select(search)
+            'MsgBox(foundrows(0)(1))
+            KdNummerComboBox.Text = foundrows(0)(1)
+            Dim KDrow As DataSet1.KundeRow
+            KDrow = DataSet1.Kunde.FindByKdNummer(foundrows(0)(1))
+            VertreterComboBox.Text = KDrow.ZustVertreter
+            DokumentenvorlageComboBox.Text = KDrow.DokVorlage
+            BeginInvoke(New DelegateNTV1act(AddressOf TreeView_actualize))
+            ComboBox1.Visible = False
+            Button1.Enabled = True
+        End If
+        ComboBox1.Visible = False
+        Button1.Enabled = True
+        Me.Cursor = Cursors.Arrow
+    End Sub
+
     Sub InitHMI()
         VT_edit = True
         'Form2.DataSet2.Vertreter.ReadXml(VT_DataFile.FullName)
@@ -98,6 +123,9 @@ Public Class Form1
         NewTreeView1.SelectedNode = tn
         NewTreeView1.Select()
         NewTreeView1.Focus()
+
+
+
         'Me.DataGridView5.Sort(Me.DataGridView5.Columns(7), System.ComponentModel.ListSortDirection.Ascending)
     End Sub
 #End Region
@@ -330,24 +358,12 @@ Public Class Form1
         Next
     End Sub
 
-
-
     Private Sub DataGridView1_SelectionChanged(sender As Object, e As EventArgs) Handles DataGridView1.SelectionChanged
         BeginInvoke(New DelegateNTV1act(AddressOf TreeView_actualize))
     End Sub
 
-
-
-    Private Sub KdNummerComboBox_DropDownClosed(sender As Object, e As EventArgs) Handles KdNummerComboBox.DropDownClosed
-        If KdNummerComboBox.Text <> "" Then
-            Dim KDrow As DataSet1.KundeRow
-            KDrow = DataSet1.Kunde.FindByKdNummer(KdNummerComboBox.Text)
-            VertreterComboBox.Text = KDrow.ZustVertreter
-            DokumentenvorlageComboBox.Text = KDrow.DokVorlage
-            BeginInvoke(New DelegateNTV1act(AddressOf TreeView_actualize))
-            ComboBox1.Visible = False
-            Button1.Enabled = True
-        End If
+    Private Sub Firma1TextBox_TextChanged(sender As Object, e As EventArgs) Handles Firma1TextBox.TextChanged
+        Vertreter_akt()
     End Sub
 
     Sub TreeView_actualize()
@@ -370,6 +386,7 @@ Public Class Form1
             NewTreeView1.Enabled = False
             ToolStripLabel1.Text = "kein Angebot ausgewählt"
         End If
+
     End Sub
 #End Region
 
@@ -1280,7 +1297,8 @@ Public Class Form1
 
 #Region "Word Textmarken Verknüpfungen erstellen/ändern"
     Private Sub ToolStripButtonUp_Click(sender As Object, e As EventArgs) Handles ToolStripButtonUp.Click
-        Me.DataGridView2.Sort(Me.DataGridView2.Columns(8), System.ComponentModel.ListSortDirection.Ascending)
+        'Me.DataGridView2.Sort(Me.DataGridView2.Columns(8), System.ComponentModel.ListSortDirection.Ascending)
+        'massive Performance Verbesserung ohne sortieren!
         Dim Idx As DataSet1.SpezOptionenRow = FKAngebotSpezOptionenBindingSource.Item(FKAngebotSpezOptionenBindingSource.Position).row
         DataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         If DataGridView2.CurrentRow.Index > 0 Then
@@ -1300,7 +1318,8 @@ Public Class Form1
     End Sub
 
     Private Sub ToolStripButtonDown_Click(sender As Object, e As EventArgs) Handles ToolStripButtonDown.Click
-        Me.DataGridView2.Sort(Me.DataGridView2.Columns(8), System.ComponentModel.ListSortDirection.Ascending)
+        'Me.DataGridView2.Sort(Me.DataGridView2.Columns(8), System.ComponentModel.ListSortDirection.Ascending)
+        'massive Performance Verbesserung ohne sortieren!
         Dim Idx As DataSet1.SpezOptionenRow = FKAngebotSpezOptionenBindingSource.Item(FKAngebotSpezOptionenBindingSource.Position).row
         DataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         If DataGridView2.CurrentRow.Index < DataGridView2.Rows.Count - 1 Then
@@ -1403,6 +1422,7 @@ Public Class Form1
 
 
 #End Region
+
     Private Sub ContextMenuStripOfferTitle_Click(sender As Object, e As EventArgs) Handles ContextMenuStripOfferTitle.Click
         AddOfferDialog.TextBoxOfferNumber.Enabled = False
         AddOfferDialog.Text = "Angebotstitel ändern:"
@@ -1427,9 +1447,6 @@ Public Class Form1
         InfoForm.ShowDialog(Me)
     End Sub
 
-
-
-
     'nur Hilfsfunktion - wird wieder entfernt
     Private Sub AGToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AGToolStripMenuItem.Click
         Dim ArticleRow As DataSet1.ArtikelRow
@@ -1438,13 +1455,11 @@ Public Class Form1
         Next
     End Sub
 
+    Private Sub KdNummerComboBox_TextChanged(sender As Object, e As EventArgs) Handles KdNummerComboBox.TextChanged
+        Vertreter_akt()
+    End Sub
+
     'Ende der Hilfsfunktion
-
-
-
-
-
-
 
 
 End Class

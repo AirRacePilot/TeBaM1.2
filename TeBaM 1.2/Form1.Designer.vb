@@ -674,10 +674,10 @@ Partial Class Form1
         Me.ComboBox1.DataSource = Me.KundeBindingSource
         Me.ComboBox1.DisplayMember = "Firma1"
         Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(119, 57)
-        Me.ComboBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ComboBox1.Location = New System.Drawing.Point(117, 57)
+        Me.ComboBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(317, 24)
+        Me.ComboBox1.Size = New System.Drawing.Size(319, 24)
         Me.ComboBox1.TabIndex = 27
         Me.ComboBox1.ValueMember = "Firma1"
         '
@@ -687,7 +687,7 @@ Partial Class Form1
         Me.Button1.Enabled = False
         Me.Button1.Image = Global.TeBaM_1._2.My.Resources.Resources.system_search_4
         Me.Button1.Location = New System.Drawing.Point(445, 49)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(40, 37)
         Me.Button1.TabIndex = 26
@@ -870,7 +870,7 @@ Partial Class Form1
         Me.TabPage2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3, 2, 3, 2)
-        Me.TabPage2.Size = New System.Drawing.Size(1311, 613)
+        Me.TabPage2.Size = New System.Drawing.Size(1311, 623)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Angebot"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -892,7 +892,7 @@ Partial Class Form1
         Me.SplitContainer1.Panel2.Controls.Add(Me.Panel2)
         Me.SplitContainer1.Panel2.Controls.Add(Me.ToolStrip4)
         Me.SplitContainer1.Panel2.Controls.Add(Me.Panel1)
-        Me.SplitContainer1.Size = New System.Drawing.Size(1305, 609)
+        Me.SplitContainer1.Size = New System.Drawing.Size(1305, 619)
         Me.SplitContainer1.SplitterDistance = 426
         Me.SplitContainer1.TabIndex = 0
         '
@@ -906,10 +906,10 @@ Partial Class Form1
         Me.NewTreeView1.ImageIndex = 0
         Me.NewTreeView1.ImageList = Me.ImageList1
         Me.NewTreeView1.Location = New System.Drawing.Point(0, 0)
-        Me.NewTreeView1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.NewTreeView1.Margin = New System.Windows.Forms.Padding(4)
         Me.NewTreeView1.Name = "NewTreeView1"
         Me.NewTreeView1.SelectedImageIndex = 0
-        Me.NewTreeView1.Size = New System.Drawing.Size(426, 609)
+        Me.NewTreeView1.Size = New System.Drawing.Size(426, 619)
         Me.NewTreeView1.TabIndex = 0
         '
         'ContextMenuStrip_NewTreeView1
@@ -960,7 +960,7 @@ Partial Class Form1
         Me.DataGridView2.RowHeadersVisible = False
         Me.DataGridView2.RowTemplate.Height = 24
         Me.DataGridView2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DataGridView2.Size = New System.Drawing.Size(875, 155)
+        Me.DataGridView2.Size = New System.Drawing.Size(875, 165)
         Me.DataGridView2.TabIndex = 1
         '
         'Column1
@@ -1112,7 +1112,7 @@ Partial Class Form1
         Me.Panel2.Controls.Add(Me.VKMaschinenpreis)
         Me.Panel2.Controls.Add(Me.Label2)
         Me.Panel2.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.Panel2.Location = New System.Drawing.Point(0, 563)
+        Me.Panel2.Location = New System.Drawing.Point(0, 573)
         Me.Panel2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(875, 46)
@@ -1258,7 +1258,7 @@ Partial Class Form1
         Me.PrintEnabledCheckBox.AutoSize = True
         Me.PrintEnabledCheckBox.DataBindings.Add(New System.Windows.Forms.Binding("Checked", Me.ArtikelBindingSource, "AGSelected", True))
         Me.PrintEnabledCheckBox.Location = New System.Drawing.Point(756, 238)
-        Me.PrintEnabledCheckBox.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.PrintEnabledCheckBox.Margin = New System.Windows.Forms.Padding(4)
         Me.PrintEnabledCheckBox.Name = "PrintEnabledCheckBox"
         Me.PrintEnabledCheckBox.Size = New System.Drawing.Size(83, 21)
         Me.PrintEnabledCheckBox.TabIndex = 25

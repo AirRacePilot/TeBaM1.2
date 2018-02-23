@@ -35,9 +35,10 @@ Partial Class Form4
         '
         'ButtonOK
         '
-        Me.ButtonOK.Location = New System.Drawing.Point(230, 140)
+        Me.ButtonOK.Location = New System.Drawing.Point(307, 172)
+        Me.ButtonOK.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonOK.Name = "ButtonOK"
-        Me.ButtonOK.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonOK.Size = New System.Drawing.Size(100, 28)
         Me.ButtonOK.TabIndex = 0
         Me.ButtonOK.Text = "OK"
         Me.ButtonOK.UseVisualStyleBackColor = True
@@ -45,9 +46,10 @@ Partial Class Form4
         'PictureBox1
         '
         Me.PictureBox1.Image = Global.TeBaM_1._2.My.Resources.Resources.TBM
-        Me.PictureBox1.Location = New System.Drawing.Point(12, 12)
+        Me.PictureBox1.Location = New System.Drawing.Point(16, 15)
+        Me.PictureBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.PictureBox1.Name = "PictureBox1"
-        Me.PictureBox1.Size = New System.Drawing.Size(49, 40)
+        Me.PictureBox1.Size = New System.Drawing.Size(65, 49)
         Me.PictureBox1.TabIndex = 1
         Me.PictureBox1.TabStop = False
         '
@@ -55,9 +57,10 @@ Partial Class Form4
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(67, 12)
+        Me.Label2.Location = New System.Drawing.Point(89, 15)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(65, 20)
+        Me.Label2.Size = New System.Drawing.Size(82, 25)
         Me.Label2.TabIndex = 3
         Me.Label2.Text = "TeBaM"
         '
@@ -65,9 +68,10 @@ Partial Class Form4
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label5.Location = New System.Drawing.Point(67, 32)
+        Me.Label5.Location = New System.Drawing.Point(89, 39)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(165, 20)
+        Me.Label5.Size = New System.Drawing.Size(205, 25)
         Me.Label5.TabIndex = 6
         Me.Label5.Text = "TextBausteinManager"
         '
@@ -75,9 +79,10 @@ Partial Class Form4
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(12, 68)
+        Me.Label1.Location = New System.Drawing.Point(16, 84)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(140, 20)
+        Me.Label1.Size = New System.Drawing.Size(174, 25)
         Me.Label1.TabIndex = 7
         Me.Label1.Text = "Autor: Frank Mergl"
         '
@@ -85,19 +90,21 @@ Partial Class Form4
         '
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label3.Location = New System.Drawing.Point(190, 68)
+        Me.Label3.Location = New System.Drawing.Point(253, 84)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(115, 20)
+        Me.Label3.Size = New System.Drawing.Size(143, 25)
         Me.Label3.TabIndex = 8
-        Me.Label3.Text = "Version 1.0.0.0"
+        Me.Label3.Text = "Version 1.2.0.2"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label4.Location = New System.Drawing.Point(12, 102)
+        Me.Label4.Location = New System.Drawing.Point(16, 126)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(282, 20)
+        Me.Label4.Size = New System.Drawing.Size(348, 25)
         Me.Label4.TabIndex = 9
         Me.Label4.Text = "für Nagel-Werkzeugmaschinen GmbH "
         '
@@ -105,17 +112,18 @@ Partial Class Form4
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label6.Location = New System.Drawing.Point(238, 32)
+        Me.Label6.Location = New System.Drawing.Point(317, 39)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(67, 20)
+        Me.Label6.Size = New System.Drawing.Size(85, 25)
         Me.Label6.TabIndex = 10
         Me.Label6.Text = "(c) 2017"
         '
         'Form4
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(322, 175)
+        Me.ClientSize = New System.Drawing.Size(429, 215)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
@@ -125,6 +133,7 @@ Partial Class Form4
         Me.Controls.Add(Me.PictureBox1)
         Me.Controls.Add(Me.ButtonOK)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "Form4"
