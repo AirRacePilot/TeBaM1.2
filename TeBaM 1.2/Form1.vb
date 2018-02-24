@@ -77,6 +77,9 @@ Public Class Form1
         ToolStripProgressBar1.Visible = False
         ComboBox1.Visible = False
 
+        ToolStripButton1.Enabled = False
+        ToolStripButtonUp.Enabled = False
+        ToolStripButtonDown.Enabled = False
     End Sub
 
     Sub Vertreter_akt()
@@ -369,6 +372,9 @@ Public Class Form1
     Sub TreeView_actualize()
         If DataGridView1.CurrentRow IsNot Nothing Then
             NewTreeView1.Enabled = True
+            ToolStripButton1.Enabled = True
+            ToolStripButtonUp.Enabled = True
+            ToolStripButtonDown.Enabled = True
             ToolStripLabel1.Text = DataGridView1.CurrentRow.Cells(0).Value
             Dim SpezRow As DataSet1.SpezOptionenRow = Nothing
             TraverseChildNodes(NewTreeView1.Nodes)
@@ -520,7 +526,15 @@ Public Class Form1
         End Try
     End Sub
 
+    Private Sub LöschenToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LöschenToolStripMenuItem.Click
+        Delete_TexModule()
+    End Sub
+
     Private Sub DelNode_Click(sender As Object, e As EventArgs) Handles DelNode.Click
+        Delete_TexModule()
+    End Sub
+
+    Sub Delete_TexModule()
         If NewTreeView1.Nodes.Count > 0 Then
             If NewTreeView1.SelectedNode.Checked = False Then
                 Select Case MessageBox.Show("Wollen Sie den selektierten Knoten wirklich löschen?", "Knoten löschen", MessageBoxButtons.YesNo)
@@ -547,6 +561,7 @@ Public Class Form1
             End If
         End If
     End Sub
+
 #End Region
 
 #Region "Produktstruktur und Dataset speichern oder speichern unter sowie öffnen"
@@ -1054,6 +1069,8 @@ Public Class Form1
         Dim ArtikelID As String = ""
         Dim node As TreeNode = Nothing
         If DataGridView2.Rows.Count > 0 Then
+            ToolStripButtonUp.Enabled = True
+            ToolStripButtonDown.Enabled = True
             ArtikelID = DataGridView2.CurrentRow.Cells(0).Value
             If TBMStructure = True And ArtikelID <> "" Then
                 NewTreeView1.SelectedNode = NewTreeView1.Nodes.Find(ArtikelID, True)(0)
@@ -1302,6 +1319,8 @@ Public Class Form1
         Dim Idx As DataSet1.SpezOptionenRow = FKAngebotSpezOptionenBindingSource.Item(FKAngebotSpezOptionenBindingSource.Position).row
         DataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         If DataGridView2.CurrentRow.Index > 0 Then
+            ToolStripButtonUp.Enabled = True
+            ToolStripButtonDown.Enabled = True
             Dim DRx As DataSet1.SpezOptionenRow = FKAngebotSpezOptionenBindingSource.Item(FKAngebotSpezOptionenBindingSource.Position - 1).row
             Dim Index_DRx As Integer
             Dim Index_Idx As Integer
@@ -1314,7 +1333,10 @@ Public Class Form1
             Index_Idx = Idx.SortRow
             DRx.SortRow = Index_Idx
             Idx.SortRow = Index_DRx
+        Else
+            ToolStripButtonUp.Enabled = False
         End If
+
     End Sub
 
     Private Sub ToolStripButtonDown_Click(sender As Object, e As EventArgs) Handles ToolStripButtonDown.Click
@@ -1323,6 +1345,8 @@ Public Class Form1
         Dim Idx As DataSet1.SpezOptionenRow = FKAngebotSpezOptionenBindingSource.Item(FKAngebotSpezOptionenBindingSource.Position).row
         DataGridView2.SelectionMode = DataGridViewSelectionMode.FullRowSelect
         If DataGridView2.CurrentRow.Index < DataGridView2.Rows.Count - 1 Then
+            ToolStripButtonUp.Enabled = True
+            ToolStripButtonDown.Enabled = True
             Dim DRx As DataSet1.SpezOptionenRow = FKAngebotSpezOptionenBindingSource.Item(FKAngebotSpezOptionenBindingSource.Position + 1).row
             Dim Index_DRx As Integer
             Dim Index_Idx As Integer
@@ -1335,6 +1359,9 @@ Public Class Form1
             Index_Idx = Idx.SortRow
             DRx.SortRow = Index_Idx
             Idx.SortRow = Index_DRx
+        Else
+            ToolStripButtonDown.Enabled = False
+
         End If
     End Sub
 #End Region
@@ -1381,10 +1408,14 @@ Public Class Form1
         Dim ArticleRow As DataSet1.ArtikelRow
         'ArticleRow = DataSet1.Artikel.FindByArtikelID(DataGridView2.CurrentRow.Cells(0).Value)
         ArticleRow = DataSet1.Artikel.FindByArtikelID(NewTreeView1.SelectedNode.Name)
-        Dim openFileInfo As String = ArticleRow.URL
-        If ArticleRow.URL <> "" Then
-            ShowTextModul(openFileInfo)
-        End If
+        Try
+            Dim openFileInfo As String = ArticleRow.URL
+            If ArticleRow.URL <> "" Then
+                ShowTextModul(openFileInfo)
+            End If
+        Catch ex As Exception
+            ' keine Zeile markiert
+        End Try
     End Sub
 
     Private Sub ShowTextModul(ModulFilename As String)
@@ -1458,6 +1489,10 @@ Public Class Form1
     Private Sub KdNummerComboBox_TextChanged(sender As Object, e As EventArgs) Handles KdNummerComboBox.TextChanged
         Vertreter_akt()
     End Sub
+
+
+
+
 
     'Ende der Hilfsfunktion
 

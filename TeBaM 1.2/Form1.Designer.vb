@@ -43,14 +43,14 @@ Partial Class Form1
         Dim HerstellerLabel As System.Windows.Forms.Label
         Dim ProduktTypLabel As System.Windows.Forms.Label
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
         Me.NewStructure = New System.Windows.Forms.ToolStripButton()
         Me.OpenStucture = New System.Windows.Forms.ToolStripButton()
@@ -105,6 +105,7 @@ Partial Class Form1
         Me.ContextMenuStrip_NewTreeView1 = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.UmbenennenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AnzeigenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.LöschenToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         Me.Column1 = New System.Windows.Forms.DataGridViewComboBoxColumn()
@@ -535,11 +536,11 @@ Partial Class Form1
         '
         Me.DataGridView1.AllowUserToAddRows = False
         Me.DataGridView1.AllowUserToDeleteRows = False
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        Me.DataGridView1.AlternatingRowsDefaultCellStyle = DataGridViewCellStyle15
         Me.DataGridView1.AutoGenerateColumns = False
         Me.DataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill
         Me.DataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
@@ -547,14 +548,14 @@ Partial Class Form1
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.AngebotsIDDataGridViewTextBoxColumn, Me.Angebotstitel, Me.KundennummerDataGridViewTextBoxColumn, Me.AngebotURLDataGridViewTextBoxColumn})
         Me.DataGridView1.ContextMenuStrip = Me.ContextMenuStripOfferTitle
         Me.DataGridView1.DataSource = Me.FKKundeAngebotBindingSource
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle16.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle16
         Me.DataGridView1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.DataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DataGridView1.Location = New System.Drawing.Point(3, 267)
@@ -915,9 +916,9 @@ Partial Class Form1
         'ContextMenuStrip_NewTreeView1
         '
         Me.ContextMenuStrip_NewTreeView1.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.ContextMenuStrip_NewTreeView1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UmbenennenToolStripMenuItem, Me.AnzeigenToolStripMenuItem})
+        Me.ContextMenuStrip_NewTreeView1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.UmbenennenToolStripMenuItem, Me.AnzeigenToolStripMenuItem, Me.LöschenToolStripMenuItem})
         Me.ContextMenuStrip_NewTreeView1.Name = "ContextMenuStrip_NewTreeView1"
-        Me.ContextMenuStrip_NewTreeView1.Size = New System.Drawing.Size(165, 52)
+        Me.ContextMenuStrip_NewTreeView1.Size = New System.Drawing.Size(165, 76)
         '
         'UmbenennenToolStripMenuItem
         '
@@ -930,6 +931,12 @@ Partial Class Form1
         Me.AnzeigenToolStripMenuItem.Name = "AnzeigenToolStripMenuItem"
         Me.AnzeigenToolStripMenuItem.Size = New System.Drawing.Size(164, 24)
         Me.AnzeigenToolStripMenuItem.Text = "anzeigen"
+        '
+        'LöschenToolStripMenuItem
+        '
+        Me.LöschenToolStripMenuItem.Name = "LöschenToolStripMenuItem"
+        Me.LöschenToolStripMenuItem.Size = New System.Drawing.Size(164, 24)
+        Me.LöschenToolStripMenuItem.Text = "löschen"
         '
         'ImageList1
         '
@@ -968,10 +975,10 @@ Partial Class Form1
         Me.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill
         Me.Column1.DataPropertyName = "ArtikelID"
         Me.Column1.DataSource = Me.ArtikelBindingSource
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.Format = "C2"
-        DataGridViewCellStyle3.NullValue = Nothing
-        Me.Column1.DefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle9.Format = "C2"
+        DataGridViewCellStyle9.NullValue = Nothing
+        Me.Column1.DefaultCellStyle = DataGridViewCellStyle9
         Me.Column1.DisplayMember = "Artikelkurztext"
         Me.Column1.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
         Me.Column1.HeaderText = "Artikelkurztext"
@@ -990,10 +997,10 @@ Partial Class Form1
         Me.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
         Me.Column2.DataPropertyName = "ArtikelID"
         Me.Column2.DataSource = Me.ArtikelBindingSource
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle4.Format = "00-0000-0000"
-        DataGridViewCellStyle4.NullValue = Nothing
-        Me.Column2.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle10.Format = "00-0000-0000"
+        DataGridViewCellStyle10.NullValue = Nothing
+        Me.Column2.DefaultCellStyle = DataGridViewCellStyle10
         Me.Column2.DisplayMember = "Artikelnr"
         Me.Column2.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
         Me.Column2.HeaderText = "Artikelnummer"
@@ -1007,8 +1014,8 @@ Partial Class Form1
         Me.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
         Me.Column3.DataPropertyName = "ArtikelID"
         Me.Column3.DataSource = Me.ArtikelBindingSource
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Column3.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Column3.DefaultCellStyle = DataGridViewCellStyle17
         Me.Column3.DisplayMember = "Rubrik"
         Me.Column3.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
         Me.Column3.HeaderText = "Rubrik"
@@ -1023,10 +1030,10 @@ Partial Class Form1
         Me.Column4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
         Me.Column4.DataPropertyName = "ArtikelID"
         Me.Column4.DataSource = Me.ArtikelBindingSource
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle6.Format = "C2"
-        DataGridViewCellStyle6.NullValue = Nothing
-        Me.Column4.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle18.Format = "C2"
+        DataGridViewCellStyle18.NullValue = Nothing
+        Me.Column4.DefaultCellStyle = DataGridViewCellStyle18
         Me.Column4.DisplayMember = "EKPreis"
         Me.Column4.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
         Me.Column4.HeaderText = "EK-Preis"
@@ -1040,10 +1047,10 @@ Partial Class Form1
         Me.Column5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
         Me.Column5.DataPropertyName = "ArtikelID"
         Me.Column5.DataSource = Me.ArtikelBindingSource
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        DataGridViewCellStyle7.Format = "C2"
-        DataGridViewCellStyle7.NullValue = Nothing
-        Me.Column5.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        DataGridViewCellStyle19.Format = "C2"
+        DataGridViewCellStyle19.NullValue = Nothing
+        Me.Column5.DefaultCellStyle = DataGridViewCellStyle19
         Me.Column5.DisplayMember = "VKPreis"
         Me.Column5.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
         Me.Column5.HeaderText = "VK-Preis"
@@ -1088,8 +1095,8 @@ Partial Class Form1
         Me.Column6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None
         Me.Column6.DataPropertyName = "ArtikelID"
         Me.Column6.DataSource = Me.ArtikelBindingSource
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.Column6.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.Column6.DefaultCellStyle = DataGridViewCellStyle20
         Me.Column6.DisplayMember = "AGSelected"
         Me.Column6.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.[Nothing]
         Me.Column6.HeaderText = "Druck"
@@ -1168,7 +1175,6 @@ Partial Class Form1
         Me.ToolStrip4.Size = New System.Drawing.Size(875, 31)
         Me.ToolStrip4.TabIndex = 2
         Me.ToolStrip4.Text = "ToolStrip4"
-        Me.ToolTip1.SetToolTip(Me.ToolStrip4, "auf")
         '
         'ToolStripButtonUp
         '
@@ -1178,6 +1184,7 @@ Partial Class Form1
         Me.ToolStripButtonUp.Name = "ToolStripButtonUp"
         Me.ToolStripButtonUp.Size = New System.Drawing.Size(28, 28)
         Me.ToolStripButtonUp.Text = "ToolStripButton1"
+        Me.ToolStripButtonUp.ToolTipText = "auf"
         '
         'ToolStripButtonDown
         '
@@ -1192,8 +1199,8 @@ Partial Class Form1
         'ToolStripLabel1
         '
         Me.ToolStripLabel1.Name = "ToolStripLabel1"
-        Me.ToolStripLabel1.Size = New System.Drawing.Size(114, 28)
-        Me.ToolStripLabel1.Text = "ToolStripLabel1"
+        Me.ToolStripLabel1.Size = New System.Drawing.Size(90, 28)
+        Me.ToolStripLabel1.Text = "Angebot Nr."
         '
         'ToolStripSeparator2
         '
@@ -1758,4 +1765,5 @@ Partial Class Form1
     Friend WithEvents AngebotsnummerDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents SortRowDataGridViewTextBoxColumn As DataGridViewTextBoxColumn
     Friend WithEvents Column6 As DataGridViewComboBoxColumn
+    Friend WithEvents LöschenToolStripMenuItem As ToolStripMenuItem
 End Class
