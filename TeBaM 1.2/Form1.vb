@@ -19,10 +19,10 @@ Public Class Form1
     Private NodeMap As String
     Private Const MAPSIZE As Integer = 128
     Friend WithEvents GroupBox1 As GroupBox
-    Friend WithEvents save_XML As Button
-    Friend WithEvents load_XML As Button
+    Friend WithEvents Save_XML As Button
+    Friend WithEvents Load_XML As Button
     Private NewNodeMap As New System.Text.StringBuilder(MAPSIZE)
-    Friend WithEvents del_Node As Button
+    Friend WithEvents Del_Node As Button
     Friend WithEvents ToolStripMenuItem1 As ToolStripMenuItem
 
     Dim VT_edit As Boolean = False
