@@ -84,23 +84,24 @@ Public Class Form1
 
     Sub Vertreter_akt()
         If KdNummerComboBox.Text <> "" Then
-
-            Me.Cursor = Cursors.WaitCursor
-
-
-            Dim search As String
-            search = "Firma1 Like '" & Firma1TextBox.Text & "'"
-            Dim foundrows() As DataRow
-            foundrows = DataSet1.Tables("Kunde").Select(search)
-            'MsgBox(foundrows(0)(1))
-            KdNummerComboBox.Text = foundrows(0)(1)
-            Dim KDrow As DataSet1.KundeRow
-            KDrow = DataSet1.Kunde.FindByKdNummer(foundrows(0)(1))
-            VertreterComboBox.Text = KDrow.ZustVertreter
-            DokumentenvorlageComboBox.Text = KDrow.DokVorlage
-            BeginInvoke(New DelegateNTV1act(AddressOf TreeView_actualize))
-            ComboBox1.Visible = False
-            Button1.Enabled = True
+            Try
+                Me.Cursor = Cursors.WaitCursor
+                Dim search As String
+                search = "Firma1 Like '" & Firma1TextBox.Text & "'"
+                Dim foundrows() As DataRow
+                foundrows = DataSet1.Tables("Kunde").Select(search)
+                'MsgBox(foundrows(0)(1))
+                KdNummerComboBox.Text = foundrows(0)(1)
+                Dim KDrow As DataSet1.KundeRow
+                KDrow = DataSet1.Kunde.FindByKdNummer(foundrows(0)(1))
+                VertreterComboBox.Text = KDrow.ZustVertreter
+                DokumentenvorlageComboBox.Text = KDrow.DokVorlage
+                BeginInvoke(New DelegateNTV1act(AddressOf TreeView_actualize))
+                ComboBox1.Visible = False
+                Button1.Enabled = True
+            Catch ex As Exception
+                'Meldung ausgeben
+            End Try
         End If
         ComboBox1.Visible = False
         Button1.Enabled = True
