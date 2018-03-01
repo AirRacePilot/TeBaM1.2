@@ -324,8 +324,9 @@ Public Class Form1
 #Region "Neues Angebot einfügen oder löschen"
     Private Sub AddOffer_Click(sender As Object, e As EventArgs) Handles AddOffer.Click
         Try
-            Dim AddOfferDialog As New AddOfferDialog
-            AddOfferDialog.Text = "Neues Angebot:"
+            Dim AddOfferDialog As New AddOfferDialog With {
+                .Text = "Neues Angebot:"
+            }
             If AddOfferDialog.ShowDialog = DialogResult.OK Then
                 Dim NewAGRow As DataSet1.AngebotRow = Nothing
                 NewAGRow = DataSet1.Angebot.NewAngebotRow
@@ -641,9 +642,10 @@ Public Class Form1
     End Sub
 
     Private Sub Save_product_structure_under()
-        Dim saveFileDialog1 As New SaveFileDialog()
-        saveFileDialog1.Filter = "Produktstruktur speichern unter|*.xml"
-        saveFileDialog1.Title = "Produktstruktur speichern"
+        Dim saveFileDialog1 As New SaveFileDialog With {
+            .Filter = "Produktstruktur speichern unter|*.xml",
+            .Title = "Produktstruktur speichern"
+        }
         If saveFileDialog1.ShowDialog() = DialogResult.OK Then
             Dateiname_tree = saveFileDialog1.FileName
             Dim _DataTree As New FileInfo("neu.xml")
@@ -654,9 +656,10 @@ Public Class Form1
 
     Private Sub Open_product_structure()
         If TBMStructure = False Then
-            Dim openFileDialog1 As New OpenFileDialog()
-            openFileDialog1.Filter = "Cursor Files|*.xml"
-            openFileDialog1.Title = "Bitte eine Produktstruktur auswählen"
+            Dim openFileDialog1 As New OpenFileDialog With {
+                .Filter = "Cursor Files|*.xml",
+                .Title = "Bitte eine Produktstruktur auswählen"
+            }
             If TBMStructure = True Then Invoke(New DelegateSafeData(AddressOf Save_product_structure)) ' bestehende Produktstruktur abspeichern!
             If openFileDialog1.ShowDialog() = System.Windows.Forms.DialogResult.OK Then
 
@@ -1142,6 +1145,12 @@ Public Class Form1
         PriceKalk()
     End Sub
 
+    'Private Sub MaskedTextBoxArtikelnummer_Leave(sender As Object, e As EventArgs) Handles MaskedTextBoxArtikelnummer.Leave
+    'Dim modified_string As String = MaskedTextBoxArtikelnummer.Text.Insert(2, "-")
+    'modified_string = modified_string.Insert(7, "-")
+    'MsgBox(modified_string)
+    'End Sub
+
     Private Sub MaskedTBox_EK_Leave(sender As Object, e As EventArgs) Handles EKPreisTextBox.Leave
         EKPreisTextBox.BeginInvoke(New DelegatePriceChange(AddressOf TM_ChangeEK), EKPreisTextBox.Text)
     End Sub
@@ -1490,8 +1499,6 @@ Public Class Form1
     Private Sub KdNummerComboBox_TextChanged(sender As Object, e As EventArgs) Handles KdNummerComboBox.TextChanged
         Vertreter_akt()
     End Sub
-
-
 
 
 
